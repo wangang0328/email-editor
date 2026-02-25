@@ -1,0 +1,17 @@
+{
+  "name": "@wa-dev/email-editor-localization",
+  "license": "MIT",
+  "description": "Email editor localization (based on Easy Email)",
+  "version": "1.0.0",
+  "author": "wa-dev",
+  "keywords": [],
+  "files": [
+    "locales"
+  ],
+  "scripts": {
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
+  },
+  "devDependencies": {
+    "prettier": "^2.8.4"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "packages": [
+    "packages/*"
+  ],
+  "npmClient": "pnpm",
+  "command": {
+    "publish": {
+      "ignoreChanges": [],
+      "message": "chore(release): publish",
+      "registry": "https://registry.npmjs.org"
+    },
+    "bootstrap": {
+      "ignore": "component-*",
+      "npmClientArgs": [
+        "--no-lockfile"
+      ]
+    }
+  },
+  "version": "1.0.0"
+}

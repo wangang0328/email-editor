@@ -1,0 +1,20 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "noImplicitAny": false,
+    "paths": {
+      "@extensions": [
+        "./src"
+      ],
+      "@extensions/*": [
+        "./src/*"
+      ],
+      "@wa-dev/email-editor-core": [
+        "../email-editor-core"
+      ],
+      "@wa-dev/email-editor-editor": [
+        "../email-editor-editor"
+      ]
+    }
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "name": "email-editor",
+  "scripts": {
+    "install-all": "pnpm install",
+    "vercel-install": "pnpm install",
+    "build": "pnpm run build:core && pnpm run build:editor && pnpm run build:extensions",
+    "build:core": "cd packages/email-editor-core && pnpm run build",
+    "build:editor": "cd packages/email-editor-editor && pnpm run build",
+    "build:extensions": "cd packages/email-editor-extensions && pnpm run build",
+    "dev": "cd demo && pnpm run dev",
+    "demo": "cd demo && pnpm run build",
+    "demo2": "cd nextjs-demo && pnpm run build",
+    "test": "pnpm run test:core && pnpm run test:extensions",
+    "test:core": "cd packages/email-editor-core && pnpm run test",
+    "test:extensions": "cd packages/email-editor-extensions && pnpm run test",
+    "translate": "ts-node scripts/translate.ts",
+    "lint": "lerna exec -- pnpm run format"
+  },
+  "dependencies": {
+    "@sendgrid/mail": "^7.7.0",
+    "@types/file-saver": "^2.0.5",
+    "cloudinary": "^1.41.2",
+    "easy-localized-translation": "^1.1.0",
+    "file-saver": "^2.0.5",
+    "lerna": "^4.0.0",
+    "liquidjs": "^9.34.1",
+    "posthog-js": "^1.76.0"
+  },
+  "devDependencies": {
+    "@types/fs-extra": "^11.0.1",
+    "@types/lodash": "^4.14.191",
+    "@types/node": "^18.8.4",
+    "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "dotenv": "^16.0.3"
+  }
+}
