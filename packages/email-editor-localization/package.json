@@ -2,7 +2,7 @@
   "name": "@wa-dev/email-editor-localization",
   "license": "MIT",
   "description": "Email editor localization (based on Easy Email)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "wa-dev",
   "keywords": [],
   "files": [

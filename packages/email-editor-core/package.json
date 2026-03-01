@@ -2,7 +2,7 @@
   "name": "@wa-dev/email-editor-core",
   "license": "MIT",
   "description": "Email editor core (based on Easy Email)",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": "wa-dev",
   "repository": {
     "type": "git",
