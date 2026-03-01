@@ -4,15 +4,13 @@
   "description": "Email editor localization (based on Easy Email)",
   "version": "1.0.1",
   "author": "wa-dev",
+  "publishConfig": { "access": "public" },
   "keywords": [],
-  "files": [
-    "locales"
-  ],
+  "files": ["locales"],
   "scripts": {
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "devDependencies": {
     "prettier": "^2.8.4"
-  },
-  "gitHead": "011f49a6a73e0c89d90b63186f596faf526c2673"
+  }
 }

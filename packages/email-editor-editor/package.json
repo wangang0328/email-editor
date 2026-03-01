@@ -4,6 +4,7 @@
   "description": "Email editor UI (based on Easy Email)",
   "version": "1.0.1",
   "author": "wa-dev",
+  "publishConfig": { "access": "public" },
   "repository": {
     "type": "git",
     "url": "https://github.com/wangang0328/email-editor.git"
