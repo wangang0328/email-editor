@@ -1,19 +1,16 @@
 {
-  "packages": [
-    "packages/*"
-  ],
+  "packages": ["packages/*"],
   "npmClient": "pnpm",
   "command": {
     "publish": {
       "ignoreChanges": [],
       "message": "chore(release): publish",
-      "registry": "https://registry.npmjs.org"
+      "registry": "https://registry.npmjs.org",
+      "access": "public"
     },
     "bootstrap": {
       "ignore": "component-*",
-      "npmClientArgs": [
-        "--no-lockfile"
-      ]
+      "npmClientArgs": ["--no-lockfile"]
     }
   },
   "version": "1.0.1"
