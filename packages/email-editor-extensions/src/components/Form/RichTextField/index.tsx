@@ -98,7 +98,7 @@ function FieldWrapper(
   }
 ) {
   const { input, contentEditableType, ...rest } = props;
-  const { mergeTagGenerate, enabledMergeTagsBadge } = useEditorProps();
+  const { mergeTagGenerate, enabledMergeTagsBadge, toolbar } = useEditorProps();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounceCallbackChange = useCallback(
@@ -117,7 +117,7 @@ function FieldWrapper(
   return (
     <>
       {contentEditableType === ContentEditableType.RichText && (
-        <RichTextToolBar onChange={debounceCallbackChange} />
+        <RichTextToolBar onChange={debounceCallbackChange} toolbar={toolbar} />
       )}
       <InlineText {...rest} onChange={debounceCallbackChange} />
     </>

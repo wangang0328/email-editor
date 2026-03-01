@@ -1,10 +1,23 @@
 import React from 'react';
 import { createPortal } from 'react-dom';
-import { getPluginElement, RICH_TEXT_BAR_ID, useEditorContext } from '@wa-dev/email-editor-editor';
+import {
+  getPluginElement,
+  RICH_TEXT_BAR_ID,
+  useEditorContext,
+} from '@wa-dev/email-editor-editor';
 import { Tools } from './components/Tools';
 import styleText from './shadow-dom.scss?inline';
 
-export function RichTextToolBar(props: { onChange: (s: string) => void; }) {
+export interface RichTextToolBarProps {
+  onChange: (s: string) => void;
+  /** 从上层传入的 toolbar 配置（portal 内 useEditorProps 可能拿不到），保证 suffix 等能正确展示 */
+  toolbar?: {
+    suffix?: (execCommand: (cmd: string, value?: any) => void) => React.ReactNode;
+  };
+}
+
+export function RichTextToolBar(props: RichTextToolBarProps) {
+  const { onChange, toolbar } = props;
   const { initialized } = useEditorContext();
   const root = initialized && getPluginElement();
 
@@ -38,11 +51,13 @@ export function RichTextToolBar(props: { onChange: (s: string) => void; }) {
                 top: 0,
               }}
             />
-
-            <Tools onChange={props.onChange} />
+            <Tools
+              onChange={onChange}
+              toolbar={toolbar}
+            />
           </div>
         </>,
-        root
+        root,
       )}
     </>
   );

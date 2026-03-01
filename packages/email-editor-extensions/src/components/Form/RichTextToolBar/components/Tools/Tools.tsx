@@ -26,10 +26,18 @@ import { RICH_TEXT_TOOL_BAR } from '@extensions/constants';
 
 export interface ToolsProps {
   onChange: (content: string) => any;
+  /** 从 RichTextToolBar 传入的 toolbar（portal 内 context 可能不可用），优先于 useEditorProps().toolbar */
+  toolbar?: {
+    suffix?: (execCommand: (cmd: string, value?: any) => void) => React.ReactNode;
+  };
 }
 
 export function Tools(props: ToolsProps) {
-  const { mergeTags, enabledMergeTagsBadge, toolbar } = useEditorProps();
+  const { mergeTags, enabledMergeTagsBadge, toolbar: contextToolbar } = useEditorProps();
+  const toolbar = {
+    ...(contextToolbar || {}),
+    ...(props.toolbar?.suffix != null && { suffix: props.toolbar.suffix }),
+  } as NonNullable<typeof contextToolbar>;
   const { focusBlockNode } = useFocusBlockLayout();
   const { selectionRange, restoreRange, setRangeByElement } = useSelectionRange();
 
@@ -133,7 +141,7 @@ export function Tools(props: ToolsProps) {
     AvailableTools.RemoveFormat,
   ];
 
-  const tools = enabledTools.flatMap(tool => {
+  const tools = enabledTools.flatMap((tool: (typeof enabledTools)[number]) => {
     switch (tool) {
       case AvailableTools.MergeTags:
         if (!mergeTags) return [];
@@ -294,15 +302,19 @@ export function Tools(props: ToolsProps) {
         }}
       >
         <BasicTools />
-        {tools.flatMap((tool, index) => [
+        {tools.flatMap((tool: React.ReactNode, index: number) => [
           tool,
           <div
             className='wa-email-editor-extensions-divider'
             key={`divider-${index}`}
           />,
         ])}
+        {toolbar?.suffix?.(execCommand) != null && (
+          <div className='wa-email-editor-extensions-toolbar-suffix'>
+            {toolbar?.suffix?.(execCommand)}
+          </div>
+        )}
       </div>
-      {toolbar?.suffix?.(execCommand)}
     </div>
   );
 }

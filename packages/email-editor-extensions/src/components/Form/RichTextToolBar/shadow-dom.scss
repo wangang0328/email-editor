@@ -33,3 +33,36 @@
   height: 16px;
   background-color: rgba(128, 128, 128, 0.9);
 }
+
+/* 外部传入的 toolbar suffix 容器，其子元素继承与内置 tool 一致的样式 */
+.wa-email-editor-extensions-toolbar-suffix {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+
+  > * {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    outline: none;
+    font-weight: 400;
+    appearance: none;
+    cursor: pointer !important;
+    white-space: nowrap;
+    transition: all 0.1s linear;
+    box-sizing: border-box;
+    border-radius: 2px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    min-width: 28px;
+    min-height: 27px;
+    padding: 0 4px;
+
+    &:hover {
+      background-color: rgba(242, 243, 245, 1);
+      color: rgb(78, 89, 105);
+    }
+  }
+}

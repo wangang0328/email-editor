@@ -67,8 +67,11 @@ export interface PropsProviderProps {
 
   toolbar?: {
     tools?: AvailableTools[];
+    /** 富文本工具栏末尾自定义内容（如 AI 按钮） */
     suffix?: (execCommand: (cmd: string, value?: any) => void) => React.ReactNode;
   };
+  /** 块聚焦时 Toolbar 的自定义项（如 AI 局部优化按钮），渲染在复制/删除等按钮之后 */
+  toolbarItems?: React.ReactNode;
 }
 
 const defaultMergeTagGenerate = (m: string) => `{{${m}}}`;

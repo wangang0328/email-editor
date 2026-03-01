@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { BasicType, getParentIdx, getSiblingIdx } from '@wa-dev/email-editor-core';
-import { useBlock, useFocusIdx, useEditorProps, isTextBlock } from '@wa-dev/email-editor-editor';
+import {
+  useBlock,
+  useFocusIdx,
+  useEditorProps,
+  isTextBlock,
+} from '@wa-dev/email-editor-editor';
 import { classnames } from '@extensions/utils/classnames';
 import { useAddToCollection } from '@extensions/hooks/useAddToCollection';
 import { getBlockTitle } from '@extensions/utils/getBlockTitle';
 
 export function Toolbar() {
+  const toolbarButtonsRef = useRef<HTMLDivElement>(null);
   const { moveBlock, copyBlock, removeBlock, focusBlock } = useBlock();
   const { focusIdx, setFocusIdx } = useFocusIdx();
   const { modal, setModalVisible } = useAddToCollection();
@@ -29,7 +35,7 @@ export function Toolbar() {
     setModalVisible(true);
   };
 
-  const handleCopy: React.MouseEventHandler<HTMLDivElement> = (ev) => {
+  const handleCopy: React.MouseEventHandler<HTMLDivElement> = ev => {
     if (document.activeElement instanceof HTMLElement) {
       document.activeElement.blur();
     }
@@ -54,10 +60,9 @@ export function Toolbar() {
   return (
     <>
       <div
-        id='@wa-dev/email-editor-extensions-InteractivePrompt-Toolbar'
+        id='email-editor-extensions-InteractivePrompt-Toolbar'
         style={{
           height: 0,
-
           zIndex: 100,
         }}
       >
@@ -89,11 +94,15 @@ export function Toolbar() {
             {focusBlock && getBlockTitle(focusBlock, false)}
           </div>
           <div
-            onClick={(e) => {
+            ref={toolbarButtonsRef}
+            onClick={e => {
               e.stopPropagation();
             }}
-            onMouseDown={(ev) => {
-              ev.preventDefault();
+            onMouseDown={ev => {
+              const target = ev.nativeEvent.target as Node;
+              if (toolbarButtonsRef.current?.contains(target)) {
+                ev.preventDefault();
+              }
             }}
             style={{
               display: isPage ? 'none' : 'flex',
@@ -107,14 +116,45 @@ export function Toolbar() {
               iconName='icon-back-parent'
               onClick={handleSelectParent}
             />
-            <ToolItem iconName='icon-copy' onClick={handleCopy} />
+            <ToolItem
+              iconName='icon-copy'
+              onClick={handleCopy}
+            />
             {props.onAddCollection && (
               <ToolItem
                 iconName='icon-collection'
                 onClick={handleAddToCollection}
               />
             )}
-            <ToolItem iconName='icon-delete' onClick={handleDelete} />
+            <ToolItem
+              iconName='icon-delete'
+              onClick={handleDelete}
+            />
+            {props.toolbarItems && (
+              <div
+                className='wa-email-editor-extensions-block-toolbar-items'
+                style={{
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  marginLeft: 2,
+                  color: 'rgb(255, 255, 255)',
+                  backgroundColor: 'var(--selected-color)',
+                  pointerEvents: 'auto',
+                  cursor: 'pointer',
+                  justifyContent: 'center',
+                  height: '100%',
+                }}
+                onClick={e => e.stopPropagation()}
+                onMouseDown={e => {
+                  const target = e.nativeEvent.target as Node;
+                  if (e.currentTarget.contains(target)) {
+                    e.preventDefault();
+                  }
+                }}
+              >
+                {props.toolbarItems}
+              </div>
+            )}
           </div>
         </div>
       </div>

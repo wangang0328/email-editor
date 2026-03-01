@@ -1,3 +1,19 @@
+/* 块级 Toolbar 外部传入的 toolbarItems 子元素与内置按钮一致样式 */
+.wa-email-editor-extensions-block-toolbar-items > * {
+  color: #ffffff;
+  background-color: var(--selected-color);
+  height: 22px;
+  min-width: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+
 [arco-theme="dark"] {
   .wa-email-editor-editor-tabWrapper {
     background-color: var(--color-bg-3);

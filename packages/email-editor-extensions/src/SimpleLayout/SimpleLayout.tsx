@@ -21,7 +21,12 @@ export const SimpleLayout: React.FC<
   } & BlockLayerProps
 > = props => {
   const { height: containerHeight } = useEditorProps();
-  const { showSourceCode = true, defaultShowLayer = true, jsonReadOnly = false, mjmlReadOnly = true } = props;
+  const {
+    showSourceCode = true,
+    defaultShowLayer = true,
+    jsonReadOnly = false,
+    mjmlReadOnly = true,
+  } = props;
   const [collapsed, setCollapsed] = useState(!defaultShowLayer);
   return (
     <ConfigProvider locale={enUS}>
@@ -124,7 +129,10 @@ export const SimpleLayout: React.FC<
                     </div>
                   }
                 >
-                  <SourceCodePanel jsonReadOnly={jsonReadOnly} mjmlReadOnly={mjmlReadOnly} />
+                  <SourceCodePanel
+                    jsonReadOnly={jsonReadOnly}
+                    mjmlReadOnly={mjmlReadOnly}
+                  />
                 </Tabs.TabPane>
               )}
             </Tabs>
