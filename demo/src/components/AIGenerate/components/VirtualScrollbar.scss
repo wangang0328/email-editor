@@ -1,0 +1,60 @@
+.virtual-scrollbar-gutter {
+  position: fixed; // 使用 fixed 定位
+  width: 10px;
+  pointer-events: auto; // 允许点击
+  z-index: 10;
+  transition: opacity 0.2s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+  will-change: transform; // 优化性能
+
+  // 默认显示，悬停时更明显
+  opacity: 0.6;
+
+  .messages-list:hover &,
+  &:hover {
+    opacity: 1;
+  }
+}
+
+// 滚动轨迹背景 - 清晰显示滚动区域
+.virtual-scrollbar-track {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.08);
+  border-radius: 5px;
+  pointer-events: none; // 不阻止点击事件
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.virtual-scrollbar-bar {
+  position: absolute;
+  right: 1px;
+  width: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border-radius: 4px;
+  pointer-events: auto;
+  cursor: grab;
+  transition: background 0.15s ease, width 0.15s ease;
+  min-height: 20px;
+  z-index: 1;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  will-change: transform, top; // 优化滚动性能
+  // 禁用 top 的过渡，确保实时响应
+  // top 属性通过内联样式直接设置，不使用 transition
+
+  &:hover {
+    background: rgba(0, 0, 0, 0.55);
+    width: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.7);
+    cursor: grabbing;
+    transition: none; // 拖拽时禁用过渡，确保流畅
+  }
+}
