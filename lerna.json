@@ -1,5 +1,7 @@
 {
-  "packages": ["packages/*"],
+  "packages": [
+    "packages/*"
+  ],
   "npmClient": "pnpm",
   "command": {
     "publish": {
@@ -10,8 +12,10 @@
     },
     "bootstrap": {
       "ignore": "component-*",
-      "npmClientArgs": ["--no-lockfile"]
+      "npmClientArgs": [
+        "--no-lockfile"
+      ]
     }
   },
-  "version": "1.0.1"
+  "version": "1.0.2"
 }
