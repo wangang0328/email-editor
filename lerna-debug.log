@@ -1,0 +1,8 @@
+15 error Error: Command failed with exit code 1: git remote update
+15 error fatal: unable to access 'https://github.com/wangang0328/email-editor.git/': Recv failure: Connection reset by peer
+15 error     at makeError (/Users/wangang/Desktop/workspace/email-editor/node_modules/.pnpm/execa@5.1.1/node_modules/execa/lib/error.js:60:11)
+15 error     at module.exports.sync (/Users/wangang/Desktop/workspace/email-editor/node_modules/.pnpm/execa@5.1.1/node_modules/execa/index.js:194:17)
+15 error     at Object.execSync (/Users/wangang/Desktop/workspace/email-editor/node_modules/.pnpm/@lerna+child-process@4.0.0/node_modules/@lerna/child-process/index.js:39:16)
+15 error     at updateRemote (/Users/wangang/Desktop/workspace/email-editor/node_modules/.pnpm/@lerna+version@4.0.0_encoding@0.1.13/node_modules/@lerna/version/lib/is-behind-upstream.js:34:16)
+15 error     at isBehindUpstream (/Users/wangang/Desktop/workspace/email-editor/node_modules/.pnpm/@lerna+version@4.0.0_encoding@0.1.13/node_modules/@lerna/version/lib/is-behind-upstream.js:16:3)
+15 error     at VersionCommand.initialize (/Users/wangang/Desktop/workspace/email-editor/node_modules/.pnpm/@lerna+version@4.0.0_encoding@0.1.13/node_modules/@lerna/version/index.js:153:9)
