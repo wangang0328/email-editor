@@ -47,6 +47,32 @@ import '@wa-dev/email-editor-extensions/lib/style.css';
 import blueTheme from '@arco-themes/react-easy-email-theme/css/arco.css?inline';
 
 import enUS from '@arco-design/web-react/es/locale/en-US';
+import zhCN from '@arco-design/web-react/es/locale/zh-CN';
+
+const LOCALE_STORAGE_KEY = 'email-editor-demo-locale';
+type LocaleKey = 'en' | 'zh-Hans';
+
+const LOCALE_OPTIONS: { label: string; value: LocaleKey }[] = [
+  { label: 'English', value: 'en' },
+  { label: '简体中文', value: 'zh-Hans' },
+];
+
+const ARCO_LOCALE: Record<LocaleKey, typeof enUS> = {
+  en: enUS,
+  'zh-Hans': zhCN,
+};
+
+// 动态加载语言包（按需加载，不打入主 bundle）
+async function loadLocaleData(locale: LocaleKey): Promise<Record<string, string>> {
+  switch (locale) {
+    case 'en':
+      return (await import('@wa-dev/email-editor-localization/locales/en.json')).default;
+    case 'zh-Hans':
+      return (await import('@wa-dev/email-editor-localization/locales/zh-Hans.json')).default;
+    default:
+      return (await import('@wa-dev/email-editor-localization/locales/en.json')).default;
+  }
+}
 
 import { useShowCommercialEditor } from '@demo/hooks/useShowCommercialEditor';
 import { useWindowSize } from 'react-use';
@@ -223,6 +249,40 @@ export default function Editor() {
     focusBlock: unknown;
   } | null>(null);
 
+  const [localeKey, setLocaleKey] = useState<LocaleKey>(() => {
+    try {
+      return (localStorage.getItem(LOCALE_STORAGE_KEY) as LocaleKey) || 'en';
+    } catch {
+      return 'en';
+    }
+  });
+  
+  const [localeData, setLocaleData] = useState<Record<string, string>>({});
+  const [localeLoading, setLocaleLoading] = useState(true);
+  
+  const arcoLocale = ARCO_LOCALE[localeKey];
+
+  // 动态加载语言包
+  useEffect(() => {
+    setLocaleLoading(true);
+    loadLocaleData(localeKey)
+      .then(data => {
+        setLocaleData(data);
+        setLocaleLoading(false);
+      })
+      .catch(err => {
+        console.error('Failed to load locale:', err);
+        setLocaleLoading(false);
+      });
+  }, [localeKey]);
+
+  const handleLocaleChange = (value: LocaleKey) => {
+    setLocaleKey(value);
+    try {
+      localStorage.setItem(LOCALE_STORAGE_KEY, value);
+    } catch {}
+  };
+
   useEffect(() => {
     if (id) {
       if (!userId) {
@@ -305,13 +365,41 @@ export default function Editor() {
 
   if (!initialValues) return null;
 
+  // 语言包加载中
+  if (localeLoading) {
+    return (
+      <Loading loading={localeLoading}>
+        <div style={{ height: '100vh' }} />
+      </Loading>
+    );
+  }
+
   return (
-    <ConfigProvider locale={enUS}>
+    <ConfigProvider locale={arcoLocale}>
       <div>
         <style>{blueTheme}</style>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'flex-end',
+            alignItems: 'center',
+            padding: '6px 16px',
+            borderBottom: '1px solid var(--color-border)',
+            background: 'var(--color-bg-2)',
+          }}
+        >
+          <Select
+            size="small"
+            style={{ width: 120 }}
+            value={localeKey}
+            options={LOCALE_OPTIONS}
+            onChange={handleLocaleChange}
+          />
+        </div>
         <EmailEditorProvider
-          height={'calc(100vh - 68px)'}
+          height={'calc(100vh - 108px)'}
           data={initialValues}
+          locale={localeData}
           onUploadImage={onUploadImage}
           onSubmit={onSubmit}
           dashed={false}
