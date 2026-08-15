@@ -14,6 +14,10 @@
     "test:core": "cd packages/email-editor-core && pnpm run test",
     "test:extensions": "cd packages/email-editor-extensions && pnpm run test",
     "translate": "ts-node scripts/translate.ts",
+    "i18n:extract": "ts-node scripts/extract-messages.ts",
+    "i18n:translate": "ts-node scripts/translate-new-keys.ts",
+    "i18n:all": "npm run i18n:extract && npm run i18n:translate",
+    "i18n:check": "ts-node scripts/check-unused-keys.ts",
     "lint": "lerna exec -- pnpm run format"
   },
   "dependencies": {
@@ -27,10 +31,16 @@
     "posthog-js": "^1.76.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.24.0",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.24.0",
+    "@babel/preset-typescript": "^7.24.0",
     "@types/fs-extra": "^11.0.1",
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.8.4",
     "@typescript-eslint/eslint-plugin": "^5.22.0",
+    "babel-plugin-i18next-extract": "^0.9.2",
     "dotenv": "^16.0.3"
   }
 }
