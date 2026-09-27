@@ -1,0 +1,22 @@
+{
+  "$schema": "https://unpkg.com/@changesets/config@3.1.1/schema.json",
+  "changelog": "@changesets/cli/changelog",
+  "commit": false,
+  "fixed": [
+    [
+      "@wa-dev/email-editor-shared",
+      "@wa-dev/email-editor-ui",
+      "@wa-dev/email-editor-engine",
+      "@wa-dev/email-editor-localization",
+      "@wa-dev/email-editor-blocks-react",
+      "@wa-dev/email-editor-editor",
+      "@wa-dev/email-editor-panels",
+      "@wa-dev/email-editor-preset"
+    ]
+  ],
+  "linked": [],
+  "access": "public",
+  "baseBranch": "main",
+  "updateInternalDependencies": "patch",
+  "ignore": []
+}

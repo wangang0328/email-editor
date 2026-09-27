@@ -1,5 +1,6 @@
 {
   "name": "email-editor",
+  "private": true,
   "scripts": {
     "install-all": "pnpm install",
     "vercel-install": "pnpm install",
@@ -41,7 +42,11 @@
     "i18n:push": "pnpm run i18n:push-draft",
     "i18n:pull": "pnpm run i18n:pull-published",
     "i18n:sync": "pnpm run i18n:upload-draft",
-    "lint": "lerna exec -- pnpm run format"
+    "lint": "pnpm -r --filter './packages/**' --if-present run format",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "pnpm -r --filter './packages/**' publish --access public --no-git-checks",
+    "release:ci": "pnpm version-packages && pnpm install && pnpm run build && pnpm release"
   },
   "dependencies": {
     "@sendgrid/mail": "^7.7.0",
@@ -49,7 +54,6 @@
     "cloudinary": "^1.41.2",
     "easy-localized-translation": "^1.1.0",
     "file-saver": "^2.0.5",
-    "lerna": "^4.0.0",
     "liquidjs": "^9.34.1",
     "posthog-js": "^1.76.0"
   },
@@ -64,6 +68,7 @@
     }
   },
   "devDependencies": {
+    "@changesets/cli": "^2.31.1",
     "@lingui/babel-plugin-lingui-macro": "catalog:",
     "@lingui/cli": "catalog:",
     "@lingui/vite-plugin": "catalog:",
