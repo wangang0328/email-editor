@@ -5,7 +5,7 @@ import { ActiveTabKeys } from '@/components/Provider/BlocksProvider';
 import { SYNC_SCROLL_ELEMENT_CLASS_NAME } from '@/constants';
 import { usePreviewEmail } from '@/hooks/usePreviewEmail';
 import { SyncScrollIframeComponent } from '@/components/UI/SyncScrollIframeComponent';
-import { classnames } from '@/utils/classnames';
+import { classnames } from '@wa-dev/email-editor-shared';
 import { useActiveTab } from '@/hooks/useActiveTab';
 
 const MOBILE_WIDTH = 320;

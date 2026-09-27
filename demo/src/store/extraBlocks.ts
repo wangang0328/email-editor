@@ -1,5 +1,5 @@
+import { create } from 'zustand';
 import { BlockGroup, CollectedBlock } from '@wa-dev/email-editor-editor';
-import createSliceState from './common/createSliceState';
 
 export const COLLECTION_KEY = 'COLLECTION_KEY';
 
@@ -15,26 +15,33 @@ const defaultData = [
   },
 ];
 
-const extraBlocksData = JSON.parse(
-  localStorage.getItem(COLLECTION_KEY) || JSON.stringify(defaultData)
-);
+const initialData = JSON.parse(
+  localStorage.getItem(COLLECTION_KEY) || JSON.stringify(defaultData),
+) as BlockGroup[];
 
-export default createSliceState({
-  name: 'extraBlocks',
-  initialState: extraBlocksData as BlockGroup[],
-  reducers: {
-    set: (state, action) => state,
-    add: (state, action: { payload: CollectedBlock }) => {
-      state[0].blocks.push(action.payload);
-      localStorage.setItem(COLLECTION_KEY, JSON.stringify(state));
-      return state;
-    },
-    remove(state, action: { payload: { id: string } }) {
-      state[0].blocks = state[0].blocks.filter(
-        (item) => item.id !== action.payload.id
-      );
-      return state;
-    },
+interface ExtraBlocksStore {
+  blocks: BlockGroup[];
+  set: (blocks: BlockGroup[]) => void;
+  add: (block: CollectedBlock) => void;
+  remove: (id: string) => void;
+}
+
+export const useExtraBlocksStore = create<ExtraBlocksStore>((set, get) => ({
+  blocks: initialData,
+  set: (blocks) => {
+    localStorage.setItem(COLLECTION_KEY, JSON.stringify(blocks));
+    set({ blocks });
   },
-  effects: {},
-});
+  add: (block) => {
+    const next = [...get().blocks];
+    next[0].blocks.push(block);
+    localStorage.setItem(COLLECTION_KEY, JSON.stringify(next));
+    set({ blocks: next });
+  },
+  remove: (id) => {
+    const next = [...get().blocks];
+    next[0].blocks = next[0].blocks.filter((item) => item.id !== id);
+    localStorage.setItem(COLLECTION_KEY, JSON.stringify(next));
+    set({ blocks: next });
+  },
+}));

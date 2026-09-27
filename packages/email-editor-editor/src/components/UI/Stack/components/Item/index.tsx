@@ -12,10 +12,16 @@ export interface ItemProps {
    * @default false
    */
   key?: string | number;
+  /** Appended to the item root (e.g. Tailwind utilities) */
+  className?: string;
 }
 
-export function Item({ children, fill }: ItemProps) {
-  const className = classNames(styles.Item, fill && styles['Item-fill']);
+export function Item({ children, fill, className }: ItemProps) {
+  const rootClassName = classNames(
+    styles.Item,
+    fill && styles['Item-fill'],
+    className,
+  );
 
-  return <div className={className}>{children}</div>;
+  return <div className={rootClassName}>{children}</div>;
 }

@@ -3,7 +3,7 @@ import React, { memo, NamedExoticComponent } from 'react';
 import { classNames, variationName } from './utils/css';
 import { elementChildren, wrapWithComponent } from './utils/components';
 
-import { Item, ItemProps } from './components/Item';
+import { Item, type ItemProps } from './components/Item';
 import styles from './Stack.module.scss';
 
 // From polaris-react
@@ -23,6 +23,8 @@ type Distribution =
 export interface StackProps {
   /** Elements to display inside stack */
   children?: React.ReactNode;
+  /** Appended to the stack root (e.g. Tailwind `w-full`) */
+  className?: string;
   /** Wrap stack elements to additional rows as needed on small screens (Defaults to true) */
   wrap?: boolean;
   /** Stack the elements vertically */
@@ -37,19 +39,21 @@ export interface StackProps {
 
 export const Stack = memo(function Stack({
   children,
+  className: classNameProp,
   vertical,
   spacing,
   distribution,
   alignment,
   wrap,
 }: StackProps) {
-  const className = classNames(
+  const rootClassName = classNames(
     styles.Stack,
     vertical && styles.vertical,
     spacing && styles[variationName('spacing', spacing)],
     distribution && styles[variationName('distribution', distribution)],
     alignment && styles[variationName('alignment', alignment)],
     wrap === false && styles.noWrap,
+    classNameProp,
   );
   const itemMarkup = elementChildren(children).map((child, index) => {
     const props: ItemProps = { key: index };
@@ -57,7 +61,7 @@ export const Stack = memo(function Stack({
   });
 
   return (
-    <div className={className}>
+    <div className={rootClassName}>
       <>{itemMarkup}</>
     </div>
   );
@@ -66,3 +70,5 @@ export const Stack = memo(function Stack({
 };
 
 Stack.Item = Item;
+
+export type { ItemProps };

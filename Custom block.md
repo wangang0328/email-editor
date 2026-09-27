@@ -1,26 +1,30 @@
 ## Custom block
 
+> **Note:** Legacy `components.Section` / `components.Button` (from removed `mjml/jsx`) are replaced by **`MjmlBlock`** from `@wa-dev/email-editor-blocks-react`. Pass MJML attributes as props (`padding`, `href`, …) or via `attributes={{ ... }}`.
+
 What is a custom block？Custom block is composed of one or more basic blocks.
 
 This is a Section block with its children
 
 ```tsx
-<Section>
-  <Column>
-    <Text>hello</Text>
-  </Column>
-</Section>
+import MjmlBlock, { BasicType } from '@wa-dev/email-editor-blocks-react';
+
+<MjmlBlock type={BasicType.SECTION}>
+  <MjmlBlock type={BasicType.COLUMN}>
+    <MjmlBlock type={BasicType.TEXT}>hello</MjmlBlock>
+  </MjmlBlock>
+</MjmlBlock>
 ```
 
 But we can also encapsulate it and call it Custom Section block.
 
 ```tsx
 (<CustomSection></CustomSection>).isEqual(
-  <Section>
-    <Column>
-      <Text>hello</Text>
-    </Column>
-  </Section>,
+  <MjmlBlock type={BasicType.SECTION}>
+    <MjmlBlock type={BasicType.COLUMN}>
+      <MjmlBlock type={BasicType.TEXT}>hello</MjmlBlock>
+    </MjmlBlock>
+  </MjmlBlock>,
 );
 ```
 
@@ -86,22 +90,21 @@ You can construct your custom block through basic blocks. For example,
 a custom button, only the background color and text can be modified
 
 ```tsx
-import { Button } from '@wa-dev/email-editor-editor';
+import MjmlBlock, { BasicType, getPreviewClassName } from '@wa-dev/email-editor-blocks-react';
 
-const render = (data: ICustomButton, idx: string, context: IPage): IBlockData => {
+const render = (data: ICustomButton, idx: string, mode: 'testing' | 'production') => {
   const attributes = data.attributes;
   const { buttonText } = data.data.value;
 
-  const instance = (
-    <Button
+  return (
+    <MjmlBlock
+      type={BasicType.BUTTON}
       background-color={attributes['background-color']}
-      css-class={mode === 'testing' ? getPreviewClassName(idx, data.type) : ''} // Add this class to enable an interactive prompt during editing.
+      css-class={mode === 'testing' ? getPreviewClassName(idx, data.type) : ''}
     >
       {buttonText}
-    </Button>
+    </MjmlBlock>
   );
-
-  return instance;
 };
 ```
 
@@ -111,14 +114,12 @@ Another way is that you can write [MJML](https://documentation.mjml.io/).
 import {
   IBlockData,
   BasicType,
-  components,
+  BlockRenderer,
   createCustomBlock,
   getPreviewClassName,
   AdvancedType,
-} from '@wa-dev/email-editor-core';
-import { MjmlToJson } from '@wa-dev/email-editor-extensions';
-
-const { BlockRenderer } = components;
+} from '@wa-dev/email-editor-blocks-react';
+import { MjmlToJson } from '@wa-dev/email-editor-preset';
 
 const render = (
   data: ICustomButton,
@@ -160,13 +161,15 @@ BlocksMap.registerBlocks({ 'block-name': YourCustomBlock });
 ## Dynamic rendering
 
 ```tsx
-import { IBlockData, BasicType, components, createCustomBlock } from '@wa-dev/email-editor-core';
+import MjmlBlock, {
+  IBlockData,
+  BasicType,
+  createCustomBlock,
+} from '@wa-dev/email-editor-blocks-react';
 
 import { CustomBlocksType } from '../constants';
 import React from 'react';
 import { merge } from 'lodash';
-
-const { Column, Section, Wrapper, Text, Button, Image, Group } = components;
 
 export type IProductRecommendation = IBlockData<
   {
@@ -241,20 +244,23 @@ export const ProductRecommendation = createCustomBlock<IProductRecommendation>({
     const perWidth = quantity <= 3 ? '' : '33.33%';
 
     return (
-      <Wrapper
+      <MjmlBlock
+        type={BasicType.WRAPPER}
         padding='20px 0px 20px 0px'
         border='none'
         direction='ltr'
         text-align='center'
         background-color={attributes['background-color']}
       >
-        <Section padding='0px'>
-          <Column
+        <MjmlBlock type={BasicType.SECTION} padding='0px'>
+          <MjmlBlock
+            type={BasicType.COLUMN}
             padding='0px'
             border='none'
             vertical-align='top'
           >
-            <Text
+            <MjmlBlock
+              type={BasicType.TEXT}
               font-size='20px'
               padding='10px 25px 10px 25px'
               line-height='1'
@@ -263,31 +269,35 @@ export const ProductRecommendation = createCustomBlock<IProductRecommendation>({
               color={attributes['title-color']}
             >
               {title}
-            </Text>
-          </Column>
-        </Section>
+            </MjmlBlock>
+          </MjmlBlock>
+        </MjmlBlock>
 
-        <Section padding='0px'>
-          <Group
+        <MjmlBlock type={BasicType.SECTION} padding='0px'>
+          <MjmlBlock
+            type={BasicType.GROUP}
             vertical-align='top'
             direction='ltr'
           >
             {productList.map((item, index) => (
-              <Column
+              <MjmlBlock
                 key={index}
+                type={BasicType.COLUMN}
                 width={perWidth}
                 padding='0px'
                 border='none'
                 vertical-align='top'
               >
-                <Image
+                <MjmlBlock
+                  type={BasicType.IMAGE}
                   align='center'
                   height='auto'
                   padding='10px'
                   width='150px'
                   src={item.image}
                 />
-                <Text
+                <MjmlBlock
+                  type={BasicType.TEXT}
                   font-size='12px'
                   padding='10px 0px 10px 0px '
                   line-height='1'
@@ -295,8 +305,9 @@ export const ProductRecommendation = createCustomBlock<IProductRecommendation>({
                   color={attributes['product-name-color']}
                 >
                   {item.title}
-                </Text>
-                <Text
+                </MjmlBlock>
+                <MjmlBlock
+                  type={BasicType.TEXT}
                   font-size='12px'
                   padding='0px'
                   line-height='1'
@@ -304,8 +315,9 @@ export const ProductRecommendation = createCustomBlock<IProductRecommendation>({
                   color={attributes['product-price-color']}
                 >
                   {item.price}
-                </Text>
-                <Button
+                </MjmlBlock>
+                <MjmlBlock
+                  type={BasicType.BUTTON}
                   align='center'
                   padding='15px 0px'
                   background-color={attributes['button-color']}
@@ -317,12 +329,12 @@ export const ProductRecommendation = createCustomBlock<IProductRecommendation>({
                   href={item.url}
                 >
                   {buttonText}
-                </Button>
-              </Column>
+                </MjmlBlock>
+              </MjmlBlock>
             ))}
-          </Group>
-        </Section>
-      </Wrapper>
+          </MjmlBlock>
+        </MjmlBlock>
+      </MjmlBlock>
     );
   },
 });

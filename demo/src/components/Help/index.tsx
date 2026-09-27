@@ -1,13 +1,11 @@
+import { CircleHelp } from 'lucide-react';
+import { Tooltip, type TooltipProps } from '@demo/components/app-ui';
 import React from 'react';
-import { IconQuestionCircle } from '@arco-design/web-react/icon';
-import { Tooltip, TooltipProps } from '@arco-design/web-react';
 
-export function Help(
-  props: TooltipProps & Partial<{ style: Partial<React.CSSProperties> }>
-) {
+export function Help(props: TooltipProps) {
   return (
-    <Tooltip {...{ ...props, style: undefined }}>
-      <IconQuestionCircle style={props.style} />
+    <Tooltip {...props}>
+      <CircleHelp className="h-4 w-4 text-muted-foreground" />
     </Tooltip>
   );
 }

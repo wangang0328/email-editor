@@ -3,7 +3,7 @@
  */
 import React, { useState } from 'react';
 import { useBlock, useFocusIdx } from '@wa-dev/email-editor-editor';
-import { Popover, Input, Button } from '@arco-design/web-react';
+import { Popover, Input, Button } from '@demo/components/app-ui';
 
 export interface RichTextAIButtonProps {
   /** 确定后回调：打开侧边栏，context 含 focusIdx/focusBlock，initialMessage 为输入内容，由父级预填并发送 */

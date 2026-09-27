@@ -1,12 +1,11 @@
 import { IArticle } from '@demo/services/article';
 import React, { useCallback } from 'react';
-import { IconEdit, IconDelete } from '@arco-design/web-react/icon';
+import { Pencil, Trash2 } from 'lucide-react';
 import dayjs from 'dayjs';
 import styles from './index.module.scss';
-import { Popconfirm } from '@arco-design/web-react';
+import { Popconfirm } from '@demo/components/demo-ui';
 import { Link, useHistory } from 'react-router-dom';
 import template from '@demo/store/template';
-import { useDispatch } from 'react-redux';
 import templateList from '@demo/store/templateList';
 import { pushEvent } from '@demo/utils/pushEvent';
 import { getLoadingByKey, useLoading } from '@demo/hooks/useLoading';
@@ -18,7 +17,6 @@ interface CardItemProps {
 
 export function CardItem(props: CardItemProps) {
   const { data } = props;
-  const dispatch = useDispatch();
   const history = useHistory();
 
   const loading = useLoading([
@@ -27,31 +25,27 @@ export function CardItem(props: CardItemProps) {
   ]);
 
   const onDelete = useCallback(() => {
-    dispatch(
-      template.actions.removeById({
-        id: data.article_id,
-        _actionKey: data.article_id,
-        success() {
-          dispatch(templateList.actions.fetch(undefined));
-        },
-      })
-    );
-  }, [data, dispatch]);
+    template.actions.removeById({
+      id: data.article_id,
+      _actionKey: data.article_id,
+      success() {
+        templateList.actions.fetch();
+      },
+    });
+  }, [data]);
 
   const onDuplicate: React.MouseEventHandler<HTMLAnchorElement> = useCallback(
     (ev) => {
       ev.preventDefault();
-      dispatch(
-        template.actions.duplicate({
-          article: data,
-          _actionKey: data.article_id,
-          success(id) {
-            history.push(`/editor?id=${id}`);
-          },
-        })
-      );
+      template.actions.duplicate({
+        article: data,
+        _actionKey: data.article_id,
+        success(id) {
+          history.push(`/editor?id=${id}`);
+        },
+      });
     },
-    [data, dispatch, history]
+    [data, history],
   );
 
   return (
@@ -69,19 +63,21 @@ export function CardItem(props: CardItemProps) {
       <div className={styles.mask}>
         {loading ? (
           <div className={styles.listBottom}>
-            <Loading loading color='#ffffff' />
+            <Loading loading color="#ffffff" />
           </div>
         ) : (
           <div className={styles.listBottom}>
             <div className={styles.listItem}>
               <Popconfirm
-                title='Are you want to delete it?'
+                title="Are you want to delete it?"
                 onConfirm={onDelete}
-                okText='Ok'
-                cancelText='Cancel'
+                okText="Ok"
+                cancelText="Cancel"
               >
-                <IconDelete />
-                &nbsp;Delete
+                <span className={styles.listItem}>
+                  <Trash2 size={16} />
+                  &nbsp;Delete
+                </span>
               </Popconfirm>
             </div>
             <div className={styles.listItem}>
@@ -94,12 +90,12 @@ export function CardItem(props: CardItemProps) {
                   })
                 }
               >
-                <IconEdit />
+                <Pencil size={16} />
                 &nbsp;Edit
               </Link>
             </div>
             <div className={styles.listItem}>
-              <Link to='javascript:void(0)' onClick={onDuplicate}>
+              <Link to="javascript:void(0)" onClick={onDuplicate}>
                 Duplicate
               </Link>
             </div>

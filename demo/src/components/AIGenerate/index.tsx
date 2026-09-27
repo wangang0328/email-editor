@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useMemoizedFn } from 'ahooks';
-import { Button, Drawer, Message, Space } from '@arco-design/web-react';
-import { IconPlus, IconHistory } from '@arco-design/web-react/icon';
+import { Button, Drawer, Message, Space } from '@demo/components/app-ui';
+import { Plus, History, X } from 'lucide-react';
 import services from '@demo/services';
 import { Conversation } from '@demo/services/ai';
 import { useVirtualScroll } from './hooks/useVirtualScroll';
@@ -19,12 +19,19 @@ import { VirtualScrollbarRef } from './components/VirtualScrollbar';
 
 interface AIGenerateProps {
   onGenerate: (mjml: string) => void;
-  /** 受控：是否打开抽屉 */
+  /** 受控：是否打开抽屉 / 右侧面板 */
   visible?: boolean;
   /** 受控：关闭回调 */
   onClose?: () => void;
-  /** 受控时点击「AI 生成」按钮请求打开抽屉 */
+  /** 受控时点击「AI 生成」按钮请求打开 */
   onOpenRequest?: () => void;
+  /**
+   * drawer — 右侧悬浮抽屉（带遮罩）
+   * panel — 作为布局右侧栏内容（无悬浮、无遮罩），默认
+   */
+  displayMode?: 'drawer' | 'panel';
+  /** 是否渲染顶部「AI 生成」触发按钮，默认 true */
+  showTrigger?: boolean;
   /** 从 Toolbar AI 进入时预填的首条消息（新会话） */
   initialMessage?: string;
   /** 局部优化上下文，发送时带给服务端 */
@@ -44,6 +51,8 @@ export function AIGenerate({
   visible: controlledVisible,
   onClose,
   onOpenRequest,
+  displayMode = 'panel',
+  showTrigger = true,
   initialMessage,
   partialContext,
   onApplyPartial,
@@ -630,114 +639,131 @@ export function AIGenerate({
     else setVisible(true);
   };
 
+  const headerTitle = (
+    <div className="drawer-title">
+      <span>✨ AI 邮件助手</span>
+      <Space>
+        <Button
+          type="text"
+          size="small"
+          icon={<History size={16} />}
+          onClick={() => setHistoryVisible(true)}
+        >
+          历史
+        </Button>
+        <Button
+          type="text"
+          size="small"
+          icon={<Plus size={16} />}
+          onClick={createNewConversation}
+        >
+          新会话
+        </Button>
+      </Space>
+    </div>
+  );
+
+  const chatBody = (
+    <div className="chat-container">
+      <SideIndicator
+        messages={messages}
+        onNavigate={scrollToMessage}
+        defaultExpanded={true}
+        showTooltips={true}
+        showStats={true}
+        maxHeight="70vh"
+        virtualizeThreshold={10}
+      />
+
+      <MessageList
+        messages={messages}
+        messagesEndRef={smartScroll.messagesEndRef}
+        messageRefs={messageRefs}
+        messagesListRef={smartScroll.containerRef}
+        setContainerRef={smartScroll.setContainerRef}
+        scrollbarRef={scrollbarRef}
+        isAutoScrolling={smartScroll.isAutoScrolling}
+        activeNodeIndex={activeNodeIndex}
+        cancelledMessageId={cancelledMessageId}
+        virtualScroll={virtualScroll}
+        CONTAINER_HEIGHT={CONTAINER_HEIGHT}
+        onCopy={handleCopy}
+        onApply={handleApply}
+        onApplyPartial={onApplyPartial}
+        onMessageEdit={handleMessageEdit}
+        onCopyPrompt={handleCopyPrompt}
+        onContinueGeneration={handleContinueGeneration}
+        onSuggestionClick={text => {
+          setInputValue(text);
+          inputRef.current?.focus();
+        }}
+        getCachedRender={getCachedRender}
+        startRender={startRender}
+        endRender={endRender}
+      />
+
+      <ScrollToBottomButton
+        visible={smartScroll.showScrollToBottomButton}
+        unreadCount={smartScroll.unreadCount}
+        onClick={() => {
+          smartScroll.resetScrollState();
+          smartScroll.scrollToBottom();
+        }}
+      />
+
+      <ChatInput
+        inputValue={inputValue}
+        loading={loading}
+        inputRef={inputRef}
+        imageGenStatus={imageGenStatus}
+        onInputChange={setInputValue}
+        onSend={handleSend}
+        onCancel={handleCancelGeneration}
+      />
+    </div>
+  );
+
   return (
     <>
-      <Button
-        type="primary"
-        onClick={handleOpenDrawer}
-        style={{ marginRight: 8 }}
-      >
-        ✨ AI 生成
-      </Button>
+      {showTrigger && (
+        <Button
+          type="primary"
+          onClick={handleOpenDrawer}
+          style={{ marginRight: 8 }}
+        >
+          ✨ AI 生成
+        </Button>
+      )}
 
-      <Drawer
-        title={
-          <div className="drawer-title">
-            <span>✨ AI 邮件助手</span>
-            <Space>
-              <Button
-                type="text"
-                size="small"
-                icon={<IconHistory />}
-                onClick={() => setHistoryVisible(true)}
-              >
-                历史
-              </Button>
-              <Button
-                type="text"
-                size="small"
-                icon={<IconPlus />}
-                onClick={createNewConversation}
-              >
-                新会话
-              </Button>
-            </Space>
+      {displayMode === 'drawer' ? (
+        <Drawer
+          title={headerTitle}
+          visible={visible}
+          onCancel={() => setVisible(false)}
+          width={640}
+          placement="right"
+          footer={null}
+          className="ai-generate-drawer"
+        >
+          {chatBody}
+        </Drawer>
+      ) : (
+        <div className="ai-generate-panel ai-generate-drawer">
+          <div className="ai-generate-panel-header">
+            {headerTitle}
+            <button
+              type="button"
+              className="ai-generate-panel-close"
+              onClick={() => setVisible(false)}
+              aria-label="关闭"
+            >
+              <X className="h-4 w-4" />
+            </button>
           </div>
-        }
-        visible={visible}
-        onCancel={() => setVisible(false)}
-        width={640}
-        placement="right"
-        footer={null}
-        className="ai-generate-drawer"
-      >
-        <div className="chat-container">
-          {/* 右侧指示器 */}
-          <SideIndicator
-            messages={messages}
-            onNavigate={scrollToMessage}
-            defaultExpanded={true}
-            showTooltips={true}
-            showStats={true}
-            maxHeight="70vh"
-            virtualizeThreshold={10}
-          />
-
-          {/* 消息列表 */}
-          <MessageList
-            messages={messages}
-            messagesEndRef={smartScroll.messagesEndRef}
-            messageRefs={messageRefs}
-            messagesListRef={smartScroll.containerRef}
-            setContainerRef={smartScroll.setContainerRef}
-            scrollbarRef={scrollbarRef}
-            isAutoScrolling={smartScroll.isAutoScrolling}
-            activeNodeIndex={activeNodeIndex}
-            cancelledMessageId={cancelledMessageId}
-            virtualScroll={virtualScroll}
-            CONTAINER_HEIGHT={CONTAINER_HEIGHT}
-            onCopy={handleCopy}
-            onApply={handleApply}
-            onApplyPartial={onApplyPartial}
-            onMessageEdit={handleMessageEdit}
-            onCopyPrompt={handleCopyPrompt}
-            onContinueGeneration={handleContinueGeneration}
-            onSuggestionClick={(text) => {
-              setInputValue(text);
-              inputRef.current?.focus();
-            }}
-            getCachedRender={getCachedRender}
-            startRender={startRender}
-            endRender={endRender}
-          />
-
-          {/* 滚动到底部按钮 */}
-          <ScrollToBottomButton
-            visible={smartScroll.showScrollToBottomButton}
-            unreadCount={smartScroll.unreadCount}
-            onClick={() => {
-              // 先重置用户中断状态，再启动平滑滚动
-              // 顺序很重要：resetScrollState 会清除 programmaticScroll 状态，
-              // 必须在 scrollToBottom 设置新的程序滚动状态之前调用
-              smartScroll.resetScrollState();
-              smartScroll.scrollToBottom();
-            }}
-          />
-
-          {/* 输入区域 */}
-          <ChatInput
-            inputValue={inputValue}
-            loading={loading}
-            inputRef={inputRef}
-            imageGenStatus={imageGenStatus}
-            onInputChange={setInputValue}
-            onSend={handleSend}
-            onCancel={handleCancelGeneration}
-          />
+          <div className="ai-generate-panel-body">{chatBody}</div>
         </div>
-      </Drawer>
+      )}
 
-      {/* 历史会话抽屉 */}
       <ConversationHistory
         visible={historyVisible}
         conversations={conversations}

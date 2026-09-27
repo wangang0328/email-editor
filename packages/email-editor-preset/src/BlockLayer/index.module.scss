@@ -1,0 +1,68 @@
+.title {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+
+  :global {
+    .icon-eye {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 30px;
+      opacity: 0;
+      font-size: 14px;
+      color: hsl(var(--primary)) !important;
+    }
+    .icon-eye-invisible {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 14px;
+      right: 30px;
+      opacity: 1 !important;
+      color: hsl(var(--primary)) !important;
+    }
+  }
+}
+
+:global(#BlockLayerManager .ee-tree-node-expanded) {
+  overflow: hidden;
+}
+
+:global(#BlockLayerManager .ee-tree-node-selected.ee-tree-node-title) {
+  background-color: hsl(var(--primary) / 0.1);
+}
+
+:global(#BlockLayerManager .ee-tree-node-title:hover .icon-eye) {
+  opacity: 1;
+}
+
+:global(#BlockLayerManager .ee-tree-node-indent) {
+  width: 8px;
+}
+
+:global(#BlockLayerManager .ee-tree-node-drag-icon) {
+  cursor: grab;
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+:global(#BlockLayerManager .ee-tree-drop-gap-top) {
+  box-shadow: inset 0 2px 0 0 hsl(var(--primary));
+}
+
+:global(#BlockLayerManager .ee-tree-drop-gap-bottom) {
+  box-shadow: inset 0 -2px 0 0 hsl(var(--primary));
+}
+
+:global(#BlockLayerManager .ee-tree-drop-highlight) {
+  background-color: hsl(var(--primary) / 0.15);
+}

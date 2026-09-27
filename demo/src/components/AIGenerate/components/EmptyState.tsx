@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@arco-design/web-react';
+import { Button } from '@demo/components/app-ui';
 
 interface EmptyStateProps {
   onSuggestionClick: (text: string) => void;

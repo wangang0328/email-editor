@@ -1,0 +1,63 @@
+.SimpleLayout {
+  :global {
+    .ee-layout-sider-content {
+      overflow-x: hidden;
+      .ee-tabs-content {
+        padding: 0;
+      }
+    }
+    .ee-collapse-item [data-state='open'] {
+      overflow: visible;
+    }
+  }
+  *::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 8px !important;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+}
+
+.rightSide {
+  :global {
+    .ee-tabs-header {
+    }
+  }
+}
+
+.customScrollBar {
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 8px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+
+  :global {
+    .ee-tabs-content {
+      padding: 0;
+    }
+  }
+}
+.customScrollBarV2 {
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    -webkit-appearance: none;
+    width: 8px !important;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+    -webkit-box-shadow: 0 0 1px rgba(255, 255, 255, 0.5);
+  }
+}

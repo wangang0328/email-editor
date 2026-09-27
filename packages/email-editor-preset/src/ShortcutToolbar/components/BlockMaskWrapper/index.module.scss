@@ -1,0 +1,53 @@
+.blockMaskRoot {
+  position: relative;
+}
+
+.blockMaskRoot.dragging .cardSurface {
+  box-shadow: 0 0 2px 2px hsl(var(--primary) / 0.6);
+  border-color: hsl(var(--primary) / 0.35);
+}
+
+.cardSurface {
+  position: relative;
+  background-color: #fff;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  box-shadow: rgb(55 63 71 / 4%) 0 0 0 1px, rgb(55 63 71 / 8%) 0 4px 4px 0,
+    rgb(55 63 71 / 8%) 0 8px 24px 0;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  overflow: hidden;
+}
+
+.preview {
+  position: relative;
+  z-index: 1;
+}
+
+.dragHandle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  height: 100%;
+  min-width: 48px;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 8px;
+  cursor: grab;
+  background: linear-gradient(
+    to left,
+    #fff 0%,
+    #fff 55%,
+    rgba(255, 255, 255, 0.85) 75%,
+    transparent 100%
+  );
+
+  &:active {
+    cursor: grabbing;
+  }
+}
+
+.blockMaskRoot.dragging .dragHandle {
+  cursor: grabbing;
+}

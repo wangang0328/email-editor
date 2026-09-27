@@ -1,0 +1,41 @@
+{
+  "name": "@wa-dev/email-editor-engine",
+  "license": "MIT",
+  "description": "Email editor runtime engine (plugin registry, lifecycle, services)",
+  "version": "2.0.0",
+  "author": "wa-dev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangang0328/email-editor.git"
+  },
+  "keywords": [
+    "email-editor",
+    "engine",
+    "plugin"
+  ],
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib/index.js"
+    }
+  },
+  "scripts": {
+    "build": "rimraf lib && tsc -p tsconfig.json",
+    "format": "prettier --write \"**/*.{js,ts,json,md}\""
+  },
+  "devDependencies": {
+    "prettier": "catalog:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:"
+  }
+}

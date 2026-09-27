@@ -10,9 +10,17 @@ import { ScrollProvider } from '../ScrollProvider';
 import { Config, FormApi, FormState } from 'final-form';
 import setFieldTouched from 'final-form-set-field-touched';
 import { FocusBlockLayoutProvider } from '../FocusBlockLayoutProvider';
+import { BlockIndexProvider } from '../BlockIndexProvider';
 import { PreviewEmailProvider } from '../PreviewEmailProvider';
 import { LanguageProvider } from '../LanguageProvider';
 import { overrideErrorLog, restoreErrorLog } from '@/utils/logger';
+import {
+  ensurePageBlockStableIds,
+  perfCounter,
+  perfDebugHintOnce,
+  perfResetSession,
+} from '@wa-dev/email-editor-shared';
+import { cloneDeep } from 'lodash-es';
 
 export interface EmailEditorProviderProps<T extends IEmailTemplate = any>
   extends Omit<PropsProviderProps, 'children'> {
@@ -31,14 +39,20 @@ export const EmailEditorProvider = <T extends any>(
   const { data, children, onSubmit = () => {}, validationSchema } = props;
 
   const initialValues = useMemo(() => {
+    const content = data.content ? cloneDeep(data.content) : data.content;
+    if (content) {
+      ensurePageBlockStableIds(content);
+    }
     return {
       subject: data.subject,
       subTitle: data.subTitle,
-      content: data.content,
+      content,
     };
-  }, [data]);
+  }, [data.subject, data.subTitle, data.content]);
 
   useEffect(() => {
+    perfResetSession();
+    perfDebugHintOnce();
     overrideErrorLog();
     return () => {
       restoreErrorLog();
@@ -60,27 +74,45 @@ export const EmailEditorProvider = <T extends any>(
         <>
           <PropsProvider {...props}>
             <LanguageProvider locale={props.locale}>
-              <PreviewEmailProvider>
+              <BlocksProvider>
                 <RecordProvider>
-                  <BlocksProvider>
+                  <PreviewEmailProvider>
                     <HoverIdxProvider>
                       <ScrollProvider>
-                        <FocusBlockLayoutProvider>
-                          <FormWrapper children={children} />
-                        </FocusBlockLayoutProvider>
+                        <BlockIndexProvider>
+                          <FocusBlockLayoutProvider>
+                            <FormWrapper children={children} />
+                          </FocusBlockLayoutProvider>
+                        </BlockIndexProvider>
                       </ScrollProvider>
                     </HoverIdxProvider>
-                  </BlocksProvider>
+                  </PreviewEmailProvider>
                 </RecordProvider>
-              </PreviewEmailProvider>
+              </BlocksProvider>
             </LanguageProvider>
           </PropsProvider>
           <RegisterFields />
+          <FormPerfWatcher />
         </>
       )}
     </Form>
   );
 };
+
+function FormPerfWatcher() {
+  const formState = useFormState<IEmailTemplate>();
+  const isFirst = React.useRef(true);
+
+  useEffect(() => {
+    if (isFirst.current) {
+      isFirst.current = false;
+      return;
+    }
+    perfCounter('formState.change');
+  }, [formState]);
+
+  return null;
+}
 
 function FormWrapper({ children }: { children: EmailEditorProviderProps['children'] }) {
   const data = useFormState<IEmailTemplate>();

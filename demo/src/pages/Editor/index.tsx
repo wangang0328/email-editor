@@ -1,22 +1,12 @@
 /* eslint-disable react/jsx-wrap-multilines */
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import template from '@demo/store/template';
-import { useAppSelector } from '@demo/hooks/useAppSelector';
+import { useTemplateStore } from '@demo/store/template';
 import { useLoading } from '@demo/hooks/useLoading';
-import {
-  Button,
-  ConfigProvider,
-  Dropdown,
-  Menu,
-  Message,
-  PageHeader,
-  Select,
-} from '@arco-design/web-react';
-import { IconLeft } from '@arco-design/web-react/icon';
+import { Button, ConfigProvider, Message, Select } from '@demo/components/app-ui';
 import { useQuery } from '@demo/hooks/useQuery';
 import { useHistory } from 'react-router-dom';
-import { cloneDeep } from 'lodash';
+import { cloneDeep } from 'lodash-es';
 import { Loading } from '@demo/components/loading';
 import mjml from 'mjml-browser';
 import services from '@demo/services';
@@ -34,56 +24,33 @@ import { Stack } from '@demo/components/Stack';
 import { pushEvent } from '@demo/utils/pushEvent';
 import { UserStorage } from '@demo/utils/user-storage';
 
-import { AdvancedType, IBlockData, JsonToMjml } from '@wa-dev/email-editor-core';
+import { IBlockData, JsonToMjml } from '@wa-dev/email-editor-blocks-react';
 import {
-  ExtensionProps,
   SimpleLayout,
   MjmlToJson,
   StandardLayout,
-} from '@wa-dev/email-editor-extensions';
-
-import '@wa-dev/email-editor-editor/lib/style.css';
-import '@wa-dev/email-editor-extensions/lib/style.css';
-import blueTheme from '@arco-themes/react-easy-email-theme/css/arco.css?inline';
-
-import enUS from '@arco-design/web-react/es/locale/en-US';
-import zhCN from '@arco-design/web-react/es/locale/zh-CN';
+} from '@wa-dev/email-editor-preset';
 
 const LOCALE_STORAGE_KEY = 'email-editor-demo-locale';
-type LocaleKey = 'en' | 'zh-Hans';
+type LocaleKey = 'zh-Hans' | 'zh-Hant' | 'en' | 'ja' | 'ko' | 'it' | 'tr';
 
 const LOCALE_OPTIONS: { label: string; value: LocaleKey }[] = [
   { label: 'English', value: 'en' },
   { label: '简体中文', value: 'zh-Hans' },
 ];
 
-const ARCO_LOCALE: Record<LocaleKey, typeof enUS> = {
-  en: enUS,
-  'zh-Hans': zhCN,
-};
-
-// 动态加载语言包（按需加载，不打入主 bundle）
-async function loadLocaleData(locale: LocaleKey): Promise<Record<string, string>> {
-  switch (locale) {
-    case 'en':
-      return (await import('@wa-dev/email-editor-localization/locales/en.json')).default;
-    case 'zh-Hans':
-      return (await import('@wa-dev/email-editor-localization/locales/zh-Hans.json')).default;
-    default:
-      return (await import('@wa-dev/email-editor-localization/locales/en.json')).default;
-  }
-}
-
 import { useShowCommercialEditor } from '@demo/hooks/useShowCommercialEditor';
 import { useWindowSize } from 'react-use';
 
 import { AIGenerate } from '@demo/components/AIGenerate';
 import { RichTextAIButton } from '@demo/components/RichTextAIButton';
+import { ExportPerfTemplateButton } from '@demo/components/ExportPerfTemplateButton';
 
 /** 在 Provider 内使用 useBlock，用于局部应用与移动块 */
 function EditorWithAI({
   values,
   restart,
+  compact,
   aiDrawerOpen,
   setAiDrawerOpen,
   aiInitialMessage,
@@ -93,6 +60,7 @@ function EditorWithAI({
 }: {
   values: IEmailTemplate;
   restart: (v: IEmailTemplate) => void;
+  compact: boolean;
   aiDrawerOpen: boolean;
   setAiDrawerOpen: (v: boolean) => void;
   aiInitialMessage: string;
@@ -127,116 +95,64 @@ function EditorWithAI({
         style={{
           position: 'absolute',
           top: 10,
-          right: 370,
+          right: aiDrawerOpen ? 500 : 24,
           zIndex: 1000,
           display: 'flex',
           gap: 8,
+          transition: 'right 0.2s ease',
         }}
       >
-        <AIGenerate
-          onGenerate={handleAIGenerateWithRestart}
-          visible={aiDrawerOpen}
-          onClose={() => setAiDrawerOpen(false)}
-          onOpenRequest={() => {
+        <Button
+          type="primary"
+          onClick={() => {
             setAiPartialContext(null);
             setAiInitialMessage('');
             setAiDrawerOpen(true);
           }}
-          initialMessage={aiInitialMessage}
-          partialContext={aiPartialContext ?? undefined}
-          onApplyPartial={blockData => {
-            if (blockData && typeof blockData === 'object') {
-              setFocusBlock(blockData as IBlockData);
-              Message.success('已应用局部优化');
-            }
-          }}
-          getContentJSON={() => values?.content ?? null}
-          onExecuteInstructions={instructions => {
-            for (const i of instructions) {
-              if (i.type === 'move_block' && i.fromIdx != null && i.toIdx != null) {
-                moveBlock(i.fromIdx, i.toIdx);
-              }
-            }
-          }}
-        />
+        >
+          ✨ AI 生成
+        </Button>
       </div>
-      <StandardLayout>
+      <StandardLayout
+        configurationMode="left-overlay"
+        compact={compact}
+        rightPanelOpen={aiDrawerOpen}
+        rightPanel={
+          <AIGenerate
+            displayMode="panel"
+            showTrigger={false}
+            onGenerate={handleAIGenerateWithRestart}
+            visible={aiDrawerOpen}
+            onClose={() => setAiDrawerOpen(false)}
+            initialMessage={aiInitialMessage}
+            partialContext={aiPartialContext ?? undefined}
+            onApplyPartial={blockData => {
+              if (blockData && typeof blockData === 'object') {
+                setFocusBlock(blockData as IBlockData);
+                Message.success('已应用局部优化');
+              }
+            }}
+            getContentJSON={() => values?.content ?? null}
+            onExecuteInstructions={instructions => {
+              for (const i of instructions) {
+                if (i.type === 'move_block' && i.fromIdx != null && i.toIdx != null) {
+                  moveBlock(i.fromIdx, i.toIdx);
+                }
+              }
+            }}
+          />
+        }
+      >
         <EmailEditor />
       </StandardLayout>
     </>
   );
 }
 
-const defaultCategories: ExtensionProps['categories'] = [
-  {
-    label: 'Content',
-    active: true,
-    blocks: [
-      {
-        type: AdvancedType.TEXT,
-      },
-      {
-        type: AdvancedType.IMAGE,
-      },
-      {
-        type: AdvancedType.BUTTON,
-      },
-      {
-        type: AdvancedType.SOCIAL,
-      },
-      {
-        type: AdvancedType.DIVIDER,
-      },
-      {
-        type: AdvancedType.SPACER,
-      },
-      {
-        type: AdvancedType.HERO,
-      },
-      {
-        type: AdvancedType.WRAPPER,
-      },
-      {
-        type: AdvancedType.TABLE,
-      },
-    ],
-  },
-  {
-    label: 'Layout',
-    active: true,
-    displayType: 'column',
-    blocks: [
-      {
-        title: '2 columns',
-        payload: [
-          ['50%', '50%'],
-          ['33%', '67%'],
-          ['67%', '33%'],
-          ['25%', '75%'],
-          ['75%', '25%'],
-        ],
-      },
-      {
-        title: '3 columns',
-        payload: [
-          ['33.33%', '33.33%', '33.33%'],
-          ['25%', '25%', '50%'],
-          ['50%', '25%', '25%'],
-        ],
-      },
-      {
-        title: '4 columns',
-        payload: [['25%', '25%', '25%', '25%']],
-      },
-    ],
-  },
-];
-
 export default function Editor() {
   const { featureEnabled } = useShowCommercialEditor();
-  const dispatch = useDispatch();
   const history = useHistory();
-  const templateData = useAppSelector('template');
+  const templateData = useTemplateStore((state) => state.data);
   const { width } = useWindowSize();
   const compact = width > 1600;
   const { id, userId } = useQuery();
@@ -256,25 +172,6 @@ export default function Editor() {
       return 'en';
     }
   });
-  
-  const [localeData, setLocaleData] = useState<Record<string, string>>({});
-  const [localeLoading, setLocaleLoading] = useState(true);
-  
-  const arcoLocale = ARCO_LOCALE[localeKey];
-
-  // 动态加载语言包
-  useEffect(() => {
-    setLocaleLoading(true);
-    loadLocaleData(localeKey)
-      .then(data => {
-        setLocaleData(data);
-        setLocaleLoading(false);
-      })
-      .catch(err => {
-        console.error('Failed to load locale:', err);
-        setLocaleLoading(false);
-      });
-  }, [localeKey]);
 
   const handleLocaleChange = (value: LocaleKey) => {
     setLocaleKey(value);
@@ -287,19 +184,19 @@ export default function Editor() {
     if (id) {
       if (!userId) {
         UserStorage.getAccount().then(account => {
-          dispatch(template.actions.fetchById({ id: +id, userId: account.user_id }));
+          template.actions.fetchById({ id: +id, userId: account.user_id });
         });
       } else {
-        dispatch(template.actions.fetchById({ id: +id, userId: +userId }));
+        template.actions.fetchById({ id: +id, userId: +userId });
       }
     } else {
-      dispatch(template.actions.fetchDefaultTemplate(undefined));
+      template.actions.fetchDefaultTemplate();
     }
 
     return () => {
-      dispatch(template.actions.set(null));
+      template.actions.set(null);
     };
-  }, [dispatch, id, userId]);
+  }, [id, userId]);
 
   const onUploadImage = async (blob: Blob) => {
     return services.common.uploadByQiniu(blob);
@@ -348,11 +245,26 @@ export default function Editor() {
     };
   }, [templateData]);
 
+  const exportTemplateMeta = useMemo(() => {
+    const fallbackArticleId = id ? +id : 817;
+    if (!templateData) return { article_id: fallbackArticleId };
+    const meta = templateData as IEmailTemplate & Record<string, unknown>;
+    return {
+      article_id: (meta.article_id as number | undefined) ?? fallbackArticleId,
+      picture: meta.picture as string | undefined,
+      category_id: meta.category_id as number | undefined,
+      user_id: meta.user_id as number | undefined,
+      readcount: meta.readcount as number | undefined,
+      created_at: meta.created_at as number | undefined,
+      tags: meta.tags,
+    };
+  }, [id, templateData]);
+
   const onSubmit = useCallback(
     async (values: IEmailTemplate) => {
       console.log(values);
     },
-    [dispatch, history, id, initialValues],
+    [history, id, initialValues],
   );
 
   if (!templateData && loading) {
@@ -365,43 +277,17 @@ export default function Editor() {
 
   if (!initialValues) return null;
 
-  // 语言包加载中
-  if (localeLoading) {
-    return (
-      <Loading loading={localeLoading}>
-        <div style={{ height: '100vh' }} />
-      </Loading>
-    );
-  }
-
   return (
-    <ConfigProvider locale={arcoLocale}>
+    <ConfigProvider>
       <div>
-        <style>{blueTheme}</style>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'flex-end',
-            alignItems: 'center',
-            padding: '6px 16px',
-            borderBottom: '1px solid var(--color-border)',
-            background: 'var(--color-bg-2)',
-          }}
-        >
-          <Select
-            size="small"
-            style={{ width: 120 }}
-            value={localeKey}
-            options={LOCALE_OPTIONS}
-            onChange={handleLocaleChange}
-          />
-        </div>
         <EmailEditorProvider
+          key={id ? `template-${id}` : 'template-default'}
           height={'calc(100vh - 108px)'}
           data={initialValues}
-          locale={localeData}
+          locale={localeKey}
           onUploadImage={onUploadImage}
           onSubmit={onSubmit}
+          autoComplete
           dashed={false}
           compact={compact}
           toolbarItems={
@@ -428,16 +314,33 @@ export default function Editor() {
           }}
         >
           {({ values }, { submit, restart }) => (
-            <EditorWithAI
-              values={values}
-              restart={restart}
-              aiDrawerOpen={aiDrawerOpen}
-              setAiDrawerOpen={setAiDrawerOpen}
-              aiInitialMessage={aiInitialMessage}
-              aiPartialContext={aiPartialContext}
-              setAiPartialContext={setAiPartialContext}
-              setAiInitialMessage={setAiInitialMessage}
-            />
+            <>
+              <div className="flex items-center justify-end gap-2 border-b bg-muted/30 px-4 py-1.5">
+                <ExportPerfTemplateButton
+                  values={values}
+                  articleId={exportTemplateMeta.article_id}
+                  templateMeta={exportTemplateMeta}
+                />
+                <Select
+                  size="small"
+                  style={{ width: 120 }}
+                  value={localeKey}
+                  options={LOCALE_OPTIONS}
+                  onChange={handleLocaleChange}
+                />
+              </div>
+              <EditorWithAI
+                values={values}
+                restart={restart}
+                compact={compact}
+                aiDrawerOpen={aiDrawerOpen}
+                setAiDrawerOpen={setAiDrawerOpen}
+                aiInitialMessage={aiInitialMessage}
+                aiPartialContext={aiPartialContext}
+                setAiPartialContext={setAiPartialContext}
+                setAiInitialMessage={setAiInitialMessage}
+              />
+            </>
           )}
         </EmailEditorProvider>
       </div>

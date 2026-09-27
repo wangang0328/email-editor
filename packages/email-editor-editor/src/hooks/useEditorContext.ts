@@ -4,10 +4,9 @@ import { IEmailTemplate } from '@/typings';
 import { useFormState, useForm } from 'react-final-form';
 
 export function useEditorContext() {
-  const formState = useFormState<IEmailTemplate>();
+  const formState = useFormState<IEmailTemplate>({ subscription: { values: true } });
   const helpers = useForm();
   const { initialized, setInitialized } = useContext(BlocksContext);
-
   const { content } = formState.values;
   return {
     formState,

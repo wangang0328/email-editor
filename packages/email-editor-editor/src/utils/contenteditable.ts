@@ -1,4 +1,4 @@
-import { isString } from 'lodash';
+import { isString } from 'lodash-es';
 
 export function getContentEditableType(type: string) {
   return `node-contenteditable-type-${type}`;

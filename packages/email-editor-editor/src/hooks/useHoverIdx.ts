@@ -1,6 +1,6 @@
 import { useCallback, useContext } from 'react';
 import { HoverIdxContext } from '@/components/Provider/HoverIdxProvider';
-import { debounce } from 'lodash';
+import { debounce } from 'lodash-es';
 
 export function useHoverIdx() {
   const {

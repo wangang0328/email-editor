@@ -1,0 +1,68 @@
+.ee-block-drag-handle,
+.ee-block-avatar-wrapper {
+  cursor: grab;
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active,
+  &.ee-block-avatar-dragging {
+    cursor: grabbing;
+  }
+
+  button,
+  [role='button'],
+  a,
+  svg,
+  span,
+  div {
+    cursor: inherit;
+  }
+}
+
+/* 块级 Toolbar 外部传入的 toolbarItems 子元素与内置按钮一致样式 */
+.wa-email-editor-extensions-block-toolbar-items > * {
+  color: #ffffff;
+  background-color: var(--selected-color);
+  height: 22px;
+  min-width: 22px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: none;
+  border-radius: 2px;
+  padding: 0 6px;
+  box-sizing: border-box;
+}
+
+.dark {
+  .wa-email-editor-editor-tabWrapper {
+    background-color: hsl(var(--background));
+  }
+  .ee-layout {
+    background-color: hsl(var(--background));
+  }
+  .wa-email-editor-editor-button {
+    background-color: var(--color-secondary);
+    color: var(--color-text-2);
+    border: 1px solid transparent;
+  }
+  .wa-email-editor-editor-button:hover {
+    border-color: var(--color-neutral-4);
+    color: var(--color-text-2);
+    background-color: var(--color-fill-3);
+  }
+
+  .wa-email-editor-editor-button[disabled] {
+    background-color: var(--color-secondary);
+    color: var(--color-text-2);
+    border: 1px solid transparent;
+  }
+  .wa-email-editor-editor-button[disabled]:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-text-2);
+    border: 1px solid transparent;
+  }
+}

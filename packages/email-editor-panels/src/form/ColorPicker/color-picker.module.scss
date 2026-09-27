@@ -1,0 +1,115 @@
+.panel {
+  width: 240px;
+  padding: 12px;
+  box-sizing: border-box;
+}
+
+.pickerWrap {
+  :global(.react-colorful) {
+    width: 100% !important;
+    height: 160px !important;
+  }
+
+  :global(.react-colorful__saturation) {
+    border-radius: 6px 6px 0 0;
+  }
+
+  :global(.react-colorful__hue) {
+    height: 12px;
+    border-radius: 0 0 6px 6px;
+  }
+
+  :global(.react-colorful__pointer) {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+.presets {
+  margin-top: 12px;
+}
+
+.presetsLabel {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--color-text-3, #86909c);
+}
+
+.presetGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+}
+
+.presetSwatch {
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 1;
+  border: 1px solid var(--color-border-2, #e5e6eb);
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 0;
+  transition: transform 0.15s, box-shadow 0.15s;
+
+  &:hover {
+    transform: scale(1.08);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+  }
+}
+
+.presetSwatchActive {
+  box-shadow: 0 0 0 2px var(--color-primary, #165dff);
+}
+
+.fieldRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+}
+
+.swatchBtn {
+  flex-shrink: 0;
+  box-sizing: border-box;
+  width: 32px;
+  height: 32px;
+  padding: 3px;
+  border: 1px solid var(--color-border-2, #e5e6eb);
+  border-radius: 4px;
+  background: var(--color-bg-2, #fff);
+  cursor: pointer;
+  transition: border-color 0.2s, box-shadow 0.2s;
+
+  &:hover {
+    border-color: var(--color-primary, #165dff);
+    box-shadow: 0 0 0 2px rgba(22, 93, 255, 0.12);
+  }
+}
+
+.swatchInner {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 4px;
+}
+
+.swatchTransparent {
+  background-image:
+    linear-gradient(45deg, #e5e6eb 25%, transparent 25%),
+    linear-gradient(-45deg, #e5e6eb 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #e5e6eb 75%),
+    linear-gradient(-45deg, transparent 75%, #e5e6eb 75%);
+  background-size: 8px 8px;
+  background-position:
+    0 0,
+    0 4px,
+    4px -4px,
+    -4px 0;
+}
+
+.hexInput {
+  flex: 1;
+  min-width: 0;
+}

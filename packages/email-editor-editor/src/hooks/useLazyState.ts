@@ -1,4 +1,4 @@
-import { debounce } from 'lodash';
+import { debounce } from 'lodash-es';
 import { useCallback, useState, useEffect } from 'react';
 
 export function useLazyState<T>(state: T, debounceTime: number) {
@@ -7,11 +7,15 @@ export function useLazyState<T>(state: T, debounceTime: number) {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   const setDebounceLazyState: React.Dispatch<React.SetStateAction<T>> = useCallback(debounce((s) => {
     setLazyState(s);
-  }, debounceTime), []);
+  }, debounceTime), [debounceTime]);
 
   useEffect(() => {
+    if (debounceTime <= 0) {
+      setLazyState(state);
+      return;
+    }
     setDebounceLazyState(state);
-  }, [setDebounceLazyState, state]);
+  }, [debounceTime, setDebounceLazyState, state]);
 
   return lazyState;
 }

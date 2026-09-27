@@ -1,8 +1,9 @@
 import { IEmailTemplate } from '@/typings';
 import { useForm, useFormState } from 'react-final-form';
-import { cloneDeep, isEqual } from 'lodash';
+import { cloneDeep, isEqual } from 'lodash-es';
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useRefState } from '@/hooks/useRefState';
+import { perfCounter, perfTime } from '@wa-dev/email-editor-shared';
 
 const MAX_RECORD_SIZE = 50;
 
@@ -31,7 +32,7 @@ export const RecordProvider: React.FC<{ children?: React.ReactNode }> = props =>
   const indexRef = useRefState(index);
 
   const statusRef = useRef<RecordStatus>(undefined);
-  const currentData = useRef<IEmailTemplate>();
+  const currentData = useRef<IEmailTemplate | undefined>(undefined);
 
   if (index >= 0 && data.length > 0) {
     currentData.current = data[index];
@@ -69,20 +70,29 @@ export const RecordProvider: React.FC<{ children?: React.ReactNode }> = props =>
     }
     const currentItem = currentData.current;
 
+    const contentEqual = currentItem
+      ? perfTime('RecordProvider', 'isEqual.content', () =>
+          isEqual(formState.values.content, currentItem.content),
+        )
+      : false;
     const isChanged = !(
       currentItem &&
-      isEqual(formState.values.content, currentItem.content) &&
-      formState.values.subTitle === currentItem.subTitle &&
+      contentEqual &&
+      formState.values.subject === currentItem.subject &&
       formState.values.subTitle === currentItem.subTitle
     );
 
     if (isChanged) {
       currentData.current = formState.values;
       statusRef.current = 'add';
+      perfCounter('record.stackPush');
       setData(oldData => {
         const list = oldData.slice(0, indexRef.current + 1);
 
-        const newData = [...list, cloneDeep(formState.values)].slice(-MAX_RECORD_SIZE);
+        const newData = [
+          ...list,
+          perfTime('RecordProvider', 'cloneDeep.values', () => cloneDeep(formState.values)),
+        ].slice(-MAX_RECORD_SIZE);
 
         return newData;
       });

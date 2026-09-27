@@ -1,0 +1,25 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "strict": false,
+    "strictNullChecks": false,
+    "noImplicitAny": false,
+    "noEmit": false,
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "paths": {
+      "@extensions": ["./src"],
+      "@extensions/*": ["./src/*"],
+      "@wa-dev/email-editor-blocks-react": ["../email-editor-blocks-react/lib/index.d.ts"],
+      "@wa-dev/email-editor-panels": ["../email-editor-panels/lib/index.d.ts"],
+      "@wa-dev/email-editor-editor": ["../email-editor-editor/lib/index.d.ts"],
+      "@wa-dev/email-editor-shared": ["../email-editor-shared/lib/index.d.ts"],
+      "@wa-dev/email-editor-shared/types": ["../email-editor-shared/lib/types/index.d.ts"],
+      "@wa-dev/email-editor-ui": ["../email-editor-ui/lib/index.d.ts"],
+      "@wa-dev/email-editor-localization/*": ["../email-editor-localization/*"]
+    }
+  },
+  "include": ["./src", "./types"]
+}

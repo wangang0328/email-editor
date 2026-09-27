@@ -14,22 +14,36 @@
     "forceConsistentCasingInFileNames": true,
     "noUnusedLocals": false,
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
     "resolveJsonModule": true,
     "sourceMap": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "baseUrl": ".",
     "paths": {
       "@demo": ["src"],
       "@demo/*": ["src/*"],
+      "@extensions": ["../packages/email-editor-preset/src"],
+      "@extensions/*": ["../packages/email-editor-preset/src/*"],
+      "@preset": ["../packages/email-editor-preset/src"],
+      "@preset/*": ["../packages/email-editor-preset/src/*"],
+      "@panels": ["../packages/email-editor-panels/src"],
+      "@panels/*": ["../packages/email-editor-panels/src/*"],
+      "@blocks": ["../packages/email-editor-blocks-react/src"],
+      "@blocks/*": ["../packages/email-editor-blocks-react/src/*"],
+      "@": ["../packages/email-editor-editor/src"],
+      "@/*": ["../packages/email-editor-editor/src/*"],
       "@wa-dev/email-editor-localization/*": ["../packages/email-editor-localization/*"],
       "@wa-dev/email-editor-editor/lib/locales.json": [
-        "../packages/email-editor-editor/lib/locales.json"
+        "../packages/email-editor-editor/public/locales.json"
       ],
       "@wa-dev/email-editor-editor": ["../packages/email-editor-editor/src/index.tsx"],
-      "@wa-dev/email-editor-core": ["../packages/email-editor-core/src/index.tsx"],
-      "@wa-dev/email-editor-extensions": ["../packages/email-editor-extensions/src/index.tsx"],
-      "easy-email-config-panel": ["../packages/easy-email-config-panel/src/index.tsx"]
+      "@wa-dev/email-editor-blocks-react": ["../packages/email-editor-blocks-react/src/index.ts"],
+      "@wa-dev/email-editor-engine": ["../packages/email-editor-engine/src/index.ts"],
+      "@wa-dev/email-editor-shared": ["../packages/email-editor-shared/src/index.ts"],
+      "@wa-dev/email-editor-shared/*": ["../packages/email-editor-shared/src/*"],
+      "@wa-dev/email-editor-ui": ["../packages/email-editor-ui/src/index.ts"],
+      "@wa-dev/email-editor-panels": ["../packages/email-editor-panels/src/index.ts"],
+      "@wa-dev/email-editor-preset": ["../packages/email-editor-preset/src/index.tsx"]
     }
   },
   "include": ["./src", "./example", "./typings"],

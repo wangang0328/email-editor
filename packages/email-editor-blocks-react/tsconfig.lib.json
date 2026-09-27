@@ -1,0 +1,18 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "rootDir": "./src",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "outDir": "./lib",
+    "baseUrl": ".",
+    "paths": {
+      "@blocks": ["./src"],
+      "@blocks/*": ["./src/*"],
+      "@wa-dev/email-editor-shared": ["../email-editor-shared/lib/index.d.ts"],
+      "@wa-dev/email-editor-shared/types": ["../email-editor-shared/lib/types/index.d.ts"]
+    }
+  },
+  "include": ["src"],
+  "exclude": ["src/**/__tests__/**"]
+}

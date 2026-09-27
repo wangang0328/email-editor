@@ -1,4 +1,4 @@
-import { merge } from 'lodash';
+import { merge } from 'lodash-es';
 import { extract, translate } from 'easy-localized-translation';
 import * as fs from 'fs-extra';
 import * as dotenv from 'dotenv';

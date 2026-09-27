@@ -1,11 +1,20 @@
 {
   "extends": "./tsconfig.json",
   "compilerOptions": {
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "declaration": true,
+    "emitDeclarationOnly": true,
+    "declarationMap": true,
+    "noEmit": false,
     "paths": {
       "@": ["./src"],
       "@/*": ["./src/*"],
-      "@wa-dev/email-editor-core": ["../email-editor-core"],
+      "@wa-dev/email-editor-blocks-react": ["../email-editor-blocks-react/lib/index.d.ts"],
+      "@wa-dev/email-editor-shared": ["../email-editor-shared/lib/index.d.ts"],
       "react": ["./node_modules/@types/react"]
     }
-  }
+  },
+  "include": ["./src"],
+  "exclude": ["./src/**/__tests__/**"]
 }

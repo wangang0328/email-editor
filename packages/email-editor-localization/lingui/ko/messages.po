@@ -1,0 +1,1417 @@
+msgid ""
+msgstr ""
+"Language: ko\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Plural-Forms: \n"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:193
+#~ msgid "{0, selectordinal, other {第 # 行}}"
+#~ msgstr ""
+
+#: packages/email-editor-panels/src/form/EditGridTab.tsx:38
+#~ msgid "{0, selectordinal, other {第 # 项}}"
+#~ msgstr ""
+
+#: packages/email-editor-panels/src/form/EditGridTab.tsx:43
+msgid "{itemNo, selectordinal, other {第 # 项}}"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:195
+msgid "{row, selectordinal, other {第 # 行}}"
+msgstr ""
+
+#: packages/email-editor-preset/src/StandardLayout/StandardLayout.tsx:59
+msgid "2 栏"
+msgstr "2 栏"
+
+#: packages/email-editor-preset/src/StandardLayout/StandardLayout.tsx:71
+msgid "3 栏"
+msgstr "3 栏"
+
+#: packages/email-editor-preset/src/StandardLayout/StandardLayout.tsx:81
+msgid "4 栏"
+msgstr "4 栏"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:50
+#: packages/email-editor-panels/src/fields/VerticalAlign.tsx:23
+#~ msgid "bottom"
+#~ msgstr "bottom"
+
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:145
+msgid "class name"
+msgstr "class name"
+
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:228
+msgid ""
+"Every single column has to contain something because they are\n"
+"                responsive containers, and will be vertically stacked on a mobile\n"
+"                view."
+msgstr ""
+
+#: packages/email-editor-panels/src/shared/UI/HtmlEditor.tsx:64
+msgid "HTML"
+msgstr "HTML"
+
+#: packages/email-editor-panels/src/block-panels/standard/raw/panel.tsx:18
+#: packages/email-editor-panels/src/block-panels/standard/text/panel.tsx:47
+msgid "HTML 模式"
+msgstr "HTML 模式"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Link/index.tsx:110
+msgid "https://www.example.com"
+msgstr "https://www.example.com"
+
+#: packages/email-editor-preset/src/SourceCodePanel/index.tsx:109
+msgid "JSON 源码"
+msgstr "JSON 源码"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:44
+#: packages/email-editor-panels/src/fields/VerticalAlign.tsx:17
+#~ msgid "middle"
+#~ msgstr "middle"
+
+#: packages/email-editor-preset/src/SourceCodePanel/index.tsx:127
+msgid "MJML 源码"
+msgstr "MJML 源码"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:38
+#: packages/email-editor-panels/src/fields/VerticalAlign.tsx:11
+#~ msgid "top"
+#~ msgstr "top"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:209
+#~ msgid "上"
+#~ msgstr "上"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:209
+msgctxt "padding.side"
+msgid "上"
+msgstr ""
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:211
+#~ msgid "上/下"
+#~ msgstr "上/下"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:211
+msgctxt "padding.side"
+msgid "上/下"
+msgstr ""
+
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:37
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:64
+msgid "上传中..."
+msgstr "上传中..."
+
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:72
+msgid "上传失败"
+msgstr "上传失败"
+
+#: packages/email-editor-panels/src/fields/TextDecoration.tsx:23
+msgid "上划线"
+msgstr "上划线"
+
+#: packages/email-editor-preset/src/BlockLayer/components/ContextMenu/index.tsx:89
+msgid "上移"
+msgstr "上移"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:210
+#~ msgid "下"
+#~ msgstr "下"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:210
+msgctxt "padding.side"
+msgid "下"
+msgstr ""
+
+#: packages/email-editor-panels/src/fields/TextDecoration.tsx:17
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Link/index.tsx:135
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Underline/index.tsx:24
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Underline/index.tsx:25
+msgid "下划线"
+msgstr "下划线"
+
+#: packages/email-editor-preset/src/BlockLayer/components/ContextMenu/index.tsx:94
+msgid "下移"
+msgstr "下移"
+
+#: packages/email-editor-panels/src/fields/Decoration.tsx:35
+msgid "不透明度"
+msgstr "不透明度"
+
+#: packages/email-editor-panels/src/fields/Background.tsx:14
+msgid "不重复"
+msgstr "不重复"
+
+#: packages/email-editor-panels/src/fields/Condition.tsx:143
+#: packages/email-editor-panels/src/fields/Condition.tsx:172
+msgid "且"
+msgstr "且"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Justify/index.tsx:38
+msgid "两端对齐"
+msgstr "两端对齐"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:34
+msgid "主题"
+msgstr "主题"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:69
+msgid "主题设置"
+msgstr "主题设置"
+
+#: packages/email-editor-panels/src/fields/Direction.tsx:17
+msgid "从右到左"
+msgstr "从右到左"
+
+#: packages/email-editor-panels/src/fields/Direction.tsx:11
+msgid "从左到右"
+msgstr "从左到右"
+
+#: packages/email-editor-panels/src/shared/UI/HtmlEditor.tsx:68
+#: packages/email-editor-preset/src/MergeTagBadgePrompt/index.tsx:160
+#~ msgid "保存"
+#~ msgstr "保存"
+
+#: packages/email-editor-panels/src/shared/UI/HtmlEditor.tsx:68
+msgctxt "htmlEditor.save"
+msgid "保存"
+msgstr ""
+
+#: packages/email-editor-preset/src/MergeTagBadgePrompt/index.tsx:160
+msgctxt "mergeTag.save"
+msgid "保存"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/section/panel.tsx:77
+msgid "全宽"
+msgstr "全宽"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion-text/panel.tsx:25
+#: packages/email-editor-panels/src/block-panels/standard/accordion-title/panel.tsx:23
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:53
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:102
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:227
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:27
+#: packages/email-editor-preset/src/StandardLayout/StandardLayout.tsx:19
+#~ msgid "内容"
+#~ msgstr "内容"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion-text/panel.tsx:25
+#: packages/email-editor-panels/src/block-panels/standard/accordion-title/panel.tsx:23
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:55
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:102
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:228
+msgctxt "field.content"
+msgid "内容"
+msgstr ""
+
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:27
+#: packages/email-editor-preset/src/StandardLayout/StandardLayout.tsx:19
+msgctxt "layout.category"
+msgid "内容"
+msgstr ""
+
+#: packages/email-editor-preset/src/SourceCodePanel/index.tsx:51
+#: packages/email-editor-preset/src/SourceCodePanel/index.tsx:59
+#: packages/email-editor-preset/src/SourceCodePanel/index.tsx:77
+#: packages/email-editor-preset/src/SourceCodePanel/index.tsx:80
+#: packages/email-editor-preset/src/SourceCodePanel/index.tsx:85
+msgid "内容无效"
+msgstr "内容无效"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:128
+msgid "内容背景"
+msgstr "内容背景"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion-text/panel.tsx:54
+#: packages/email-editor-panels/src/block-panels/standard/accordion-title/panel.tsx:52
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:103
+#: packages/email-editor-panels/src/fields/Padding.tsx:83
+msgid "内边距"
+msgstr "内边距"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/group/schema.ts:16
+#: packages/email-editor-panels/src/block-panels/standard/section/panel.tsx:62
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:201
+msgid "分组"
+msgstr "分组"
+
+#: packages/email-editor-panels/src/fields/Width.tsx:29
+msgid "分组内的列宽度必须使用百分比，而非像素"
+msgstr "分组内的列宽度必须使用百分比，而非像素"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/divider/schema.ts:22
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Tools/Tools.tsx:293
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:109
+msgid "分隔线"
+msgstr "分隔线"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/column/schema.ts:24
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:213
+msgid "列"
+msgstr "列"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:168
+msgid "列数"
+msgstr "列数"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/BasicTools.tsx:83
+#: packages/email-editor-preset/src/BlockLayer/components/ContextMenu/index.tsx:108
+#~ msgid "删除"
+#~ msgstr "删除"
+
+#: packages/email-editor-preset/src/BlockLayer/components/ContextMenu/index.tsx:108
+msgctxt "blockLayer.menu"
+msgid "删除"
+msgstr ""
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/BasicTools.tsx:83
+msgctxt "richtext.toolbar"
+msgid "删除"
+msgstr ""
+
+#: packages/email-editor-panels/src/fields/TextDecoration.tsx:29
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/StrikeThrough/index.tsx:24
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/StrikeThrough/index.tsx:25
+msgid "删除线"
+msgstr "删除线"
+
+#: packages/email-editor-panels/src/table-operation/tableMenuConfig.ts:202
+msgid "删除选中列"
+msgstr "선택한 열 삭제"
+
+#: packages/email-editor-panels/src/table-operation/tableMenuConfig.ts:248
+msgid "删除选中行"
+msgstr "선택한 행 삭제"
+
+#: packages/email-editor-panels/src/form/EditGridTab.tsx:64
+msgid "删除项"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:41
+msgid "副标题"
+msgstr "副标题"
+
+#: packages/email-editor-panels/src/fields/FontWeight.tsx:26
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Bold/index.tsx:24
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Bold/index.tsx:25
+msgid "加粗"
+msgstr "加粗"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/wrapper/schema.ts:23
+msgid "包装容器"
+msgstr "包装容器"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:225
+msgid "单元格内边距 (px)"
+msgstr "单元格内边距 (px)"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:246
+msgid "单元格边框颜色"
+msgstr "单元格边框颜色"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/raw/schema.ts:11
+msgid "原始 HTML"
+msgstr "原始 HTML"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Unlink/index.tsx:20
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Unlink/index.tsx:21
+msgid "取消链接"
+msgstr "取消链接"
+
+#: packages/email-editor-panels/src/fields/Condition.tsx:236
+msgid "变量路径"
+msgstr "变量路径"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:224
+#~ msgid "右"
+#~ msgstr "右"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:224
+msgctxt "padding.side"
+msgid "右"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:29
+#: packages/email-editor-panels/src/fields/Margin.tsx:46
+#: packages/email-editor-panels/src/fields/TextAlign.tsx:23
+msgid "右侧"
+msgstr "右侧"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:107
+msgid "右侧图标"
+msgstr "右侧图标"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Justify/index.tsx:33
+msgid "右对齐"
+msgstr "右对齐"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/MergeTags/index.tsx:52
+msgid "合并标签"
+msgstr "合并标签"
+
+#: packages/email-editor-panels/src/table-operation/tableMenuConfig.ts:156
+msgid "合并选中单元格"
+msgstr "선택한 셀 병합"
+
+#: packages/email-editor-panels/src/form/AddFont.tsx:61
+msgid "名称"
+msgstr "名称"
+
+#: packages/email-editor-panels/src/table-operation/tableMenuConfig.ts:92
+msgid "向上插入行"
+msgstr "위에 행 삽입"
+
+#: packages/email-editor-panels/src/table-operation/tableMenuConfig.ts:119
+msgid "向下插入行"
+msgstr "아래에 행 삽입"
+
+#: packages/email-editor-panels/src/table-operation/tableMenuConfig.ts:9
+msgid "向右插入列"
+msgstr "오른쪽에 열 삽입"
+
+#: packages/email-editor-panels/src/table-operation/tableMenuConfig.ts:51
+msgid "向左插入列"
+msgstr "왼쪽에 열 삽입"
+
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:26
+msgid "固定高度"
+msgstr "固定高度"
+
+#: packages/email-editor-preset/src/EditPanel/index.tsx:94
+msgid "图层"
+msgstr "레이어"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:93
+msgid "图标"
+msgstr "图标"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:123
+msgid "图标位置"
+msgstr "图标位置"
+
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:170
+msgid "图标内边距"
+msgstr "图标内边距"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:84
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:116
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:152
+msgid "图标宽度"
+msgstr "图标宽度"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:134
+msgid "图标对齐"
+msgstr "图标对齐"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:93
+msgid "图标高度"
+msgstr "图标高度"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/image/schema.ts:26
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:66
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:192
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:53
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:214
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:44
+#~ msgid "图片"
+#~ msgstr "图片"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/image/schema.ts:26
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:44
+msgctxt "block.name"
+msgid "图片"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:193
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:51
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:215
+msgctxt "field.image"
+msgid "图片"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:67
+msgctxt "panel.section.images"
+msgid "图片"
+msgstr ""
+
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:151
+msgid "图片加载失败"
+msgstr "图片加载失败"
+
+#: packages/email-editor-panels/src/fields/Background.tsx:50
+msgid "图片后缀应为 .jpg、jpeg、png、gif 等，否则图片可能无法正常显示。"
+msgstr "图片后缀应为 .jpg、jpeg、png、gif 等，否则图片可能无法正常显示。"
+
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:70
+msgid "图片地址"
+msgstr "图片地址"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:193
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:71
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:54
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:215
+#~ msgid "图片格式应为 .jpg、jpeg、png、gif 等，否则可能无法正常显示。"
+#~ msgstr "图片格式应为 .jpg、jpeg、png、gif 等，否则可能无法正常显示。"
+
+#: packages/email-editor-panels/src/utils/imageFormatTip.ts:13
+msgid "图片格式应为 {formats} 等，否则可能无法正常显示。"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:106
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:161
+#: packages/email-editor-panels/src/fields/Border.tsx:104
+#: packages/email-editor-panels/src/fields/Decoration.tsx:23
+msgid "圆角"
+msgstr "圆角"
+
+#: packages/email-editor-preset/src/InteractivePrompt/components/HoverTooltip.tsx:119
+msgid "在前面插入"
+msgstr "在前面插入"
+
+#: packages/email-editor-preset/src/InteractivePrompt/components/HoverTooltip.tsx:121
+msgid "在后面插入"
+msgstr "在后面插入"
+
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:181
+msgid "地址"
+msgstr "地址"
+
+#: packages/email-editor-preset/src/EditPanel/index.tsx:86
+msgid "块"
+msgstr "块"
+
+#: packages/email-editor-preset/src/EditPanel/index.tsx:168
+msgid "块属性"
+msgstr "块属性"
+
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:35
+msgid "垂直"
+msgstr "垂直"
+
+#: packages/email-editor-panels/src/fields/VerticalAlign.tsx:40
+msgid "垂直对齐"
+msgstr "垂直对齐"
+
+#: packages/email-editor-panels/src/fields/Background.tsx:32
+msgid "垂直重复"
+msgstr "垂直重复"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/BasicTools.tsx:69
+#: packages/email-editor-preset/src/BlockLayer/components/ContextMenu/index.tsx:98
+#~ msgid "复制"
+#~ msgstr "复制"
+
+#: packages/email-editor-preset/src/BlockLayer/components/ContextMenu/index.tsx:98
+msgctxt "blockLayer.menu"
+msgid "复制"
+msgstr ""
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/BasicTools.tsx:69
+msgctxt "richtext.toolbar"
+msgid "复制"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:98
+#: packages/email-editor-panels/src/fields/Margin.tsx:12
+msgid "外边距"
+msgstr "外边距"
+
+#: packages/email-editor-panels/src/fields/TextTransform.tsx:17
+msgid "大写"
+msgstr "大写"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/hero/schema.ts:27
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:75
+msgid "头图"
+msgstr "头图"
+
+#: packages/email-editor-preset/src/MergeTagBadgePrompt/index.tsx:151
+msgid "如果个性化文本值不可用，则显示默认值。"
+msgstr "如果个性化文本值不可用，则显示默认值。"
+
+#: packages/email-editor-panels/src/fields/FontFamily.tsx:19
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/FontFamily/index.tsx:44
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/FontFamily/index.tsx:70
+msgid "字体"
+msgstr "字体"
+
+#: packages/email-editor-panels/src/fields/FontStyle.tsx:27
+msgid "字体样式"
+msgstr "字体样式"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:78
+#: packages/email-editor-panels/src/fields/FontSize.tsx:13
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/FontSize/index.tsx:66
+msgid "字号"
+msgstr "字号"
+
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:126
+msgid "字号（像素）"
+msgstr "字号（像素）"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:99
+#: packages/email-editor-panels/src/fields/FontWeight.tsx:97
+msgid "字重"
+msgstr "字重"
+
+#: packages/email-editor-panels/src/fields/LetterSpacing.tsx:19
+msgid "字间距"
+msgstr "字间距"
+
+#: packages/email-editor-panels/src/fields/Border.tsx:25
+#: packages/email-editor-panels/src/fields/BorderStyle.tsx:11
+msgid "实线"
+msgstr "实线"
+
+#: packages/email-editor-panels/src/fields/ContainerBackgroundColor.tsx:9
+msgid "容器背景颜色"
+msgstr "容器背景颜色"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:47
+#: packages/email-editor-panels/src/fields/Width.tsx:37
+msgid "宽度"
+msgstr "宽度"
+
+#: packages/email-editor-panels/src/fields/Align.tsx:32
+msgid "对齐"
+msgstr "对齐"
+
+#: packages/email-editor-panels/src/form/AddFont.tsx:35
+msgid "导入字体"
+msgstr "导入字体"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/navbar/schema.ts:38
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:87
+msgid "导航栏"
+msgstr "导航栏"
+
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:44
+msgid "导航链接"
+msgstr "导航链接"
+
+#: packages/email-editor-blocks-react/src/utils/getPlaceholder.tsx:23
+msgid "将内容块拖放到此处"
+msgstr "将内容块拖放到此处"
+
+#: packages/email-editor-blocks-react/src/utils/getPlaceholder.tsx:14
+msgid "将分区拖放到此处"
+msgstr "将分区拖放到此处"
+
+#: packages/email-editor-blocks-react/src/utils/getPlaceholder.tsx:21
+msgid "将列拖放到此处"
+msgstr "将列拖放到此处"
+
+#: packages/email-editor-blocks-react/src/utils/getPlaceholder.tsx:12
+msgid "将包装容器拖放到此处"
+msgstr "将包装容器拖放到此处"
+
+#: packages/email-editor-panels/src/fields/TextTransform.tsx:23
+msgid "小写"
+msgstr "小写"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:219
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:82
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:45
+#: packages/email-editor-panels/src/block-panels/standard/column/panel.tsx:21
+#: packages/email-editor-panels/src/block-panels/standard/divider/panel.tsx:20
+#: packages/email-editor-panels/src/block-panels/standard/group/panel.tsx:15
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:40
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:84
+#: packages/email-editor-panels/src/block-panels/standard/section/panel.tsx:56
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:143
+#: packages/email-editor-panels/src/block-panels/standard/spacer/panel.tsx:15
+#: packages/email-editor-panels/src/block-panels/standard/table/panel.tsx:36
+#: packages/email-editor-panels/src/block-panels/standard/text/panel.tsx:59
+#: packages/email-editor-panels/src/block-panels/standard/wrapper/panel.tsx:16
+#: packages/email-editor-panels/src/fields/Border.tsx:144
+msgid "尺寸"
+msgstr "尺寸"
+
+#: packages/email-editor-preset/src/EditPanel/index.tsx:94
+#~ msgid "层级"
+#~ msgstr "层级"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:44
+#: packages/email-editor-panels/src/fields/TextAlign.tsx:17
+#: packages/email-editor-panels/src/fields/VerticalAlign.tsx:17
+msgid "居中"
+msgstr "居中"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Justify/index.tsx:28
+msgid "居中对齐"
+msgstr "居中对齐"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:102
+msgid "展开图标"
+msgstr "展开图标"
+
+#: packages/email-editor-panels/src/fields/AttributesPanelWrapper/index.tsx:42
+msgid "属性"
+msgstr "属性"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:223
+#~ msgid "左"
+#~ msgstr "左"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:223
+msgctxt "padding.side"
+msgid "左"
+msgstr ""
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:225
+#~ msgid "左/右"
+#~ msgstr "左/右"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:225
+msgctxt "padding.side"
+msgid "左/右"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:23
+#: packages/email-editor-panels/src/fields/Margin.tsx:37
+#: packages/email-editor-panels/src/fields/TextAlign.tsx:11
+msgid "左侧"
+msgstr "左侧"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:98
+msgid "左侧图标"
+msgstr "左侧图标"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Justify/index.tsx:23
+msgid "左对齐"
+msgstr "左对齐"
+
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:31
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:168
+#: packages/email-editor-preset/src/SimpleLayout/SimpleLayout.tsx:80
+#: packages/email-editor-preset/src/StandardLayout/StandardLayout.tsx:52
+msgid "布局"
+msgstr "布局"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Link/index.tsx:109
+msgid "应用"
+msgstr "应用"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:50
+#: packages/email-editor-panels/src/fields/Margin.tsx:25
+#: packages/email-editor-panels/src/fields/VerticalAlign.tsx:23
+msgid "底部"
+msgstr "底部"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Link/index.tsx:130
+msgid "当前窗口"
+msgstr "当前窗口"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:218
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:197
+#: packages/email-editor-panels/src/fields/Link.tsx:62
+msgid "当前窗口打开"
+msgstr "当前窗口打开"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:134
+msgid "悬停边框"
+msgstr "悬停边框"
+
+#: packages/email-editor-panels/src/fields/Condition.tsx:147
+#: packages/email-editor-panels/src/fields/Condition.tsx:176
+msgid "或"
+msgstr "或"
+
+#: packages/email-editor-editor/src/components/EmailEditor/index.tsx:107
+#: packages/email-editor-editor/src/components/EmailEditor/index.tsx:109
+msgid "手机"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:213
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:188
+#: packages/email-editor-panels/src/fields/Link.tsx:57
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Link/index.tsx:124
+msgid "打开方式"
+msgstr "打开方式"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:113
+msgid "折叠图标"
+msgstr "折叠图标"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/accordion/schema.ts:32
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:121
+msgid "折叠面板"
+msgstr "折叠面板"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/accordion-element/schema.ts:27
+msgid "折叠面板元素"
+msgstr "折叠面板元素"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/accordion-text/schema.ts:23
+msgid "折叠面板文本"
+msgstr "折叠面板文本"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/accordion-title/schema.ts:20
+msgid "折叠面板标题"
+msgstr "折叠面板标题"
+
+#: packages/email-editor-preset/src/InteractivePrompt/components/HoverTooltip.tsx:125
+msgid "拖拽到"
+msgstr "拖拽到"
+
+#: packages/email-editor-preset/src/InteractivePrompt/components/HoverTooltip.tsx:123
+msgid "拖拽到此处"
+msgstr "拖拽到此处"
+
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:139
+msgid "拖拽图片到此处或点击上传"
+msgstr "拖拽图片到此处或点击上传"
+
+#: packages/email-editor-panels/src/form/AddFont.tsx:36
+msgid "指向托管的 CSS 文件"
+msgstr "指向托管的 CSS 文件"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/button/schema.ts:39
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:65
+msgid "按钮"
+msgstr "按钮"
+
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:122
+msgid "按钮颜色"
+msgstr "按钮颜色"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:253
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:131
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:72
+#: packages/email-editor-panels/src/block-panels/standard/table/panel.tsx:58
+#: packages/email-editor-panels/src/block-panels/standard/text/panel.tsx:88
+msgid "排版"
+msgstr "排版"
+
+#: packages/email-editor-panels/src/fields/LetterSpacing.tsx:20
+#~ msgid "控制字符之间的间距，建议 1–5px；中文效果较 subtle，可适当加大数值。"
+#~ msgstr "控制字符之间的间距，建议 1–5px；中文效果较 subtle，可适当加大数值。"
+
+#: packages/email-editor-panels/src/fields/LetterSpacing.tsx:20
+msgid "控制字符之间的间距，建议 1–5px；中文效果较不明显，可适当加大数值。"
+msgstr ""
+
+#: packages/email-editor-panels/src/components/AddToCollection/index.tsx:59
+msgid "描述"
+msgstr "描述"
+
+#: packages/email-editor-editor/src/components/EmailEditor/components/ToolsPanel/index.tsx:29
+#: packages/email-editor-editor/src/components/EmailEditor/components/ToolsPanel/index.tsx:30
+msgid "撤销"
+msgstr "撤销"
+
+#: packages/email-editor-panels/src/utils/imageFormatTip.ts:20
+msgid "支持 {formats} 等常见格式"
+msgstr ""
+
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:139
+#~ msgid "支持 JPG / PNG / GIF 等常见格式"
+#~ msgstr "支持 JPG / PNG / GIF 等常见格式"
+
+#: packages/email-editor-panels/src/fields/Iteration.tsx:60
+msgid "数据源"
+msgstr "数据源"
+
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:174
+msgid "文字内边距"
+msgstr "文字内边距"
+
+#: packages/email-editor-panels/src/fields/TextAlign.tsx:37
+msgid "文字对齐"
+msgstr "文字对齐"
+
+#: packages/email-editor-panels/src/fields/Direction.tsx:28
+msgid "文字方向"
+msgstr "文字方向"
+
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:116
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:110
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Tools/IconFontColor/index.tsx:41
+msgid "文字颜色"
+msgstr "文字颜色"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/text/schema.ts:31
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/BasicTools.tsx:61
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:34
+msgid "文本"
+msgstr "文本"
+
+#: packages/email-editor-panels/src/fields/TextDecoration.tsx:54
+msgid "文本装饰"
+msgstr "文本装饰"
+
+#: packages/email-editor-panels/src/fields/TextTransform.tsx:42
+msgid "文本转换"
+msgstr "文本转换"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Italic/index.tsx:24
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Italic/index.tsx:25
+msgid "斜体"
+msgstr "斜体"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:56
+msgid "断点"
+msgstr "断点"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Link/index.tsx:129
+msgid "新窗口"
+msgstr "新窗口"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:222
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:193
+#: packages/email-editor-panels/src/fields/Link.tsx:66
+msgid "新窗口打开"
+msgstr "新窗口打开"
+
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:64
+msgid "新链接"
+msgstr "새 링크"
+
+#: packages/email-editor-panels/src/fields/TextDecoration.tsx:11
+#: packages/email-editor-panels/src/fields/TextTransform.tsx:11
+#~ msgid "无"
+#~ msgstr "无"
+
+#: packages/email-editor-panels/src/fields/TextDecoration.tsx:11
+msgctxt "css.textDecoration.none"
+msgid "无"
+msgstr ""
+
+#: packages/email-editor-panels/src/fields/TextTransform.tsx:11
+msgctxt "css.textTransform.none"
+msgid "无"
+msgstr ""
+
+#: packages/email-editor-preset/src/AttributePanel/AttributePanel.tsx:60
+msgid "无匹配的组件"
+msgstr "无匹配的组件"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Tools/Tools.tsx:284
+msgid "无序列表"
+msgstr "无序列表"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:33
+msgid "显示"
+msgstr "显示"
+
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:68
+msgid "显示一个可自定义的按钮。"
+msgstr "显示一个可自定义的按钮。"
+
+#: packages/email-editor-panels/src/fields/AttributesPanelWrapper/index.tsx:82
+msgid "显示块"
+msgstr ""
+
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:102
+msgid "显示空白间隔。"
+msgstr "显示空白间隔。"
+
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:138
+msgid "替代文本"
+msgstr "替代文本"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Tools/Tools.tsx:278
+msgid "有序列表"
+msgstr "有序列表"
+
+#: packages/email-editor-panels/src/fields/AttributesPanelWrapper/index.tsx:30
+msgid "未知块类型"
+msgstr "未知块类型"
+
+#: packages/email-editor-panels/src/fields/AttributesPanelWrapper/index.tsx:23
+msgid "未选中块"
+msgstr "未选中块"
+
+#: packages/email-editor-panels/src/fields/Condition.tsx:123
+msgid "条件"
+msgstr "条件"
+
+#: packages/email-editor-panels/src/form/EditTab.tsx:53
+msgid "标签页"
+msgstr "标签页"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:230
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:128
+#: packages/email-editor-panels/src/components/AddToCollection/index.tsx:52
+msgid "标题"
+msgstr "标题"
+
+#: packages/email-editor-panels/src/components/AddToCollection/index.tsx:55
+msgid "标题为必填项"
+msgstr "标题为必填项"
+
+#: packages/email-editor-panels/src/fields/Border.tsx:136
+#: packages/email-editor-panels/src/fields/BorderStyle.tsx:33
+msgid "样式"
+msgstr "样式"
+
+#: packages/email-editor-panels/src/fields/ClassName.tsx:12
+msgid "样式类名"
+msgstr "样式类名"
+
+#: packages/email-editor-editor/src/components/EmailEditor/index.tsx:94
+#: packages/email-editor-editor/src/components/EmailEditor/index.tsx:96
+msgid "桌面"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:44
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:61
+msgid "模式"
+msgstr "模式"
+
+#: packages/email-editor-panels/src/fields/Iteration.tsx:86
+msgid "模拟数量"
+msgstr "模拟数量"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/template/schema.ts:16
+msgid "模板"
+msgstr "模板"
+
+#: packages/email-editor-preset/src/AttributePanel/AttributePanel.tsx:55
+msgid "正在同步选中块…"
+msgstr "正在同步选中块…"
+
+#: packages/email-editor-panels/src/fields/FontWeight.tsx:20
+msgid "正常"
+msgstr "正常"
+
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:37
+msgid "此块用于在邮件中显示文本内容"
+msgstr "此块用于在邮件中显示文本内容"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Heading/index.tsx:13
+msgid "段落"
+msgstr "段落"
+
+#: packages/email-editor-panels/src/fields/Condition.tsx:238
+msgid "比较值"
+msgstr "비교값"
+
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:41
+msgid "水平"
+msgstr "水平"
+
+#: packages/email-editor-panels/src/fields/Background.tsx:26
+msgid "水平重复"
+msgstr "水平重复"
+
+#: packages/email-editor-panels/src/components/AddToCollection/index.tsx:43
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/BasicTools.tsx:76
+#: packages/email-editor-preset/src/BlockLayer/components/ContextMenu/index.tsx:103
+msgid "添加到收藏"
+msgstr "添加到收藏"
+
+#: packages/email-editor-panels/src/form/EditGridTab.tsx:56
+msgid "添加项"
+msgstr ""
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:182
+#: packages/email-editor-panels/src/fields/Padding.tsx:193
+msgid "清除全部内边距"
+msgstr "清除全部内边距"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Tools/Tools.tsx:302
+msgid "清除格式"
+msgstr "清除格式"
+
+#: packages/email-editor-preset/src/SimpleLayout/SimpleLayout.tsx:131
+#~ msgid "源代码"
+#~ msgstr "源代码"
+
+#: packages/email-editor-preset/src/ConfigurationPanel/index.tsx:53
+#: packages/email-editor-preset/src/EditPanel/index.tsx:138
+#: packages/email-editor-preset/src/SimpleLayout/SimpleLayout.tsx:131
+msgid "源码"
+msgstr "源码"
+
+#: packages/email-editor-panels/src/fields/Border.tsx:37
+#: packages/email-editor-panels/src/fields/BorderStyle.tsx:23
+msgid "点线"
+msgstr "点线"
+
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:160
+msgid "用于在邮件中展示表格内容，支持单元格编辑与行列操作。"
+msgstr "用于在邮件中展示表格内容，支持单元格编辑与行列操作。"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:57
+msgid "用于控制布局在何种断点下切换桌面/移动端视图。"
+msgstr "用于控制布局在何种断点下切换桌面/移动端视图。"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/social/schema.ts:59
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:145
+msgid "社交媒体"
+msgstr "社交媒体"
+
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:124
+msgid "社交媒体项"
+msgstr "社交媒体项"
+
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:71
+msgid "移动端全宽显示"
+msgstr "移动端全宽显示"
+
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:163
+msgid "移除"
+msgstr "移除"
+
+#: packages/email-editor-panels/src/fields/Condition.tsx:140
+#: packages/email-editor-panels/src/fields/Condition.tsx:169
+msgid "符号"
+msgstr "符号"
+
+#~ msgid "第 {0} 行"
+#~ msgstr "第 {0} 行"
+
+#: packages/email-editor-panels/src/fields/TextDecoration.tsx:41
+msgid "继承"
+msgstr "继承"
+
+#: packages/email-editor-editor/src/components/EmailEditor/index.tsx:81
+#: packages/email-editor-editor/src/components/EmailEditor/index.tsx:83
+#: packages/email-editor-panels/src/block-panels/standard/table/panel.tsx:25
+msgid "编辑"
+msgstr "编辑"
+
+#: packages/email-editor-panels/src/shared/UI/HtmlEditor.tsx:96
+msgid "编辑器加载中..."
+msgstr "编辑器加载中..."
+
+#: packages/email-editor-preset/src/AttributePanel/AttributePanel.tsx:48
+msgid "编辑器加载中…"
+msgstr "编辑器加载中…"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:56
+#: packages/email-editor-panels/src/components/AddToCollection/index.tsx:61
+msgid "缩略图"
+msgstr "缩略图"
+
+#: packages/email-editor-panels/src/components/AddToCollection/index.tsx:65
+msgid "缩略图为必填项"
+msgstr "缩略图为必填项"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:160
+msgid "缩略图圆角"
+msgstr "缩略图圆角"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:49
+msgid "缩略图宽度"
+msgstr "缩略图宽度"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:151
+msgid "缩略图边框"
+msgstr "缩略图边框"
+
+#: packages/email-editor-panels/src/block-panels/standard/column/panel.tsx:41
+#: packages/email-editor-panels/src/block-panels/standard/divider/panel.tsx:42
+#: packages/email-editor-panels/src/block-panels/standard/divider/panel.tsx:45
+#: packages/email-editor-panels/src/block-panels/standard/group/panel.tsx:25
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:66
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:120
+#: packages/email-editor-panels/src/block-panels/standard/section/panel.tsx:89
+#: packages/email-editor-panels/src/block-panels/standard/spacer/panel.tsx:22
+#: packages/email-editor-panels/src/block-panels/standard/wrapper/panel.tsx:21
+msgid "背景"
+msgstr "背景"
+
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:97
+msgid "背景位置"
+msgstr "背景位置"
+
+#: packages/email-editor-panels/src/fields/Background.tsx:49
+msgid "背景图片"
+msgstr "背景图片"
+
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:79
+msgid "背景宽度"
+msgstr "背景宽度"
+
+#: packages/email-editor-panels/src/fields/Background.tsx:75
+msgid "背景尺寸"
+msgstr "背景尺寸"
+
+#: packages/email-editor-panels/src/fields/Background.tsx:67
+msgid "背景重复"
+msgstr "背景重复"
+
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:125
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:61
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:105
+#: packages/email-editor-panels/src/block-panels/standard/spacer/panel.tsx:23
+#: packages/email-editor-panels/src/block-panels/standard/text/panel.tsx:82
+#: packages/email-editor-panels/src/fields/BackgroundColor.tsx:8
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Tools/IconBgColor/index.tsx:41
+msgid "背景颜色"
+msgstr "背景颜色"
+
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:88
+msgid "背景高度"
+msgstr "背景高度"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:135
+msgid "自定义样式"
+msgstr "自定义样式"
+
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:20
+msgid "自适应高度"
+msgstr "自适应高度"
+
+#: packages/email-editor-panels/src/fields/Condition.tsx:94
+msgid "至少需要一个条件"
+msgstr "至少需要一个条件"
+
+#: packages/email-editor-panels/src/fields/Border.tsx:31
+#: packages/email-editor-panels/src/fields/BorderStyle.tsx:17
+msgid "虚线"
+msgstr "虚线"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/section/schema.ts:30
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:175
+msgid "行"
+msgstr "行"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:158
+msgid "行数"
+msgstr "行数"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:183
+msgid "行背景"
+msgstr "行背景"
+
+#: packages/email-editor-panels/src/fields/LineHeight.tsx:15
+msgid "行高"
+msgstr "行高"
+
+#: packages/email-editor-blocks-react/src/plugins/advanced/generateAdvancedTableBlock.tsx:16
+#: packages/email-editor-blocks-react/src/plugins/standard/table/schema.ts:11
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:146
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:157
+msgid "表格"
+msgstr "表格"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:242
+msgid "表格外边框"
+msgstr "表格外边框"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:237
+#: packages/email-editor-panels/src/block-panels/standard/table/panel.tsx:49
+msgid "装饰"
+msgstr "装饰"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:205
+msgid "解锁上/下"
+msgstr "解锁上/下"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:219
+msgid "解锁左/右"
+msgstr "解锁左/右"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/text/schema.ts:39
+msgid "让每个人都能轻松创建邮件！"
+msgstr "让每个人都能轻松创建邮件！"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion-element/panel.tsx:15
+#: packages/email-editor-panels/src/block-panels/standard/accordion-text/panel.tsx:22
+#: packages/email-editor-panels/src/block-panels/standard/accordion-title/panel.tsx:20
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:64
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:49
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:45
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:57
+msgid "设置"
+msgstr "设置"
+
+#: packages/email-editor-panels/src/table-operation/tableMenuConfig.ts:292
+msgid "设置背景色"
+msgstr "배경색 설정"
+
+#: packages/email-editor-panels/src/fields/MergeTags.tsx:104
+msgid "请选择"
+msgstr "请选择"
+
+#: packages/email-editor-panels/src/fields/FontFamily.tsx:22
+#~ msgid "请选择字体"
+#~ msgstr "请选择字体"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/carousel/schema.ts:38
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:133
+msgid "轮播图"
+msgstr "轮播图"
+
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:176
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:129
+#: packages/email-editor-panels/src/block-panels/standard/column/panel.tsx:47
+#: packages/email-editor-panels/src/block-panels/standard/divider/panel.tsx:34
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:115
+#: packages/email-editor-panels/src/block-panels/standard/section/panel.tsx:97
+#: packages/email-editor-panels/src/block-panels/standard/wrapper/panel.tsx:26
+#: packages/email-editor-panels/src/fields/Border.tsx:122
+#: packages/email-editor-panels/src/fields/Decoration.tsx:29
+msgid "边框"
+msgstr "边框"
+
+#: packages/email-editor-panels/src/fields/Condition.tsx:237
+msgid "运算符"
+msgstr "运算符"
+
+#: packages/email-editor-panels/src/fields/Iteration.tsx:47
+msgid "迭代"
+msgstr "迭代"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:143
+msgid "选中边框"
+msgstr "选中边框"
+
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/BasicTools.tsx:64
+msgid "选择父级块"
+msgstr "选择父级块"
+
+#: packages/email-editor-panels/src/block-panels/standard/page/panel.tsx:29
+msgid "邮件设置"
+msgstr "邮件设置"
+
+#: packages/email-editor-preset/src/ConfigurationPanel/index.tsx:49
+#: packages/email-editor-preset/src/EditPanel/index.tsx:132
+#: packages/email-editor-preset/src/SimpleLayout/SimpleLayout.tsx:118
+msgid "配置"
+msgstr "配置"
+
+#: packages/email-editor-editor/src/components/EmailEditor/components/ToolsPanel/index.tsx:53
+#: packages/email-editor-editor/src/components/EmailEditor/components/ToolsPanel/index.tsx:54
+msgid "重做"
+msgstr "重做"
+
+#: packages/email-editor-panels/src/fields/Background.tsx:20
+msgid "重复"
+msgstr "重复"
+
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:106
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:53
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:239
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Link/index.tsx:107
+#: packages/email-editor-panels/src/form/RichTextToolBar/components/Link/index.tsx:150
+msgid "链接"
+msgstr "链接"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:204
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:178
+#: packages/email-editor-panels/src/fields/Link.tsx:29
+#: packages/email-editor-panels/src/form/AddFont.tsx:67
+msgid "链接地址"
+msgstr "链接地址"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:205
+msgid "锁定上/下"
+msgstr "锁定上/下"
+
+#: packages/email-editor-panels/src/fields/Padding.tsx:219
+msgid "锁定左/右"
+msgstr "锁定左/右"
+
+#: packages/email-editor-panels/src/fields/TextDecoration.tsx:35
+msgid "闪烁"
+msgstr "闪烁"
+
+#: packages/email-editor-blocks-react/src/plugins/standard/spacer/schema.ts:15
+#: packages/email-editor-preset/src/ShortcutToolbar/components/BlocksPanel/presetTemplate/index.tsx:99
+msgid "间隔"
+msgstr "间隔"
+
+#: packages/email-editor-panels/src/fields/Iteration.tsx:76
+msgid "限制数量"
+msgstr "限制数量"
+
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:27
+msgid "隐藏"
+msgstr "隐藏"
+
+#: packages/email-editor-panels/src/fields/AttributesPanelWrapper/index.tsx:82
+msgid "隐藏块"
+msgstr ""
+
+#: packages/email-editor-blocks-react/src/plugins/standard/page/schema.ts:38
+msgid "页面"
+msgstr "页面"
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:38
+#: packages/email-editor-panels/src/fields/Margin.tsx:16
+#: packages/email-editor-panels/src/fields/VerticalAlign.tsx:11
+msgid "顶部"
+msgstr "顶部"
+
+#~ msgid "项"
+#~ msgstr "项"
+
+#: packages/email-editor-panels/src/fields/Iteration.tsx:67
+msgid "项名称"
+msgstr "项名称"
+
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:160
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:234
+#: packages/email-editor-panels/src/form/ImageUploader/index.tsx:238
+msgid "预览"
+msgstr "预览"
+
+#: packages/email-editor-panels/src/form/ColorPicker/ColorPickerContent.tsx:62
+msgid "预设颜色"
+msgstr "预设颜色"
+
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:111
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:111
+#: packages/email-editor-panels/src/block-panels/standard/text/panel.tsx:72
+#: packages/email-editor-panels/src/fields/Border.tsx:154
+#: packages/email-editor-panels/src/fields/Border.tsx:156
+msgid "颜色"
+msgstr "颜色"
+
+#: packages/email-editor-panels/src/fields/BorderColor.tsx:8
+msgctxt "field.borderColor"
+msgid "颜色"
+msgstr ""
+
+#: packages/email-editor-panels/src/fields/Color.tsx:12
+msgctxt "field.color"
+msgid "颜色"
+msgstr ""
+
+#: packages/email-editor-panels/src/block-panels/standard/accordion/panel.tsx:146
+#: packages/email-editor-panels/src/block-panels/standard/button/panel.tsx:182
+#: packages/email-editor-panels/src/block-panels/standard/carousel/panel.tsx:168
+#: packages/email-editor-panels/src/block-panels/standard/column/panel.tsx:53
+#: packages/email-editor-panels/src/block-panels/standard/divider/panel.tsx:50
+#: packages/email-editor-panels/src/block-panels/standard/group/panel.tsx:33
+#: packages/email-editor-panels/src/block-panels/standard/hero/panel.tsx:119
+#: packages/email-editor-panels/src/block-panels/standard/image/panel.tsx:122
+#: packages/email-editor-panels/src/block-panels/standard/navbar/panel.tsx:74
+#: packages/email-editor-panels/src/block-panels/standard/section/panel.tsx:103
+#: packages/email-editor-panels/src/block-panels/standard/social/panel.tsx:180
+#: packages/email-editor-panels/src/block-panels/standard/spacer/panel.tsx:26
+#: packages/email-editor-panels/src/block-panels/standard/text/panel.tsx:129
+#: packages/email-editor-panels/src/block-panels/standard/wrapper/panel.tsx:29
+msgid "额外属性"
+msgstr "额外属性"
+
+#: packages/email-editor-panels/src/fields/TextTransform.tsx:29
+msgid "首字母大写"
+msgstr "首字母大写"
+
+#: packages/email-editor-panels/src/block-panels/advanced/advancedTablePanel.tsx:149
+msgid "首行作为表头"
+msgstr "首行作为表头"
+
+#: packages/email-editor-panels/src/fields/BorderWidth.tsx:13
+#: packages/email-editor-panels/src/fields/Height.tsx:31
+#: packages/email-editor-panels/src/fields/Height.tsx:41
+msgid "高度"
+msgstr "高度"
+
+#: packages/email-editor-preset/src/MergeTagBadgePrompt/index.tsx:146
+msgid "默认值"
+msgstr "默认值"

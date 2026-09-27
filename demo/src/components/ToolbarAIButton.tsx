@@ -3,7 +3,7 @@
  */
 import React, { useState } from 'react';
 import { useBlock, useFocusIdx } from '@wa-dev/email-editor-editor';
-import { Popover, Input, Button } from '@arco-design/web-react';
+import { Popover, Input, Button } from '@demo/components/app-ui';
 
 export interface ToolbarAIButtonProps {
   /** 确定后回调：instruction + 当前聚焦的 idx/block，由父级打开侧边栏并传入 */

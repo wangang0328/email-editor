@@ -1,0 +1,75 @@
+{
+  "name": "@wa-dev/email-editor-blocks-react",
+  "license": "MIT",
+  "description": "Email editor MJML block definitions and React renderers",
+  "version": "2.0.0",
+  "author": "wa-dev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.es.js",
+  "module": "lib/index.es.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.es.js",
+      "require": "./lib/index.cjs.js"
+    }
+  },
+  "scripts": {
+    "typings": "rimraf --glob src/**/*.d.ts src/**/*.d.ts.map && tsc --declaration --emitDeclarationOnly --project tsconfig.lib.json",
+    "build": "rimraf lib && pnpm run typings && tsc-alias -p tsconfig.alias.json && vite build --config vite.config.ts",
+    "analyze": "cross-env ANALYZE=true vite build --config vite.config.ts",
+    "test": "jest --coverage"
+  },
+  "dependencies": {
+    "@wa-dev/email-editor-engine": "workspace:*",
+    "@wa-dev/email-editor-shared": "workspace:*",
+    "he": "catalog:",
+    "js-beautify": "catalog:",
+    "lodash-es": "catalog:",
+    "uuid": "catalog:"
+  },
+  "sideEffects": false,
+  "peerDependencies": {
+    "@lingui/core": "catalog:",
+    "lodash-es": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "react-final-form": "catalog:",
+    "@babel/core": "catalog:",
+    "@babel/preset-env": "catalog:",
+    "@babel/preset-react": "catalog:",
+    "@babel/preset-typescript": "catalog:",
+    "@types/he": "catalog:",
+    "@types/jest": "catalog:",
+    "@types/js-beautify": "catalog:",
+    "@types/jsdom": "catalog:",
+    "@types/lodash-es": "catalog:",
+    "babel-jest": "catalog:",
+    "jest": "catalog:",
+    "jsdom": "catalog:",
+    "liquidjs": "^9.40.0",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@types/uuid": "catalog:",
+    "@lingui/babel-plugin-lingui-macro": "catalog:",
+    "@lingui/core": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "cross-env": "catalog:",
+    "rollup-plugin-visualizer": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "rimraf": "catalog:",
+    "tsc-alias": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}

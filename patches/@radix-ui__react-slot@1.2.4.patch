@@ -1,0 +1,82 @@
+diff --git a/dist/index.js b/dist/index.js
+index 3691205244d1602e995967a2f23a3621f75f5c47..f8488efad1e8cd17cfcfcc0dab59d23872f71bc7 100644
+--- a/dist/index.js
++++ b/dist/index.js
+@@ -137,16 +137,26 @@ function mergeProps(slotProps, childProps) {
+   return { ...slotProps, ...overrideProps };
+ }
+ function getElementRef(element) {
+-  let getter = Object.getOwnPropertyDescriptor(element.props, "ref")?.get;
+-  let mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+-  if (mayWarn) {
+-    return element.ref;
++  const propsRef = element.props.ref;
++  if (propsRef != null) {
++    return propsRef;
++  }
++  const elementRefGetter = Object.getOwnPropertyDescriptor(element, "ref")?.get;
++  if (
++    elementRefGetter &&
++    "isReactWarning" in elementRefGetter &&
++    elementRefGetter.isReactWarning
++  ) {
++    return propsRef;
+   }
+-  getter = Object.getOwnPropertyDescriptor(element, "ref")?.get;
+-  mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+-  if (mayWarn) {
+-    return element.props.ref;
++  const propsRefGetter = Object.getOwnPropertyDescriptor(element.props, "ref")?.get;
++  if (
++    propsRefGetter &&
++    "isReactWarning" in propsRefGetter &&
++    propsRefGetter.isReactWarning
++  ) {
++    return element.ref;
+   }
+-  return element.props.ref || element.ref;
++  return propsRef;
+ }
+ //# sourceMappingURL=index.js.map
+diff --git a/dist/index.mjs b/dist/index.mjs
+index d7ea37463aa39e6b9f27e9ab6882d3ed6e61ffe1..8b18dfb0bd52dfd210c977cf9e6a7933533f4bd9 100644
+--- a/dist/index.mjs
++++ b/dist/index.mjs
+@@ -97,17 +97,27 @@ function mergeProps(slotProps, childProps) {
+   return { ...slotProps, ...overrideProps };
+ }
+ function getElementRef(element) {
+-  let getter = Object.getOwnPropertyDescriptor(element.props, "ref")?.get;
+-  let mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+-  if (mayWarn) {
+-    return element.ref;
++  const propsRef = element.props.ref;
++  if (propsRef != null) {
++    return propsRef;
++  }
++  const elementRefGetter = Object.getOwnPropertyDescriptor(element, "ref")?.get;
++  if (
++    elementRefGetter &&
++    "isReactWarning" in elementRefGetter &&
++    elementRefGetter.isReactWarning
++  ) {
++    return propsRef;
+   }
+-  getter = Object.getOwnPropertyDescriptor(element, "ref")?.get;
+-  mayWarn = getter && "isReactWarning" in getter && getter.isReactWarning;
+-  if (mayWarn) {
+-    return element.props.ref;
++  const propsRefGetter = Object.getOwnPropertyDescriptor(element.props, "ref")?.get;
++  if (
++    propsRefGetter &&
++    "isReactWarning" in propsRefGetter &&
++    propsRefGetter.isReactWarning
++  ) {
++    return element.ref;
+   }
+-  return element.props.ref || element.ref;
++  return propsRef;
+ }
+ export {
+   Slot as Root,
+}

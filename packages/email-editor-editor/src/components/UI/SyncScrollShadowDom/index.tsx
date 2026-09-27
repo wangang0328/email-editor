@@ -1,11 +1,10 @@
 import { SYNC_SCROLL_ELEMENT_CLASS_NAME, useActiveTab } from '@';
 import { useDomScrollHeight } from '@/hooks/useDomScrollHeight';
-import { debounce } from 'lodash';
+import { debounce } from 'lodash-es';
 import React, { useState, useEffect, useCallback } from 'react';
 import ReactDOM from 'react-dom';
 
-// It will be occluded by richText bar, so it needs to be offset
-const offsetTop = 50;
+const offsetTop = 10;
 
 export const SyncScrollShadowDom: React.FC<React.HTMLProps<HTMLElement> & { isActive: boolean; }> = (props) => {
   const [root, setRoot] = useState<null | ShadowRoot>(null);

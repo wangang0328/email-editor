@@ -4,6 +4,7 @@ dist
 *.local
 .history
 yarn-error.log
+lerna-debug.log
 lib
 doc
 ai-server

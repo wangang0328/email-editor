@@ -1,97 +1,114 @@
-import { camelCase } from 'lodash';
+import { camelCase } from 'lodash-es';
 import React from 'react';
-import { getNodeTypeFromClassName } from '@wa-dev/email-editor-core';
+import { getNodeTypeFromClassName } from '@wa-dev/email-editor-blocks-react';
+import {
+  getChildSelector,
+  getRenderableChildNodes,
+  UNWRAP_ROOT_TAGS,
+} from './htmlToReactNodeHelpers';
 
 const domParser = new DOMParser();
 
-export function getChildSelector(selector: string, index: number) {
-  return `${selector}-${index}`;
-}
+export function HtmlStringToPreviewReactNodes(content: string) {
+  const doc = domParser.parseFromString(content, 'text/html');
 
-export function HtmlStringToPreviewReactNodes(
-  content: string,
-) {
-  let doc = domParser.parseFromString(content, 'text/html'); // The average time is about 1.4 ms
-  const reactNode = (
-    <RenderReactNode selector={'0'} node={doc.documentElement} index={0} />
+  return (
+    <>
+      {renderChildNodes(doc.head, 'head', 'head')}
+      {renderChildNodes(doc.body, 'body', 'body')}
+    </>
   );
-
-  return reactNode;
 }
 
-const RenderReactNode = React.memo(function ({
+function renderChildNodes(
+  parent: Node,
+  selector: string,
+  parentTagName: string,
+): React.ReactNode[] {
+  return getRenderableChildNodes(parent, parentTagName).map((child, i) => (
+    <RenderReactNode
+      key={`${selector}-${i}`}
+      selector={getChildSelector(selector, i)}
+      node={child}
+      index={i}
+    />
+  ));
+}
+
+const RenderReactNode = React.memo(function RenderReactNode({
   node,
   index,
   selector,
 }: {
-  node: HTMLElement;
+  node: Node;
   index: number;
   selector: string;
 }): React.ReactElement {
-  const attributes: { [key: string]: string; } = {
+  if (node.nodeType === Node.COMMENT_NODE) {
+    return <></>;
+  }
+
+  if (node.nodeType === Node.TEXT_NODE) {
+    const text = node.textContent ?? '';
+    if (!text.trim()) {
+      return <></>;
+    }
+    return <>{text}</>;
+  }
+
+  if (node.nodeType !== Node.ELEMENT_NODE) {
+    return <></>;
+  }
+
+  const element = node as HTMLElement;
+  const attributes: Record<string, string> = {
     'data-selector': selector,
   };
-  node.getAttributeNames?.().forEach((att) => {
+  element.getAttributeNames?.().forEach((att) => {
     if (att) {
-      attributes[att] = node.getAttribute(att) || '';
+      attributes[att] = element.getAttribute(att) || '';
     }
   });
 
-  if (node.nodeType === Node.COMMENT_NODE) return <></>;
-
-  if (node.nodeType === Node.TEXT_NODE) {
-    return <>{node.textContent}</>;
+  const tagName = element.tagName.toLowerCase();
+  if (tagName === 'meta') {
+    return <></>;
   }
 
-  if (node.nodeType === Node.ELEMENT_NODE) {
-    const tagName = node.tagName.toLowerCase();
-    if (tagName === 'meta') return <></>;
-
-    if (tagName === 'style') {
-      return React.createElement(tagName, {
-        key: index,
-        ...attributes,
-        dangerouslySetInnerHTML: { __html: node.textContent },
-      });
-    }
-
-    const blockType = getNodeTypeFromClassName(node.classList);
-
-    if (attributes['data-contenteditable'] === 'true') {
-      return React.createElement(tagName, {
-        key: performance.now(),
-        ...attributes,
-        style: getStyle(node.getAttribute('style')),
-        dangerouslySetInnerHTML: { __html: node.innerHTML },
-      });
-    }
-
-    const reactNode = React.createElement(tagName, {
+  if (tagName === 'style') {
+    return React.createElement(tagName, {
       key: index,
       ...attributes,
-      style: getStyle(node.getAttribute('style')),
-      children:
-        node.childNodes.length === 0
-          ? null
-          : [...node.childNodes].map((n, i) => (
-            <RenderReactNode
-              selector={getChildSelector(selector, i)}
-              key={i}
-              node={n as any}
-              index={i}
-            />
-          )),
+      dangerouslySetInnerHTML: { __html: element.textContent },
     });
-
-    return <>{reactNode}</>;
   }
 
-  return <></>;
+  if (attributes['data-contenteditable'] === 'true') {
+    return React.createElement(tagName, {
+      key: `ce-${selector}`,
+      ...attributes,
+      style: getStyle(element.getAttribute('style')),
+      dangerouslySetInnerHTML: { __html: element.innerHTML },
+    });
+  }
+
+  if (UNWRAP_ROOT_TAGS.has(tagName)) {
+    return <>{renderChildNodes(element, selector, tagName)}</>;
+  }
+
+  const children = renderChildNodes(element, selector, tagName);
+
+  return React.createElement(tagName, {
+    key: index,
+    ...attributes,
+    style: getStyle(element.getAttribute('style')),
+    children: children.length === 0 ? null : children,
+  });
 });
 
 function getStyle(styleText: string | null) {
   if (!styleText) return undefined;
-  return styleText.split(';').reduceRight((a: any, b: any) => {
+  return styleText.split(';').reduceRight((a: Record<string, string>, b: string) => {
     const arr = b.split(/\:(?!\/)/);
     if (arr.length < 2) return a;
     a[camelCase(arr[0])] = arr[1];

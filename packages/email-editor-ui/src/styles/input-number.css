@@ -1,0 +1,127 @@
+/* 隐藏原生 number 步进器，由 ee-input-number-addon 自定义控件替代 */
+.ee-input-number-native::-webkit-outer-spin-button,
+.ee-input-number-native::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ee-input-number-native {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.ee-input-number-addon {
+  position: absolute;
+  right: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  flex-shrink: 0;
+}
+
+.ee-input-number-addon--mini {
+  width: 20px;
+  height: 20px;
+}
+
+.ee-input-number-addon--small {
+  width: 22px;
+  height: 22px;
+}
+
+.ee-input-number-addon--default {
+  width: 24px;
+  height: 24px;
+}
+
+.ee-input-number-addon--large {
+  width: 26px;
+  height: 26px;
+}
+
+.ee-input-number-suffix {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--color-text-3, #86909c);
+  transition: opacity 0.15s ease;
+  pointer-events: none;
+  user-select: none;
+}
+
+.ee-input-number-suffix--hidden {
+  opacity: 0;
+}
+
+.ee-input-number-stepper {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  box-sizing: border-box;
+  border-radius: 4px;
+  border: 1px solid var(--color-border-1, #f2f3f5);
+  background-color: var(--color-bg-2, #fff);
+  overflow: hidden;
+  transition: opacity 0.15s ease, border-color 0.15s ease, box-shadow 0.15s ease;
+  opacity: 0;
+  pointer-events: none;
+  box-shadow: none;
+}
+
+.ee-input-number-stepper--visible {
+  opacity: 1;
+  pointer-events: auto;
+  border-color: var(--color-border-2, #e5e6eb);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+}
+
+.ee-input-number-step-btn {
+  flex: 1 1 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-self: stretch;
+  width: 100%;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  color: var(--color-text-3, #86909c);
+  cursor: pointer;
+  line-height: 1;
+  transition:
+    background-color 0.15s ease,
+    color 0.15s ease;
+}
+
+.ee-input-number-step-btn + .ee-input-number-step-btn {
+  border-top: 1px solid var(--color-border-1, #f2f3f5);
+}
+
+.ee-input-number-step-btn:hover:not(:disabled) {
+  background-color: var(--color-fill-2, #f2f3f5);
+  color: var(--color-text-1, #1d2129);
+}
+
+.ee-input-number-step-btn:active:not(:disabled) {
+  background-color: var(--color-fill-3, #e5e6eb);
+  color: var(--color-primary, #165dff);
+}
+
+.ee-input-number-step-btn:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.ee-input-number-step-btn svg {
+  width: 10px;
+  height: 10px;
+  flex-shrink: 0;
+}

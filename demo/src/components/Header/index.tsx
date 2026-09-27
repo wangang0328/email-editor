@@ -1,4 +1,4 @@
-import { PageHeader, PageHeaderProps } from '@arco-design/web-react';
+import { PageHeader, type PageHeaderProps } from '@demo/components/demo-ui';
 import React from 'react';
 import { useHistory } from 'react-router-dom';
 

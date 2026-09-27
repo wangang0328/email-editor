@@ -1,22 +1,39 @@
-.iconfont {
-  font-family: 'iconfont' !important;
-  font-size: 16px;
-  font-style: normal;
-  -webkit-font-smoothing: antialiased;
-  -webkit-text-stroke-width: 0.2px;
-  -moz-osx-font-smoothing: grayscale;
-}
 #wa-email-editor-editor {
   box-sizing: border-box;
   * {
     box-sizing: border-box;
   }
 }
+
+.ee-block-drag-handle,
+.ee-block-avatar-wrapper {
+  cursor: grab;
+
+  &:hover {
+    cursor: grab;
+  }
+
+  &:active,
+  &.ee-block-avatar-dragging {
+    cursor: grabbing;
+  }
+
+  button,
+  [role='button'],
+  a,
+  svg,
+  span,
+  div {
+    cursor: inherit;
+  }
+}
 .easy-email-overlay {
   overflow: auto;
+  z-index: 1050;
 }
 .easy-email-overlay {
   overflow: overlay !important;
+  z-index: 1050;
   &::-webkit-scrollbar {
     -webkit-appearance: none;
     width: 8px !important;

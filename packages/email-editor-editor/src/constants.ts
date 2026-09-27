@@ -14,6 +14,9 @@ export const DATA_ATTRIBUTE_DROP_CONTAINER = 'data-drop-container';
 
 export const DATA_CONTENT_EDITABLE_TYPE = 'data-content_editable-type';
 export const DATA_CONTENT_EDITABLE_IDX = 'data-content_editable-idx';
+/** 相对块根的 form 字段路径，与 data-ee-uid 组合得到当前 idx 下的完整路径 */
+export const DATA_CONTENT_FIELD = 'data-content-field';
+export const DATA_EE_BLOCK_UID = 'data-ee-block-uid';
 
 export const CONTENT_EDITABLE_CLASS_NAME = 'easy-email-content_editable_text_only';
 export const CONTENT_EDITABLE_RICH_TEXT_CLASS_NAME =

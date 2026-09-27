@@ -6,9 +6,10 @@ import { SyncScrollShadowDom } from '@/components/UI/SyncScrollShadowDom';
 import { ShadowStyle } from './components/ShadowStyle';
 import { useEditorContext } from '@/hooks/useEditorContext';
 import { DATA_ATTRIBUTE_DROP_CONTAINER, SYNC_SCROLL_ELEMENT_CLASS_NAME } from '@/constants';
-import { classnames } from '@/utils/classnames';
+import { classnames } from '@wa-dev/email-editor-shared';
 import { ActiveTabKeys } from '@/components/Provider/BlocksProvider';
 import { useActiveTab } from '@/hooks/useActiveTab';
+import { perfReport } from '@wa-dev/email-editor-shared';
 
 export function EditEmailPreview() {
   useHotKeys();
@@ -25,6 +26,9 @@ export function EditEmailPreview() {
   useEffect(() => {
     if (containerRef) {
       setInitialized(true);
+      perfReport('editor.canvasReady', {
+        shadowDomMounted: true,
+      });
     }
   }, [containerRef, setInitialized]);
 
@@ -46,7 +50,10 @@ export function EditEmailPreview() {
         <div
           id='easy-email-plugins'
           style={{
-            position: 'relative',
+            position: 'absolute',
+            inset: 0,
+            pointerEvents: 'none',
+            zIndex: 11,
           }}
         />
         <div
@@ -60,9 +67,9 @@ export function EditEmailPreview() {
             paddingTop: 40,
             paddingBottom: 40,
             boxSizing: 'border-box',
+            backgroundColor: '#f7f8fa',
           }}
           ref={setContainerRef}
-
         >
           <MjmlDomRender />
         </div>

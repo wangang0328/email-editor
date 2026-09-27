@@ -1,7 +1,7 @@
 import { EventManager } from '@';
 import { EventType } from '@/utils/EventManager';
-import { getPageIdx } from '@wa-dev/email-editor-core';
-import { isFunction } from 'lodash';
+import { getPageIdx } from '@wa-dev/email-editor-blocks-react';
+import { isFunction } from 'lodash-es';
 import React, { useState, useCallback } from 'react';
 
 export enum ActiveTabKeys {
@@ -15,6 +15,10 @@ export const BlocksContext = React.createContext<{
   setInitialized: React.Dispatch<React.SetStateAction<boolean>>;
   focusIdx: string;
   setFocusIdx: React.Dispatch<React.SetStateAction<string>>;
+  /** 用户主动选中块（含 page）后为 true，返回块列表时置 false */
+  configPanelOpen: boolean;
+  notifyFocusSelection: () => void;
+  dismissConfigPanel: () => void;
   dragEnabled: boolean;
   setDragEnabled: React.Dispatch<React.SetStateAction<boolean>>;
   collapsed: boolean;
@@ -26,6 +30,9 @@ export const BlocksContext = React.createContext<{
   setInitialized: () => {},
   focusIdx: getPageIdx(),
   setFocusIdx: () => {},
+  configPanelOpen: false,
+  notifyFocusSelection: () => {},
+  dismissConfigPanel: () => {},
   dragEnabled: false,
   setDragEnabled: () => {},
   collapsed: false,
@@ -36,6 +43,13 @@ export const BlocksContext = React.createContext<{
 
 export const BlocksProvider: React.FC<{ children?: React.ReactNode }> = props => {
   const [focusIdx, setFocusIdx] = useState(getPageIdx());
+  const [configPanelOpen, setConfigPanelOpen] = useState(false);
+  const notifyFocusSelection = useCallback(() => {
+    setConfigPanelOpen(true);
+  }, []);
+  const dismissConfigPanel = useCallback(() => {
+    setConfigPanelOpen(false);
+  }, []);
   const [dragEnabled, setDragEnabled] = useState(false);
   const [initialized, setInitialized] = useState(false);
   const [collapsed, setCollapsed] = useState(true);
@@ -74,6 +88,9 @@ export const BlocksProvider: React.FC<{ children?: React.ReactNode }> = props =>
         setInitialized,
         focusIdx,
         setFocusIdx,
+        configPanelOpen,
+        notifyFocusSelection,
+        dismissConfigPanel,
         dragEnabled,
         setDragEnabled,
         collapsed,

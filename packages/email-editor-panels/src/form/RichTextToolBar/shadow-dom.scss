@@ -1,0 +1,137 @@
+.wa-email-editor-extensions-emailToolItem {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  outline: none;
+  font-weight: 400;
+  appearance: none;
+  cursor: pointer !important;
+  white-space: nowrap;
+  transition: all 0.1s linear;
+  box-sizing: border-box;
+  border-radius: 6px;
+  border: none;
+  background-color: transparent;
+  color: #fff;
+  width: 28px;
+  height: 27px;
+  &:hover {
+    background-color: rgba(242, 243, 245, 1);
+    color: rgb(78, 89, 105);
+  }
+}
+.wa-email-editor-extensions-emailToolItem-active {
+  background-color: rgba(242, 243, 245, 1);
+  color: rgb(78, 89, 105);
+}
+
+.ee-toolbar-trigger-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 96px;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 27px;
+}
+
+.ee-toolbar-trigger-label-text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ee-toolbar-trigger-chevron {
+  flex-shrink: 0;
+  opacity: 0.75;
+}
+
+.email-editor-toolbar-dropdown {
+  z-index: 200;
+}
+
+.wa-email-editor-toolbar-font-select {
+  display: inline-flex;
+  align-items: center;
+  height: 27px;
+  position: relative;
+  z-index: 1;
+
+  .ee-select-trigger {
+    height: 27px !important;
+    min-height: 27px;
+    width: 96px;
+    border: none !important;
+    background-color: transparent !important;
+    color: #fff !important;
+    padding: 0 6px;
+    font-size: 13px;
+    font-weight: 500;
+    box-shadow: none !important;
+    gap: 4px;
+
+    svg {
+      color: #fff;
+      opacity: 0.85;
+      flex-shrink: 0;
+    }
+  }
+
+  .ee-select-value {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &:hover .ee-select-trigger {
+    background-color: rgba(242, 243, 245, 1) !important;
+    color: rgb(78, 89, 105) !important;
+
+    svg {
+      color: rgb(78, 89, 105);
+    }
+  }
+}
+
+.wa-email-editor-extensions-divider {
+  position: relative;
+  display: inline-flex;
+  width: 1px;
+  height: 16px;
+  background-color: rgba(128, 128, 128, 0.9);
+}
+
+/* 外部传入的 toolbar suffix 容器，其子元素继承与内置 tool 一致的样式 */
+.wa-email-editor-extensions-toolbar-suffix {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 4px;
+
+  > * {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    outline: none;
+    font-weight: 400;
+    appearance: none;
+    cursor: pointer !important;
+    white-space: nowrap;
+    transition: all 0.1s linear;
+    box-sizing: border-box;
+    border-radius: 6px;
+    border: none;
+    background-color: transparent;
+    color: #fff;
+    min-width: 28px;
+    min-height: 27px;
+    padding: 0 4px;
+
+    &:hover {
+      background-color: rgba(242, 243, 245, 1);
+      color: rgb(78, 89, 105);
+    }
+  }
+}

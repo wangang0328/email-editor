@@ -18,14 +18,14 @@ $ yarn add @wa-dev/email-editor-editor
 
 ```js
 import React from 'react';
-import { BlockManager } from '@wa-dev/email-editor-core';
+import { getBlockByType } from '@wa-dev/email-editor-core';
 import { EmailEditor, EmailEditorProvider } from '@wa-dev/email-editor-editor';
 import '@wa-dev/email-editor-editor/lib/style.css';
 
 const initialValues = {
   subject: 'Welcome to Easy-email',
   subTitle: 'Nice to meet you!',
-  content: BlockManager.getBlockByType(BasicType.PAGE).create({}),
+  content: getBlockByType(BasicType.PAGE)!.create({}),
 };
 
 export function App() {

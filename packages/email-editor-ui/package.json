@@ -1,0 +1,82 @@
+{
+  "name": "@wa-dev/email-editor-ui",
+  "license": "MIT",
+  "description": "Email editor UI primitives (shadcn + Arco-style adapters)",
+  "version": "2.0.0",
+  "author": "wa-dev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangang0328/email-editor.git"
+  },
+  "keywords": [
+    "email-editor",
+    "ui",
+    "shadcn"
+  ],
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "default": "./lib/index.js"
+    },
+    "./adapter": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "default": "./lib/index.js"
+    }
+  },
+  "scripts": {
+    "typings": "rimraf --glob src/**/*.d.ts src/**/*.d.ts.map && tsc --declaration --emitDeclarationOnly --project tsconfig.lib.json",
+    "build": "rimraf lib && pnpm run typings && vite build --config vite.config.ts",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,md}\""
+  },
+  "dependencies": {
+    "@radix-ui/react-accordion": "catalog:",
+    "@radix-ui/react-checkbox": "catalog:",
+    "@radix-ui/react-dialog": "catalog:",
+    "@radix-ui/react-dropdown-menu": "catalog:",
+    "@radix-ui/react-label": "catalog:",
+    "@radix-ui/react-popover": "catalog:",
+    "@radix-ui/react-radio-group": "catalog:",
+    "@radix-ui/react-scroll-area": "^1.2.18",
+    "@radix-ui/react-select": "catalog:",
+    "@radix-ui/react-slider": "catalog:",
+    "@radix-ui/react-slot": "catalog:",
+    "@radix-ui/react-switch": "catalog:",
+    "@radix-ui/react-tabs": "catalog:",
+    "@radix-ui/react-tooltip": "catalog:",
+    "@tanstack/react-virtual": "catalog:",
+    "class-variance-authority": "catalog:",
+    "clsx": "catalog:",
+    "lucide-react": "catalog:",
+    "overlayscrollbars": "catalog:",
+    "overlayscrollbars-react": "catalog:",
+    "react-arborist": "catalog:",
+    "sonner": "catalog:",
+    "tailwind-merge": "catalog:",
+    "vaul": "catalog:"
+  },
+  "peerDependencies": {
+    "react": "catalog:",
+    "react-dom": "catalog:"
+  },
+  "devDependencies": {
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "prettier": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}

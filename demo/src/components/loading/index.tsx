@@ -1,56 +1,27 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { IconLoading } from '@arco-design/web-react/icon';
+import React from 'react';
+import { Loader2 } from 'lucide-react';
+import { cn } from '@demo/lib/utils';
 
-type LoadingProps = {
-  loading: boolean;
-  children?: React.ReactNode;
-  color?: string;
-};
 export function Loading({
   loading,
+  color,
   children,
-  color = '#1890ff',
-}: LoadingProps) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [state, setState] = useState({
-    width: 0,
-    height: 0,
-    fontSize: 12,
-  });
-
-  useEffect(() => {
-    if (loading) {
-      const node = ref.current;
-      const parentNode = node && (node.parentNode as HTMLElement);
-      if (node && parentNode) {
-        const { width, height } = parentNode.getBoundingClientRect();
-        setState({
-          height,
-          width,
-          fontSize: Math.min(64, width * 0.15),
-        });
-      }
-    }
-  }, [loading]);
+}: {
+  loading?: boolean;
+  color?: string;
+  children?: React.ReactNode;
+}) {
+  if (!loading) return <>{children}</>;
 
   return (
-    <>
-      {loading ? (
-        <div
-          ref={ref}
-          style={{
-            height: state.height,
-            width: state.width,
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-        >
-          <IconLoading style={{ fontSize: state.fontSize, color }} />
-        </div>
-      ) : (
-        children
-      )}
-    </>
+    <div className="relative">
+      {children}
+      <div className="absolute inset-0 flex items-center justify-center bg-background/60">
+        <Loader2
+          className="h-6 w-6 animate-spin"
+          style={color ? { color } : undefined}
+        />
+      </div>
+    </div>
   );
 }

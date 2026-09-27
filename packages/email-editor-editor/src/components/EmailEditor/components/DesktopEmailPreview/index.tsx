@@ -4,7 +4,7 @@ import { ActiveTabKeys } from '@/components/Provider/BlocksProvider';
 import { usePreviewEmail } from '@/hooks/usePreviewEmail';
 import { useEditorContext } from '@/hooks/useEditorContext';
 import { SyncScrollShadowDom } from '@/components/UI/SyncScrollShadowDom';
-import { classnames } from '@/utils/classnames';
+import { classnames } from '@wa-dev/email-editor-shared';
 import { SYNC_SCROLL_ELEMENT_CLASS_NAME } from '@/constants';
 import { createPortal } from 'react-dom';
 
@@ -14,7 +14,7 @@ export function DesktopEmailPreview() {
 
   const { pageData } = useEditorContext();
 
-  const fonts = useMemo(() => {
+  const fonts = useMemo((): { name: string; href: string }[] => {
     return pageData.data.value.fonts || [];
   }, [pageData.data.value.fonts]);
 

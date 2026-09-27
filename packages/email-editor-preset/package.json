@@ -1,0 +1,101 @@
+{
+  "name": "@wa-dev/email-editor-preset",
+  "license": "MIT",
+  "description": "Email editor default UI preset (attribute panel, layout, toolbar)",
+  "version": "2.0.0",
+  "author": "wa-dev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangang0328/email-editor.git"
+  },
+  "keywords": [
+    "email editor core"
+  ],
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "default": "./lib/index.js"
+    },
+    "./lib/style.css": "./lib/style.css"
+  },
+  "scripts": {
+    "dev": "vite",
+    "typings": "tsc --declaration --emitDeclarationOnly --project tsconfig.lib.json && tsc-alias -p tsconfig.alias.json",
+    "build": "rimraf lib && pnpm run typings && vite build --config vite.config.ts",
+    "analyze": "cross-env ANALYZE=true vite build --config vite.config.ts",
+    "format": "eslint --fix  --ext .tsx,.ts,.tsx src/",
+    "test": "jest  --coverage"
+  },
+  "devDependencies": {
+    "@babel/core": "catalog:",
+    "@babel/preset-env": "catalog:",
+    "@babel/preset-react": "catalog:",
+    "@babel/preset-typescript": "catalog:",
+    "@types/jest": "catalog:",
+    "@types/jsdom": "catalog:",
+    "@lingui/babel-plugin-lingui-macro": "catalog:",
+    "@types/lodash-es": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@typescript-eslint/eslint-plugin": "^4.28.3",
+    "@typescript-eslint/parser": "^4.28.3",
+    "autoprefixer": "catalog:",
+    "babel-jest": "catalog:",
+    "cross-env": "catalog:",
+    "eslint": "^7.31.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-loader": "^4.0.2",
+    "eslint-plugin-import": "^2.23.4",
+    "eslint-plugin-prettier": "^3.4.0",
+    "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "jest": "catalog:",
+    "jsdom": "catalog:",
+    "mjml-browser": "catalog:",
+    "postcss": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-final-form": "catalog:",
+    "rimraf": "catalog:",
+    "rollup-plugin-visualizer": "catalog:",
+    "sass": "catalog:",
+    "tailwindcss": "catalog:",
+    "tailwindcss-animate": "catalog:",
+    "tsc-alias": "catalog:",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  },
+  "dependencies": {
+    "@wa-dev/email-editor-panels": "workspace:*",
+    "@wa-dev/email-editor-shared": "workspace:*",
+    "@wa-dev/email-editor-ui": "workspace:*"
+  },
+  "peerDependencies": {
+    "@lingui/core": "catalog:",
+    "@wa-dev/email-editor-blocks-react": "workspace:*",
+    "@wa-dev/email-editor-editor": "workspace:*",
+    "ahooks": "catalog:",
+    "lodash-es": "catalog:",
+    "lucide-react": "catalog:",
+    "mjml-browser": "catalog:",
+    "react": "catalog:",
+    "react-dom": "catalog:",
+    "react-final-form": "catalog:"
+  },
+  "gitHead": "011f49a6a73e0c89d90b63186f596faf526c2673"
+}

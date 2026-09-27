@@ -1,6 +1,7 @@
 import React from 'react';
-import { Drawer, List, Button, Popconfirm } from '@arco-design/web-react';
-import { IconDelete } from '@arco-design/web-react/icon';
+import { Drawer, List, Button } from '@demo/components/app-ui';
+import { Trash2 } from 'lucide-react';
+import { Popconfirm } from '@demo/components/demo-ui';
 import { Conversation } from '@demo/services/ai';
 
 interface ConversationHistoryProps {
@@ -16,7 +17,7 @@ export const ConversationHistory: React.FC<ConversationHistoryProps> = ({
   conversations,
   onClose,
   onLoadConversation,
-  onDeleteConversation
+  onDeleteConversation,
 }) => {
   return (
     <Drawer
@@ -46,7 +47,7 @@ export const ConversationHistory: React.FC<ConversationHistoryProps> = ({
                 <Button
                   type="text"
                   size="mini"
-                  icon={<IconDelete />}
+                  icon={<Trash2 size={14} />}
                   status="danger"
                   onClick={(e) => e.stopPropagation()}
                 />

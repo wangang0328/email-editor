@@ -10,7 +10,8 @@
  */
 
 import React, { useState, useCallback, useMemo, memo } from 'react';
-import { Modal, Input, Message, Tag, Tooltip } from '@arco-design/web-react';
+import { Modal, Input, Message, Tooltip } from '@demo/components/app-ui';
+import { Tag } from '@demo/components/demo-ui';
 import services from '@demo/services';
 
 /* ─── SVG 图标 ─── */
@@ -239,7 +240,6 @@ export const SendTestEmail = memo<SendTestEmailProps>(({
                   closable
                   onClose={() => removeEmail(em)}
                   className="email-tag"
-                  color="arcoblue"
                 >
                   {em}
                 </Tag>

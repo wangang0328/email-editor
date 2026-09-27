@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "types": ["vite/client", "node"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "forceConsistentCasingInFileNames": true,
+    "noUnusedLocals": false,
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "resolveJsonModule": true,
+    "sourceMap": true,
+    "jsx": "react",
+    "noEmit": true,
+    "rootDir": "..",
+    "paths": {
+      "@": ["../email-editor-editor/src"],
+      "@/*": ["../email-editor-editor/src/*"],
+      "@extensions": ["./src"],
+      "@extensions/*": ["./src/*"],
+      "@wa-dev/email-editor-blocks-react": ["../email-editor-blocks-react/src/index.ts"],
+      "@wa-dev/email-editor-panels": ["../email-editor-panels/src/index.ts"],
+      "@wa-dev/email-editor-editor": ["../email-editor-editor/src/index.tsx"],
+      "@wa-dev/email-editor-shared": ["../email-editor-shared/src/index.ts"],
+      "@wa-dev/email-editor-shared/types": ["../email-editor-shared/src/types/index.ts"],
+      "@wa-dev/email-editor-ui": ["../email-editor-ui/src/index.ts"],
+      "@wa-dev/email-editor-localization/*": ["../email-editor-localization/*"]
+    }
+  },
+  "include": ["./src", "./typings"],
+  "exclude": ["node_modules", "src/utils/__tests__"]
+}

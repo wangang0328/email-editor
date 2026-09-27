@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { Input, Tooltip } from '@arco-design/web-react';
+import { Input, Tooltip } from '@demo/components/app-ui';
 
 /* ─── SVG 图标 ─── */
 

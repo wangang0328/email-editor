@@ -1,15 +1,23 @@
-import { useEffect, useMemo, useState, useRef } from 'react';
+import { useEffect, useMemo, useRef, useState, useContext } from 'react';
 
-import { getNodeIdxFromClassName } from '@wa-dev/email-editor-core';
+import { getPageIdx } from '@wa-dev/email-editor-blocks-react';
 import { getBlockNodeByChildEle } from '@/utils/getBlockNodeByChildEle';
+import { resolveBlockIdxFromElement } from '@/utils/blockDom';
 import { useBlock } from '@/hooks/useBlock';
 import { getDirectionPosition } from '@/utils/getDirectionPosition';
 import { useFocusIdx } from './useFocusIdx';
 import { useDataTransfer } from './useDataTransfer';
-import { useHoverIdx } from './useHoverIdx';
+import { HoverIdxContext } from '@/components/Provider/HoverIdxProvider';
 import { getInsertPosition } from '@/utils/getInsertPosition';
 import { useEditorProps } from './useEditorProps';
 import { DATA_ATTRIBUTE_DROP_CONTAINER } from '@/constants';
+import { getShadowRoot, suppressInlineTextPreserve } from '@/utils';
+import { createDragAutoScroller } from '@/utils/dragAutoScroll';
+
+/** 交互只认 uid→registry；解析失败则不更新，避免误用过期 node-idx */
+function resolveLiveBlockIdx(blockNode: Element): string | null {
+  return resolveBlockIdxFromElement(blockNode);
+}
 
 export function useDropBlock() {
   const [ref, setRef] = useState<HTMLElement | null>(null);
@@ -26,37 +34,84 @@ export function useDropBlock() {
   useEffect(() => {
     cacheDataTransfer.current = dataTransfer;
   }, [dataTransfer]);
-  const { setFocusIdx, focusIdx } = useFocusIdx();
-  const { setHoverIdx, setDirection, isDragging, hoverIdx, direction } =
-    useHoverIdx();
+  const { setFocusIdx, focusIdx, notifyFocusSelection } = useFocusIdx();
+  const {
+    setHoverIdx,
+    setDirection,
+    isDragging,
+    hoverIdx,
+    direction,
+    dataTransferRef,
+  } = useContext(HoverIdxContext);
+  const dragHoverRef = useRef({ hoverIdx: '', direction: '' });
 
   useEffect(() => {
     if (ref) {
-      let target: EventTarget | null = null;
-      const onMouseDown = (ev: MouseEvent) => {
-        target = ev.target;
-      };
+      const selectBlockFromEvent = (ev: Event) => {
+        if (!(ev.target instanceof Element)) return;
 
-      const onClick = (ev: MouseEvent) => {
-        ev.preventDefault(); // prevent link
-        if (target !== ev.target) return;
-        if (ev.target instanceof Element) {
-          const target = getBlockNodeByChildEle(ev.target);
-          if (!target) return;
-          const idx = getNodeIdxFromClassName(target.classList)!;
-          setFocusIdx(idx);
-          // scrollBlockEleIntoView({ idx });
+        const blockNode = getBlockNodeByChildEle(ev.target);
+        if (blockNode) {
+          const idx = resolveLiveBlockIdx(blockNode);
+          if (idx) {
+            setFocusIdx(idx);
+            notifyFocusSelection();
+          }
+          return;
+        }
+
+        // Page 无画布 DOM 节点；点击邮件区域外空白 / 非块区域时选中 page
+        if (ref.contains(ev.target)) {
+          setFocusIdx(getPageIdx());
+          notifyFocusSelection();
         }
       };
 
-      ref.addEventListener('mousedown', onMouseDown);
+      const onPointerDown = (ev: PointerEvent) => {
+        if (ev.button !== 0) return;
+
+        const target = ev.target instanceof Node ? ev.target : null;
+        const clickingContentEditable =
+          target instanceof Element &&
+          Boolean(target.closest('[contenteditable="true"]'));
+
+        // 点击 contenteditable 进入/继续富文本编辑：不可抑制 L3，否则 DOM 重挂载会销毁选区与工具栏
+        if (!clickingContentEditable) {
+          // 切换到其他块：pointerdown 时 activeElement 往往仍是旧 contenteditable
+          suppressInlineTextPreserve();
+          const shadowRoot = getShadowRoot();
+          const active = shadowRoot?.activeElement;
+          if (
+            active instanceof HTMLElement &&
+            active.getAttribute('contenteditable') === 'true' &&
+            target &&
+            target !== active &&
+            !active.contains(target)
+          ) {
+            active.blur();
+          }
+        }
+
+        selectBlockFromEvent(ev);
+      };
+
+      /** 选中已在 pointerdown(capture) 完成；click 仅阻止链接跳转，避免重复 setFocusIdx 导致面板闪动 */
+      const onClick = (ev: MouseEvent) => {
+        const target = ev.target instanceof Element ? ev.target : null;
+        if (target?.closest('[contenteditable="true"]')) {
+          return;
+        }
+        ev.preventDefault();
+      };
+
+      ref.addEventListener('pointerdown', onPointerDown, true);
       ref.addEventListener('click', onClick);
       return () => {
-        ref.removeEventListener('mousedown', onMouseDown);
+        ref.removeEventListener('pointerdown', onPointerDown, true);
         ref.removeEventListener('click', onClick);
       };
     }
-  }, [ref, setFocusIdx]);
+  }, [ref, setFocusIdx, notifyFocusSelection]);
 
   useEffect(() => {
     if (ref) {
@@ -70,31 +125,35 @@ export function useDropBlock() {
         valid: false,
       };
 
+      // ref 即 SYNC_SCROLL 滚动容器（EditEmailPreview）
+      const autoScroller = createDragAutoScroller(() => ref);
+
       const onMouseover = (ev: MouseEvent) => {
         if (lastHoverTarget === ev.target) return;
         lastHoverTarget = ev.target;
         const blockNode = getBlockNodeByChildEle(ev.target as HTMLElement);
 
         if (blockNode) {
-          const idx = getNodeIdxFromClassName(blockNode.classList)!;
-          setHoverIdx(idx);
+          const idx = resolveLiveBlockIdx(blockNode);
+          if (idx && idx !== getPageIdx()) {
+            setHoverIdx(idx);
+          } else {
+            setHoverIdx('');
+          }
         }
       };
 
-      const onDrop = (ev: MouseEvent) => {
+      const onDrop = (ev: DragEvent) => {
+        ev.preventDefault();
         lastDragover.target = null;
+        autoScroller.stop();
       };
 
       const onDragOver = (ev: DragEvent) => {
         if (!cacheDataTransfer.current) return;
 
-        // if (ev.target === lastDragover.target) {
-        //   if (lastDragover.valid) {
-        //     ev.preventDefault();
-
-        //     return;
-        //   }
-        // }
+        // 靠近上下边缘时自动滚动，便于拖到视口外的目标
+        autoScroller.updateFromPointer(ev.clientX, ev.clientY);
 
         lastDragover.target = ev.target;
         lastDragover.valid = false;
@@ -103,32 +162,56 @@ export function useDropBlock() {
 
         if (blockNode) {
           const directionPosition = getDirectionPosition(ev);
-          const idx = getNodeIdxFromClassName(blockNode.classList)!;
-          const positionData = getInsertPosition({
-            context: cacheValues.current,
-            idx,
-            directionPosition,
-            dragType: cacheDataTransfer.current.type,
-          });
+          const idx = resolveLiveBlockIdx(blockNode);
+          // registry 未就绪或无 uid：不更新落点，避免过期 node-idx 指错块
+          const positionData = idx
+            ? getInsertPosition({
+                context: cacheValues.current,
+                idx,
+                directionPosition,
+                dragType: cacheDataTransfer.current.type,
+                action: cacheDataTransfer.current.action,
+                sourceIdx: cacheDataTransfer.current.sourceIdx,
+              })
+            : null;
 
           if (positionData) {
             ev.preventDefault();
             lastDragover.valid = true;
-            setDataTransfer((dataTransfer: any) => {
-              return {
-                ...dataTransfer,
-                parentIdx: positionData.parentIdx,
-                positionIndex: positionData.insertIndex,
+            const nextTransfer = {
+              ...cacheDataTransfer.current,
+              parentIdx: positionData.parentIdx,
+              positionIndex: positionData.insertIndex,
+            };
+            cacheDataTransfer.current = nextTransfer;
+            dataTransferRef.current = nextTransfer;
+            setDataTransfer(nextTransfer);
+
+            const nextHoverIdx = positionData.hoverIdx;
+            const nextDirection = positionData.endDirection;
+            if (
+              dragHoverRef.current.hoverIdx !== nextHoverIdx ||
+              dragHoverRef.current.direction !== nextDirection
+            ) {
+              dragHoverRef.current = {
+                hoverIdx: nextHoverIdx,
+                direction: nextDirection,
               };
-            });
-            setDirection(positionData.endDirection);
-            setHoverIdx(positionData.hoverIdx);
+              setDirection(nextDirection);
+              setHoverIdx(nextHoverIdx);
+            }
           }
         }
         if (!lastDragover.valid) {
-          setDirection('');
-          setHoverIdx('');
+          if (dragHoverRef.current.hoverIdx || dragHoverRef.current.direction) {
+            dragHoverRef.current = { hoverIdx: '', direction: '' };
+            setDirection('');
+            setHoverIdx('');
+          }
           setDataTransfer((dataTransfer: any) => {
+            if (!dataTransfer?.parentIdx) {
+              return dataTransfer;
+            }
             return {
               ...dataTransfer,
               parentIdx: undefined,
@@ -140,22 +223,46 @@ export function useDropBlock() {
       const onCheckDragLeave = (ev: DragEvent) => {
         const dropEleList = [
           ...document.querySelectorAll(
-            `[${DATA_ATTRIBUTE_DROP_CONTAINER}="true"]`
+            `[${DATA_ATTRIBUTE_DROP_CONTAINER}="true"]`,
           ),
         ];
-        const target = ev.target as HTMLElement;
-        const isDropContainer = dropEleList.some((ele) => ele.contains(target));
+        // 勿用 ev.target：松手瞬间 target 常回到侧栏拖拽源，会误清 parentIdx
+        const hit = document.elementFromPoint(ev.clientX, ev.clientY);
+        const isOverDropContainer = dropEleList.some(
+          (ele) => hit && ele.contains(hit),
+        );
 
-        if (!isDropContainer) {
+        // Shadow 内节点对 host.contains 常为 false；用滚动容器几何范围兜底
+        const scrollRect = ref.getBoundingClientRect();
+        const isOverScrollViewport =
+          ev.clientX >= scrollRect.left - 24 &&
+          ev.clientX <= scrollRect.right + 24 &&
+          ev.clientY >= scrollRect.top - 8 &&
+          ev.clientY <= scrollRect.bottom + 8;
+
+        if (isOverScrollViewport) {
+          autoScroller.updateFromPointer(ev.clientX, ev.clientY);
+        } else {
+          autoScroller.stop();
+        }
+
+        if (!isOverDropContainer && !isOverScrollViewport) {
           setDirection('');
           setHoverIdx('');
-          setDataTransfer((dataTransfer: any) => {
-            return {
-              ...dataTransfer,
+          if (cacheDataTransfer.current) {
+            const cleared = {
+              ...cacheDataTransfer.current,
               parentIdx: undefined,
+              positionIndex: undefined,
             };
-          });
+            cacheDataTransfer.current = cleared;
+            setDataTransfer(cleared);
+          }
         }
+      };
+
+      const onDragEnd = () => {
+        autoScroller.stop();
       };
 
       ref.addEventListener('mouseover', onMouseover);
@@ -163,18 +270,22 @@ export function useDropBlock() {
       ref.addEventListener('drop', onDrop);
       ref.addEventListener('dragover', onDragOver);
       window.addEventListener('dragover', onCheckDragLeave);
+      window.addEventListener('dragend', onDragEnd);
 
       return () => {
+        autoScroller.stop();
         ref.removeEventListener('mouseover', onMouseover);
         // ref.removeEventListener('mouseout', onMouseOut);
         ref.removeEventListener('drop', onDrop);
         ref.removeEventListener('dragover', onDragOver);
         window.removeEventListener('dragover', onCheckDragLeave);
+        window.removeEventListener('dragend', onDragEnd);
       };
     }
   }, [
     autoComplete,
     cacheDataTransfer,
+    dataTransferRef,
     ref,
     setDataTransfer,
     setDirection,

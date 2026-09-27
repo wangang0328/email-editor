@@ -23,9 +23,9 @@
     "paths": {
       "@": ["./src"],
       "@/*": ["./src/*"],
-      "@core": ["../email-editor-core/src"],
-      "@core/*": ["../email-editor-core/src/*"],
-      "@wa-dev/email-editor-core": ["../email-editor-core"],
+      "@wa-dev/email-editor-blocks-react": ["../email-editor-blocks-react/src/index.ts"],
+      "@wa-dev/email-editor-shared": ["../email-editor-shared/src/index.ts"],
+      "@wa-dev/email-editor-localization/*": ["../email-editor-localization/*"],
       "react": ["./node_modules/@types/react"]
     }
   },

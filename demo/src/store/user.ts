@@ -1,17 +1,35 @@
+import { create } from 'zustand';
 import services from '@demo/services';
 import { IUser } from '@demo/services/user';
-import createSliceState from './common/createSliceState';
+import { createActionKeys, runAsyncAction } from './asyncAction';
 
-export default createSliceState({
-  name: 'user',
-  initialState: null as IUser | null,
-  reducers: {
-    set: (state, action) => state,
+const NAMESPACE = 'user';
+
+interface UserStore {
+  user: IUser | null;
+  fetch: () => Promise<void>;
+}
+
+export const useUserStore = create<UserStore>((set, get) => ({
+  user: null,
+  fetch: () =>
+    runAsyncAction(
+      NAMESPACE,
+      'fetch',
+      () => get().user,
+      (user) => set({ user }),
+      {},
+      async () => services.user.getInfo(),
+    ),
+}));
+
+const loadings = createActionKeys(NAMESPACE, ['fetch']);
+
+const user = {
+  loadings,
+  actions: {
+    fetch: () => useUserStore.getState().fetch(),
   },
-  effects: {
-    fetch: async (state) => {
-      const data = await services.user.getInfo();
-      return data;
-    },
-  },
-});
+};
+
+export default user;

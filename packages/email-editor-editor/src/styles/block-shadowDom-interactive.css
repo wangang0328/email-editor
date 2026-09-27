@@ -2,6 +2,12 @@
   display: block !important;
 }
 
+/* FocusTooltip / HoverTooltip 的 portal 子节点使用 absolute 定位；
+ * 需要块根作为包含块，否则会相对初始容器导致边框覆盖整页。 */
+.email-block {
+  position: relative;
+}
+
 [data-dashed='true'] .email-block {
   outline: 1px dashed rgba(170, 170, 170, 0.7);
   outline-offset: -2px;
@@ -15,9 +21,25 @@
   user-select: none;
 }
 
-:not(.email-block) {
+/* 仅限制画布邮件 DOM，勿影响 #easy-email-plugins 内的 FocusTooltip 手柄 */
+.shadow-container :not(.email-block) {
   -webkit-user-drag: none;
   cursor: default;
+}
+
+/* FocusTooltip 移动手柄在 #easy-email-plugins（Shadow DOM）内 */
+#easy-email-plugins .ee-block-drag-handle,
+#easy-email-plugins .ee-block-drag-handle *,
+#easy-email-plugins .ee-block-avatar-wrapper,
+#easy-email-plugins .ee-block-avatar-wrapper * {
+  cursor: grab;
+  -webkit-user-drag: element;
+}
+
+#easy-email-plugins .ee-block-drag-handle:active,
+#easy-email-plugins .ee-block-avatar-wrapper.ee-block-avatar-dragging,
+#easy-email-plugins .ee-block-avatar-wrapper.ee-block-avatar-dragging * {
+  cursor: grabbing;
 }
 
 .email-block:focus-visible {
@@ -26,4 +48,64 @@
 
 [contenteditable='true'] {
   outline: none;
+}
+
+/*
+ * 画布内可编辑节点：显式字号，避免继承 Shadow 宿主或侧栏过大 font-size。
+ * 与各 block create() 默认值、Page mj-text 全局 14px 对齐。
+ */
+.node-type-text [contenteditable='true'],
+.node-type-text div[contenteditable='true'] {
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.node-type-button [contenteditable='true'] {
+  font-size: 13px;
+  line-height: 1.2;
+}
+
+.node-type-navbar[contenteditable='true'],
+.node-type-navbar .mj-link[contenteditable='true'] {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.node-type-table [contenteditable='true'],
+.node-type-table td[contenteditable='true'],
+.node-type-table th[contenteditable='true'] {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+/*
+ * 编辑画布图片：加载中占位，避免 height:auto 在 decode 前高度为 0 导致整页抖动。
+ * 状态由 stabilizeEditCanvasImages 写入 data-ee-img-*。
+ */
+.shadow-container img[data-ee-img]:not([data-ee-img-loaded]):not([data-ee-img-error]) {
+  background-color: #f2f3f5;
+  background-image: linear-gradient(
+    90deg,
+    #f2f3f5 0%,
+    #e5e6eb 40%,
+    #f2f3f5 80%
+  );
+  background-size: 200% 100%;
+  animation: ee-img-loading-shimmer 1.2s ease-in-out infinite;
+  object-fit: contain;
+  vertical-align: middle;
+}
+
+.shadow-container img[data-ee-img-error] {
+  background-color: #f2f3f5;
+  object-fit: contain;
+}
+
+@keyframes ee-img-loading-shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
 }

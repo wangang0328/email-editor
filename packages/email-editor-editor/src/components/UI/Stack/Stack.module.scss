@@ -1,3 +1,5 @@
+@use 'sass:map';
+@use 'sass:meta';
 
 $polaris-spacing: (
   'none': 0,
@@ -19,12 +21,12 @@ $base-font-size: 10px;
 /// @return {Number} The spacing for the variant.
 
 @function spacing($variant: base) {
-  $fetched-value: map-get($spacing-data, $variant);
+  $fetched-value: map.get($spacing-data, $variant);
 
-  @if type-of($fetched-value) == number {
+  @if meta.type-of($fetched-value) == number {
     @return $fetched-value;
   } @else {
-    @error 'Spacing variant `#{$variant}` not found. Available variants: #{available-names($spacing-data)}';
+    @error 'Spacing variant `#{$variant}` not found.';
   }
 }
 

@@ -1,4 +1,4 @@
-import { JsonToMjml, IBlockData } from '@wa-dev/email-editor-core';
+import { JsonToMjml, IBlockData } from '@wa-dev/email-editor-blocks-react';
 import services from '@demo/services';
 
 export async function emailToImage(content: IBlockData) {

@@ -1,9 +1,9 @@
 import React, { Suspense } from 'react';
 import { Router, Switch, Route } from 'react-router-dom';
-import { Provider } from 'react-redux';
 import Page from '@demo/components/Page';
-import store from '@demo/store';
 import '@demo/styles/common.scss';
+import '@extensions/styles/globals.css';
+import { Toaster } from '@demo/components/app-ui';
 import { history } from './utils/history';
 import Home from '@demo/pages/Home';
 
@@ -11,7 +11,8 @@ const Editor = React.lazy(() => import('@demo/pages/Editor'));
 
 function App() {
   return (
-    <Provider store={store}>
+    <>
+      <Toaster position="top-center" richColors closeButton />
       <Page>
         <Suspense
           fallback={
@@ -55,7 +56,7 @@ function App() {
           </Router>
         </Suspense>
       </Page>
-    </Provider>
+    </>
   );
 }
 

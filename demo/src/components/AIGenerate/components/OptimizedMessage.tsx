@@ -1,5 +1,5 @@
 import React, { useState, useMemo, memo, useCallback } from 'react';
-import { Input, Popover } from '@arco-design/web-react';
+import { Input, Popover } from '@demo/components/app-ui';
 import { OptimizedMessageProps } from '../types';
 import { extractMJMLFromContent, splitContentAroundMjml, ContentPart } from '../utils/mjmlExtractor';
 import ReactMarkdown from 'react-markdown';

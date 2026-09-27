@@ -1,4 +1,4 @@
-import { IBlockData } from '@wa-dev/email-editor-core';
+import { IBlockData } from '@wa-dev/email-editor-blocks-react';
 import React, { useMemo } from 'react';
 
 export interface CollectedBlock {
@@ -63,14 +63,14 @@ export interface PropsProviderProps {
     mergeTags: PropsProviderProps['previewInjectData'] | PropsProviderProps['mergeTags'],
   ) => string | Promise<string>;
   enabledLogic?: boolean;
-  locale?: Record<string, string>;
+  locale?: 'zh-Hans' | 'zh-Hant' | 'en' | 'ja' | 'ko' | 'it' | 'tr';
 
   toolbar?: {
     tools?: AvailableTools[];
-    /** 富文本工具栏末尾自定义内容（如 AI 按钮） */
+    /** 富文本工具栝末尾自定义内容（�?AI 按钮�?*/
     suffix?: (execCommand: (cmd: string, value?: any) => void) => React.ReactNode;
   };
-  /** 块聚焦时 Toolbar 的自定义项（如 AI 局部优化按钮），渲染在复制/删除等按钮之后 */
+  /** 块蝚焦时 Toolbar 的自定义项（�?AI 局部优化按钮），渲染在夝制/删除等按钮之�?*/
   toolbarItems?: React.ReactNode;
 }
 
@@ -87,7 +87,7 @@ export const EditorPropsContext = React.createContext<
   onAddCollection: undefined,
   onRemoveCollection: undefined,
   onUploadImage: undefined,
-  autoComplete: false,
+  autoComplete: true,
   dashed: true,
   mergeTagGenerate: defaultMergeTagGenerate,
   enabledLogic: false,

@@ -1,0 +1,56 @@
+{
+  "name": "@wa-dev/email-editor-shared",
+  "license": "MIT",
+  "description": "Shared constants, assets metadata, and framework-agnostic utilities for the email editor monorepo",
+  "version": "2.0.0",
+  "author": "wa-dev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangang0328/email-editor.git"
+  },
+  "keywords": [
+    "email-editor",
+    "shared"
+  ],
+  "files": [
+    "lib",
+    "README.md"
+  ],
+  "main": "lib/index.js",
+  "module": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "require": "./lib/index.js"
+    },
+    "./types": {
+      "types": "./lib/types/index.d.ts",
+      "import": "./lib/types/index.js",
+      "require": "./lib/types/index.js"
+    },
+    "./tree": {
+      "types": "./lib/tree/index.d.ts",
+      "import": "./lib/tree/index.js",
+      "require": "./lib/tree/index.js"
+    }
+  },
+  "dependencies": {
+    "lodash-es": "catalog:"
+  },
+  "scripts": {
+    "build": "rimraf lib && tsc -p tsconfig.json",
+    "format": "prettier --write \"**/*.{js,ts,json,md}\""
+  },
+  "devDependencies": {
+    "@types/lodash-es": "catalog:",
+    "prettier": "catalog:",
+    "rimraf": "catalog:",
+    "typescript": "catalog:"
+  },
+  "gitHead": "011f49a6a73e0c89d90b63186f596faf526c2673"
+}

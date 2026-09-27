@@ -4,8 +4,8 @@ import { useBlock } from './useBlock';
 import { getEditorRoot, getShadowRoot } from '@/utils';
 import { useFocusIdx } from './useFocusIdx';
 import { useEditorContext } from './useEditorContext';
-import { getNodeIdxFromClassName } from '@wa-dev/email-editor-core';
 import { getBlockNodeByChildEle } from '@/utils/getBlockNodeByChildEle';
+import { resolveBlockIdxFromElement } from '@/utils/blockDom';
 
 function isContentEditFocus() {
   const isShadowRootFocus = document.activeElement === getEditorRoot();
@@ -84,12 +84,14 @@ export function useHotKeys() {
       if (!isShadowRootFocus) return;
       if (isHotkey('tab', ev) || isHotkey('shift+tab', ev)) {
         setTimeout(() => {
-          const activeElement = getShadowRoot().activeElement;
+          const activeElement = getShadowRoot()?.activeElement;
           if (activeElement instanceof HTMLElement) {
             const blockNode = getBlockNodeByChildEle(activeElement);
             if (blockNode) {
-              const idx = getNodeIdxFromClassName(blockNode.classList)!;
-              setFocusIdx(idx);
+              const idx = resolveBlockIdxFromElement(blockNode);
+              if (idx) {
+                setFocusIdx(idx);
+              }
             }
           }
         }, 0);

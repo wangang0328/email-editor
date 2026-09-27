@@ -1,4 +1,4 @@
-import { get } from 'lodash';
+import { get } from 'lodash-es';
 import React from 'react';
 
 export function generateTranslate(localeData: Record<string, string>): any {

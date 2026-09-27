@@ -1,0 +1,112 @@
+{
+  "name": "@wa-dev/email-editor-panels",
+  "license": "MIT",
+  "description": "Email editor attribute panels (fields, block panels, registry)",
+  "version": "2.0.0",
+  "author": "wa-dev",
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/wangang0328/email-editor.git"
+  },
+  "keywords": [
+    "email-editor",
+    "panels",
+    "attribute-panel"
+  ],
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "sideEffects": [
+    "**/*.css",
+    "**/*.scss"
+  ],
+  "exports": {
+    ".": {
+      "types": "./lib/index.d.ts",
+      "import": "./lib/index.js",
+      "default": "./lib/index.js"
+    }
+  },
+  "scripts": {
+    "typings": "rimraf --glob src/**/*.d.ts src/**/*.d.ts.map && tsc --declaration --emitDeclarationOnly --project tsconfig.lib.json",
+    "build": "rimraf lib && pnpm run typings && vite build --config vite.config.ts",
+    "analyze": "cross-env ANALYZE=true vite build --config vite.config.ts",
+    "test": "jest --coverage",
+    "format": "prettier --write \"**/*.{js,ts,tsx,json,md}\""
+  },
+  "dependencies": {
+    "@wa-dev/email-editor-shared": "workspace:*",
+    "@wa-dev/email-editor-ui": "workspace:*"
+  },
+  "peerDependencies": {
+    "@lingui/core": "catalog:",
+    "@wa-dev/email-editor-blocks-react": "workspace:*",
+    "@wa-dev/email-editor-editor": "workspace:*",
+    "ahooks": "catalog:",
+    "classnames": "catalog:",
+    "codemirror": "catalog:",
+    "color": "catalog:",
+    "final-form": "catalog:",
+    "final-form-arrays": "catalog:",
+    "final-form-set-field-touched": "catalog:",
+    "is-hotkey": "catalog:",
+    "lodash-es": "catalog:",
+    "lucide-react": "catalog:",
+    "react": "catalog:",
+    "react-codemirror2": "catalog:",
+    "react-colorful": "catalog:",
+    "react-dom": "catalog:",
+    "react-final-form": "catalog:",
+    "react-final-form-arrays": "catalog:",
+    "react-use": "catalog:",
+    "uuid": "catalog:"
+  },
+  "devDependencies": {
+    "@babel/core": "catalog:",
+    "@babel/preset-env": "catalog:",
+    "@babel/preset-react": "catalog:",
+    "@babel/preset-typescript": "catalog:",
+    "@lingui/babel-plugin-lingui-macro": "catalog:",
+    "@types/jest": "catalog:",
+    "@types/lodash-es": "catalog:",
+    "@types/node": "catalog:",
+    "@types/react": "catalog:",
+    "@types/react-dom": "catalog:",
+    "@vitejs/plugin-react": "catalog:",
+    "@wa-dev/email-editor-blocks-react": "workspace:*",
+    "@wa-dev/email-editor-editor": "workspace:*",
+    "ahooks": "catalog:",
+    "babel-jest": "catalog:",
+    "classnames": "catalog:",
+    "codemirror": "catalog:",
+    "color": "catalog:",
+    "cross-env": "catalog:",
+    "final-form": "catalog:",
+    "final-form-arrays": "catalog:",
+    "final-form-set-field-touched": "catalog:",
+    "is-hotkey": "catalog:",
+    "jest": "catalog:",
+    "lodash": "^4.18.1",
+    "lodash-es": "catalog:",
+    "lucide-react": "catalog:",
+    "prettier": "catalog:",
+    "react": "catalog:",
+    "react-codemirror2": "catalog:",
+    "react-colorful": "catalog:",
+    "react-dom": "catalog:",
+    "react-final-form": "catalog:",
+    "react-final-form-arrays": "catalog:",
+    "react-use": "catalog:",
+    "rimraf": "catalog:",
+    "rollup-plugin-visualizer": "catalog:",
+    "sass": "catalog:",
+    "typescript": "catalog:",
+    "uuid": "catalog:",
+    "vite": "catalog:"
+  }
+}

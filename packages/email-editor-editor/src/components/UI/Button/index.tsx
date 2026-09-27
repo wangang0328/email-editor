@@ -1,4 +1,4 @@
-import { classnames } from '@/utils/classnames';
+import { classnames } from '@wa-dev/email-editor-shared';
 import React from 'react';
 import './index.scss';
 

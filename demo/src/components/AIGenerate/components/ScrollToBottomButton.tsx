@@ -1,6 +1,7 @@
 import React from 'react';
-import { Button, Badge } from '@arco-design/web-react';
-import { IconDown } from '@arco-design/web-react/icon';
+import { Button } from '@demo/components/app-ui';
+import { ChevronDown } from 'lucide-react';
+import { Badge } from '@demo/components/demo-ui';
 
 interface ScrollToBottomButtonProps {
   visible: boolean;
@@ -11,33 +12,20 @@ interface ScrollToBottomButtonProps {
 export const ScrollToBottomButton: React.FC<ScrollToBottomButtonProps> = ({
   visible,
   unreadCount = 0,
-  onClick
+  onClick,
 }) => {
   if (!visible) return null;
 
-  const buttonContent = unreadCount > 0 ? (
-    <div className="scroll-button-content">
-      <IconDown />
-      <span className="unread-text">
-        {unreadCount > 99 ? '99+' : unreadCount}条新消息
-      </span>
-    </div>
-  ) : (
-    <IconDown />
-  );
-
   return (
-    <div className="scroll-to-bottom-container">
-      <Button
-        type="primary"
-        shape={unreadCount > 0 ? 'round' : 'circle'}
-        size="large"
-        onClick={onClick}
-        className={`scroll-to-bottom-button ${unreadCount > 0 ? 'with-count' : ''}`}
-        title={unreadCount > 0 ? `${unreadCount}条新消息` : '滚动到底部'}
-      >
-        {buttonContent}
-      </Button>
+    <div className="scroll-to-bottom-btn">
+      <Badge count={unreadCount}>
+        <Button
+          type="primary"
+          shape="circle"
+          icon={<ChevronDown size={16} />}
+          onClick={onClick}
+        />
+      </Badge>
     </div>
   );
 };
