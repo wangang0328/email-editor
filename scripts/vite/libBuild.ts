@@ -12,11 +12,20 @@ export function linguiReactPlugin(): Plugin[] {
   ];
 }
 
+/**
+ * React 运行时一律 external，避免把宿主项目的 react/react-dom 打进 lib。
+ * 注意：Rollup 对字符串做精确匹配，`react-dom` 不会覆盖 `react-dom/client`。
+ */
 export const reactRuntimeExternals: (string | RegExp)[] = [
   'react',
   'react-dom',
-  'react-dom/server',
   'react/jsx-runtime',
+  'react/jsx-dev-runtime',
+  'react-dom/client',
+  'react-dom/server',
+  'react-dom/server.browser',
+  /^react\/.*/,
+  /^react-dom(\/.*)?$/,
 ];
 
 export const linguiExternals: (string | RegExp)[] = [
