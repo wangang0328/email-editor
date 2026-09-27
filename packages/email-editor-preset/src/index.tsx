@@ -1,3 +1,10 @@
+/**
+ * 样式统一打进 lib/style.css：ui（含 overlayscrollbars）+ panels + chrome + 本包 scss。
+ * 宿主只需 import '@wa-dev/email-editor-preset/style.css'（另加 editor 的 style.css）。
+ */
+import '../../email-editor-ui/lib/style.css';
+import '../../email-editor-panels/lib/style.css';
+import './styles/chrome.css';
 import './index.scss';
 
 export * from './BlockLayer';

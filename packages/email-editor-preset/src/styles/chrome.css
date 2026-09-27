@@ -1,0 +1,435 @@
+/**
+ * 对齐 email-editor demo 的 preset/styles/globals.css（不含 @tailwind）。
+ * npm 包 lib/style.css 未打入这些规则，需由宿主引入。
+ */
+
+/* Tabs 横向滚动样式 */
+.tabs-scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent;
+  border-radius: 0;
+}
+
+/* 左侧编辑栏 / 属性面板 Tab — 分段胶囊 */
+.edit-panel-tabs > div:first-child {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  min-height: 48px;
+  padding: 0 12px;
+  background: var(--ee-panel-bg, #fafafa);
+  border-bottom: 1px solid var(--ee-panel-border, rgba(15, 23, 42, 0.06));
+}
+
+.edit-panel-tabs-header-row {
+  width: 100%;
+  height: 48px;
+  gap: 8px;
+}
+
+.edit-panel-tabs .tabs-scroll-container,
+.edit-panel-tabs .ee-tabs-header-nav {
+  width: 100%;
+}
+
+.edit-panel-tabs [role='tablist'],
+.edit-panel-tabs-header [role='tablist'] {
+  display: flex !important;
+  width: calc(100% - 8px) !important;
+  max-width: 100% !important;
+  gap: 2px !important;
+  margin: 0 4px !important;
+  padding: 3px !important;
+  border-radius: 10px !important;
+  box-shadow: none !important;
+  background: rgba(15, 23, 42, 0.04) !important;
+  border: 1px solid rgba(15, 23, 42, 0.04) !important;
+}
+
+.edit-panel-tabs button[role='tab'],
+.edit-panel-tabs-header button[role='tab'] {
+  flex: 1 1 0 !important;
+  min-width: 0 !important;
+  width: auto !important;
+  height: 30px !important;
+  min-height: 30px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 8px !important;
+  box-shadow: none !important;
+  margin: 0 !important;
+  padding: 0 10px !important;
+  line-height: 1.2 !important;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.01em;
+  color: var(--color-text-3, #86909c) !important;
+  border: none !important;
+  background: transparent !important;
+  transition: color 0.15s ease, background-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.edit-panel-tabs button[role='tab'][data-state='active'],
+.edit-panel-tabs-header button[role='tab'][data-state='active'] {
+  color: var(--color-primary, #165dff) !important;
+  background: #fff !important;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06), 0 0 0 1px rgba(15, 23, 42, 0.04) !important;
+}
+
+.edit-panel-tabs button[role='tab']:hover:not([data-state='active']),
+.edit-panel-tabs-header button[role='tab']:hover:not([data-state='active']) {
+  color: var(--color-text-1, #1d2129) !important;
+  background: rgba(255, 255, 255, 0.55) !important;
+}
+
+.edit-panel-tabs button[role='tab']:focus-visible,
+.edit-panel-tabs-header button[role='tab']:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(22, 93, 255, 0.2) !important;
+}
+
+.tabs-scrollable {
+  border-radius: 0;
+}
+
+.tabs-scroll-container:hover {
+  scrollbar-color: rgba(0, 0, 0, 0.2) transparent;
+}
+
+.tabs-scroll-container::-webkit-scrollbar {
+  height: 4px;
+}
+
+.tabs-scroll-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.tabs-scroll-container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 4px;
+}
+
+.tabs-scroll-container:hover::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* Accordion / 属性面板折叠 — 干净分隔线，无灰底卡片 */
+.ee-accordion-item {
+  border-bottom: 1px solid rgba(15, 23, 42, 0.06);
+}
+
+.ee-accordion-item:last-child {
+  border-bottom: none;
+}
+
+.accordion-trigger {
+  background: transparent !important;
+}
+
+.accordion-trigger[data-state='open'] {
+  color: var(--color-text-1, #1d2129) !important;
+}
+
+.accordion-trigger[data-state='open'] .accordion-chevron,
+.accordion-trigger[data-state='open'] .ee-accordion-title {
+  color: var(--color-text-1, #1d2129);
+}
+
+.accordion-chevron {
+  transition: transform 0.2s ease-out;
+}
+
+.accordion-trigger:hover {
+  color: var(--color-text-1, #1d2129) !important;
+  background: transparent !important;
+}
+
+.accordion-trigger:hover .ee-accordion-title {
+  color: var(--color-text-1, #1d2129);
+}
+
+.accordion-trigger:focus-visible {
+  outline: none;
+  border-radius: 6px;
+  box-shadow: 0 0 0 2px rgba(22, 93, 255, 0.18);
+}
+
+.ee-accordion-title {
+  display: block;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: inherit;
+}
+
+.ee-accordion-content {
+  overflow: hidden;
+  font-size: 14px;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+  background: transparent;
+}
+
+.ee-accordion-content[data-state='open'] {
+  animation: ee-accordion-slide-down 0.2s ease-out;
+  pointer-events: auto;
+}
+
+.ee-accordion-content[data-state='closed'] {
+  height: 0;
+  opacity: 0;
+  animation: ee-accordion-slide-up 0.18s ease-out forwards;
+  pointer-events: none;
+}
+
+@keyframes ee-accordion-slide-down {
+  from {
+    height: 0;
+    opacity: 0.6;
+  }
+  to {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+}
+
+@keyframes ee-accordion-slide-up {
+  from {
+    height: var(--radix-accordion-content-height);
+    opacity: 1;
+  }
+  to {
+    height: 0;
+    opacity: 0;
+  }
+}
+
+.ee-accordion-content-inner {
+  min-height: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.ee-accordion-content-body {
+  padding: 4px 2px 16px;
+  box-sizing: border-box;
+}
+
+.ee-attr-collapse {
+  box-sizing: border-box;
+}
+
+.ee-attr-collapse .ee-form-item-label,
+.ee-accordion-content-body .ee-form-item-label {
+  color: var(--color-text-3, #86909c);
+  font-size: 12px;
+  font-weight: 500;
+}
+
+.ee-edit-panel-sider,
+.edit-panel-tabs {
+  background: var(--ee-panel-bg, #fafafa);
+}
+
+/* 侧栏 OverlayScrollbars 容器 */
+.ee-panel-scroll-host {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 0;
+}
+
+.ee-panel-scroll-host--fill {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.ee-panel-scroll-host .os-content-glue {
+  height: 0 !important;
+  max-height: 0 !important;
+  pointer-events: none;
+}
+
+.ee-panel-scroll-host .os-host,
+.ee-panel-scroll-host .os-padding,
+.ee-panel-scroll-host .os-viewport {
+  height: 100%;
+  max-height: 100%;
+}
+
+/* 单选框 — 圆点与外圈对齐 */
+.ee-radio-item {
+  box-sizing: border-box;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  border: 1px solid var(--color-primary, #165dff);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.ee-radio-item[data-disabled] {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.ee-radio-indicator {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-primary, #165dff);
+}
+
+/* 单选框 — 按钮型 */
+.ee-radio-button-group {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+  border: 1px solid var(--color-border-2, #e5e6eb);
+  background: var(--color-fill-2, #f2f3f5);
+  border-radius: 4px;
+  padding: 4px;
+  box-sizing: border-box;
+}
+
+.ee-radio-button-group--vertical {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.ee-radio-button-wrap {
+  position: relative;
+}
+
+.ee-radio-button-input {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.ee-radio-button-label {
+  display: block;
+  cursor: pointer;
+  border-radius: 4px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--color-text-2, #4e5969);
+  transition: background-color 0.2s, color 0.2s, box-shadow 0.2s;
+  user-select: none;
+}
+
+.ee-radio-button-input[data-state='checked'] + .ee-radio-button-label {
+  background: var(--color-bg-2, #fff);
+  color: var(--color-primary, #165dff);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.06);
+}
+
+.ee-radio-button-label:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+.ee-align-radio-group.ee-radio-button-group,
+.ee-icon-radio-group.ee-radio-button-group {
+  display: flex;
+  width: 100%;
+}
+
+.ee-align-radio-group .ee-radio-button-wrap,
+.ee-icon-radio-group .ee-radio-button-wrap {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.ee-align-radio-group .ee-radio-button-label,
+.ee-icon-radio-group .ee-radio-button-label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 4px;
+}
+
+.select-item:hover,
+.select-item:focus {
+  background-color: hsl(var(--accent));
+}
+
+.ee-select-value,
+[data-radix-select-trigger] > span:first-child {
+  display: block;
+  min-width: 0;
+  flex: 1 1 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: left;
+}
+
+.ee-scroll-area {
+  position: relative;
+  overflow: hidden;
+}
+
+.ee-scroll-area-viewport {
+  height: 100%;
+  width: 100%;
+  border-radius: inherit;
+  scrollbar-width: none;
+}
+
+.ee-scroll-area-viewport::-webkit-scrollbar {
+  display: none;
+  width: 0;
+  height: 0;
+}
+
+.ee-scroll-area-scrollbar {
+  z-index: 10;
+}
+
+.ee-scroll-area-thumb {
+  background-color: var(--color-neutral-3, #c9cdd4);
+}
+
+.ee-scroll-area-thumb:hover {
+  background-color: var(--color-text-3, #86909c);
+}
+
+.select-item[data-disabled] {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+.select-item[data-state='checked'] {
+  color: var(--color-primary, #165dff);
+}
+
+.dark .edit-panel-tabs button[role='tab'][data-state='active'],
+.dark .edit-panel-tabs-header button[role='tab'][data-state='active'] {
+  background: var(--color-bg-2, #1a1f29) !important;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.35), 0 0 0 1px rgba(255, 255, 255, 0.06) !important;
+}
+
+.dark .edit-panel-tabs [role='tablist'],
+.dark .edit-panel-tabs-header [role='tablist'] {
+  background: rgba(255, 255, 255, 0.04) !important;
+  border-color: rgba(255, 255, 255, 0.06) !important;
+}

@@ -281,7 +281,7 @@ importers:
         version: 1.353.0
     devDependencies:
       '@changesets/cli':
-        specifier: ^2.29.7
+        specifier: ^2.31.1
         version: 2.31.1(@types/node@18.19.130)
       '@lingui/babel-plugin-lingui-macro':
         specifier: 'catalog:'

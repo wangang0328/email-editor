@@ -2,7 +2,7 @@
   "name": "@wa-dev/email-editor-blocks-react",
   "license": "MIT",
   "description": "Email editor MJML block definitions and React renderers",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "author": "wa-dev",
   "publishConfig": {
     "access": "public"

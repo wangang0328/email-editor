@@ -2,7 +2,7 @@
   "name": "@wa-dev/email-editor-localization",
   "license": "MIT",
   "description": "Email editor localization — centralized Lingui catalogs for all packages",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "author": "wa-dev",
   "publishConfig": {
     "access": "public"

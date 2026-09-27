@@ -2,7 +2,7 @@
   "name": "@wa-dev/email-editor-panels",
   "license": "MIT",
   "description": "Email editor attribute panels (fields, block panels, registry)",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "author": "wa-dev",
   "publishConfig": {
     "access": "public"
@@ -30,7 +30,8 @@
       "types": "./lib/index.d.ts",
       "import": "./lib/index.js",
       "default": "./lib/index.js"
-    }
+    },
+    "./lib/style.css": "./lib/style.css"
   },
   "scripts": {
     "typings": "rimraf --glob src/**/*.d.ts src/**/*.d.ts.map && tsc --declaration --emitDeclarationOnly --project tsconfig.lib.json",

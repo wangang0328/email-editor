@@ -18,8 +18,9 @@ import { getBlockByType, BasicType, AdvancedType } from '@wa-dev/email-editor-co
 import { EmailEditor, EmailEditorProvider } from '@wa-dev/email-editor-editor';
 import { ExtensionProps, StandardLayout } from '@wa-dev/email-editor-preset';
 
+// preset/style.css 已聚合 ui、panels、chrome、overlayscrollbars
 import '@wa-dev/email-editor-editor/lib/style.css';
-import '@wa-dev/email-editor-preset/lib/style.css';
+import '@wa-dev/email-editor-preset/style.css';
 
 const categories: ExtensionProps['categories'] = [
   {

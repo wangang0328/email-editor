@@ -2,7 +2,7 @@
   "name": "@wa-dev/email-editor-shared",
   "license": "MIT",
   "description": "Shared constants, assets metadata, and framework-agnostic utilities for the email editor monorepo",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "author": "wa-dev",
   "publishConfig": {
     "access": "public"

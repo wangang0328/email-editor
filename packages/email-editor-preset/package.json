@@ -2,7 +2,7 @@
   "name": "@wa-dev/email-editor-preset",
   "license": "MIT",
   "description": "Email editor default UI preset (attribute panel, layout, toolbar)",
-  "version": "2.0.0",
+  "version": "2.0.4",
   "author": "wa-dev",
   "publishConfig": {
     "access": "public"
@@ -29,6 +29,7 @@
       "import": "./lib/index.js",
       "default": "./lib/index.js"
     },
+    "./style.css": "./lib/style.css",
     "./lib/style.css": "./lib/style.css"
   },
   "scripts": {
